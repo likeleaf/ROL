@@ -67,4 +67,7 @@
 	
 	<context:component-scan base-package="com.oneflyingleaf.dao.impl,com.oneflyingleaf.service.impl,com.oneflyingleaf.action"></context:component-scan>
 
+	<!-- 标签 -->
+	<import resource="classpath:com/oneflyingleaf/core/tag/tag.xml"/>
+
 </beans>

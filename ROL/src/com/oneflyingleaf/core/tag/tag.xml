@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd" >
+
+	<bean id="tagDao" class="com.oneflyingleaf.core.tag.dao.impl.TagDaoImpl">
+		<property name="sf" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="tagService" class="com.oneflyingleaf.core.tag.service.impl.TagServiceImpl">
+		<property name="tagDao" ref="tagDao"></property>
+	</bean>
+
+	<bean id="basicTag" class="com.oneflyingleaf.core.tag.tag.BasicTag" scope="singleton">
+		<property name="tagService" ref="tagService"></property>
+	</bean> 
+</beans>
