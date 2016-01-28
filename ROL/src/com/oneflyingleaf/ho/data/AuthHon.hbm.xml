@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.ho.data.AuthHon" table="AUTHHON">
+        <id name="authHonId" type="java.lang.String">
+            <column name="AUTHHONID" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="auther" class="com.oneflyingleaf.ho.data.Auther" fetch="join">
+            <column name="AUTHER" />
+        </many-to-one>
+        <many-to-one name="authHonDict" class="com.oneflyingleaf.ho.data.AuthHonDict" fetch="join">
+            <column name="AUTHHONDICT" />
+        </many-to-one>
+        <property name="authId" type="java.lang.String">
+            <column name="AUTHID" />
+        </property>
+        <property name="createTimr" type="java.sql.Timestamp">
+            <column name="CREATETIMR" />
+        </property>
+        <property name="authHonDict_1" type="java.lang.String">
+            <column name="AUTHHONDICT_1" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.ho.data.BookChaper" table="BOOKCHAPER">
+        <id name="bookChaId" type="java.lang.String">
+            <column name="BOOKCHAID" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="bookPart" class="com.oneflyingleaf.ho.data.BookPart" fetch="join">
+            <column name="BOOKPART" />
+        </many-to-one>
+        <property name="bookPartId" type="java.lang.String">
+            <column name="BOOKPARTID" />
+        </property>
+        <property name="bookChaCon" type="java.lang.String">
+            <column name="BOOKCHACON" />
+        </property>
+        <property name="bookChaIndex" type="java.lang.Integer">
+            <column name="BOOKCHAINDEX" />
+        </property>
+    </class>
+</hibernate-mapping>

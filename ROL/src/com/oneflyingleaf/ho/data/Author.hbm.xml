@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.ho.data.Author" table="AUTHOR">
+        <id name="autId" type="java.lang.String">
+            <column name="AUTID" />
+            <generator class="uuid" />
+        </id>
+        <one-to-one name="user" class="com.oneflyingleaf.ho.data.User"></one-to-one>
+        <property name="craeteTime" type="java.sql.Timestamp">
+            <column name="CRAETETIME" />
+        </property>
+    </class>
+</hibernate-mapping>

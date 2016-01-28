@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.ho.data.DynamicHonerDict" table="DYNAMICHONERDICT">
+        <id name="dynHonId" type="java.lang.String">
+            <column name="DYNHONID" />
+            <generator class="uuid" />
+        </id>
+        <property name="honCon" type="java.lang.String">
+            <column name="HONCON" />
+        </property>
+        <property name="honWei" type="java.lang.Double">
+            <column name="HONWEI" />
+        </property>
+        <property name="honSta" type="java.lang.String">
+            <column name="HONSTA" />
+        </property>
+        <set name="bookDyns" table="DYNAMICHONERDICT" inverse="false" lazy="true">
+            <key>
+                <column name="DYNHONID" />
+            </key>
+            <element type="string">
+                <column name="BOOKDYNS" />
+            </element>
+        </set>
+    </class>
+</hibernate-mapping>

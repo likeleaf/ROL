@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.ho.data.BookCom" table="BOOKCOM">
+        <id name="bookComId" type="java.lang.String">
+            <column name="BOOKCOMID" />
+            <generator class="uuid" />
+        </id>
+        <property name="bookId" type="java.lang.String">
+            <column name="BOOKID" />
+        </property>
+        <property name="createTime" type="java.sql.Timestamp">
+            <column name="CREATETIME" />
+        </property>
+        <property name="comCon" type="java.lang.String">
+            <column name="COMCON" />
+        </property>
+        <property name="comFrom" type="java.lang.String">
+            <column name="COMFROM" />
+        </property>
+        <property name="comTo" type="java.lang.String">
+            <column name="COMTO" />
+        </property>
+        <set name="books" table="BOOKCOM" inverse="false" lazy="true">
+            <key>
+                <column name="BOOKCOMID" />
+            </key>
+            <element type="string">
+                <column name="BOOKS" />
+            </element>
+        </set>
+    </class>
+</hibernate-mapping>

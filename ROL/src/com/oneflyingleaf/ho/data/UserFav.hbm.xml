@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.ho.data.UserFav" table="USERFAV">
+        <id name="userFavId" type="java.lang.String">
+            <column name="USERFAVID" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="user" class="com.oneflyingleaf.ho.data.User" fetch="join">
+            <column name="USER" />
+        </many-to-one>
+        <property name="userId" type="java.lang.String">
+            <column name="USERID" />
+        </property>
+        <property name="font" type="java.lang.String">
+            <column name="FONT" />
+        </property>
+        <property name="fontSize" type="java.lang.String">
+            <column name="FONTSIZE" />
+        </property>
+        <property name="fontStyle" type="java.lang.String">
+            <column name="FONTSTYLE" />
+        </property>
+        <property name="image" type="java.lang.String">
+            <column name="IMAGE" />
+        </property>
+        <property name="hobbyStat" type="java.lang.String">
+            <column name="HOBBYSTAT" />
+        </property>
+        <property name="backgroumd" type="java.lang.String">
+            <column name="BACKGROUMD" />
+        </property>
+        <set name="userHises" table="USERFAV" inverse="false" lazy="true">
+            <key>
+                <column name="USERFAVID" />
+            </key>
+            <element type="string">
+                <column name="USERHISES" />
+            </element>
+        </set>
+    </class>
+</hibernate-mapping>
