@@ -19,7 +19,7 @@
   <filter>
     <display-name>SetCharacterEncodingFilter</display-name>
     <filter-name>SetCharacterEncodingFilter</filter-name>
-    <filter-class>com.oneflyingleaf.filter.SetCharacterEncodingFilter</filter-class>
+    <filter-class>com.oneflyingleaf.core.filter.SetCharacterEncodingFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>SetCharacterEncodingFilter</filter-name>
@@ -28,13 +28,13 @@
   <filter>
     <display-name>loginFilter</display-name>
     <filter-name>loginFilter</filter-name>
-    <filter-class>com.oneflyingleaf.filter.loginFilter</filter-class>
+    <filter-class>com.oneflyingleaf.core.filter.loginFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>loginFilter</filter-name>
     <url-pattern>/loginFilter</url-pattern>
   </filter-mapping>
   <listener>
-    <listener-class>com.oneflyingleaf.listener.GobalListener</listener-class>
+    <listener-class>com.oneflyingleaf.core.listener.GobalListener</listener-class>
   </listener>
 </web-app>

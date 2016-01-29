@@ -17,7 +17,10 @@ public class Author  implements java.io.Serializable {
      private String autId;
      private User user;
      private Timestamp craeteTime;
+     Set users =  new HashSet();
 
+	Set authHons = new HashSet();
+     Set books = new HashSet();
 
     // Constructors
 
@@ -36,6 +39,9 @@ public class Author  implements java.io.Serializable {
         this.autId = autId;
         this.user = user;
         this.craeteTime = craeteTime;
+        this.users = users;
+        this.authHons = authHons;
+        this.books = books;
     }
 
    
@@ -66,4 +72,27 @@ public class Author  implements java.io.Serializable {
     }
 
 
+    public Set getUsers() {
+    	return users;
+    }
+    
+    public void setUsers(Set users) {
+    	this.users = users;
+    }
+    
+    public Set getAuthHons() {
+    	return authHons;
+    }
+    
+    public void setAuthHons(Set authHons) {
+    	this.authHons = authHons;
+    }
+    
+    public Set getBooks() {
+    	return books;
+    }
+    
+    public void setBooks(Set books) {
+    	this.books = books;
+    }
 }

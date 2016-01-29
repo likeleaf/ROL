@@ -32,7 +32,7 @@
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
-		<property name="mappingLocations" value="classpath:com/oneflyingleaf/data/*.hbm.xml"></property>	
+		<property name="mappingLocations" value="classpath:com/oneflyingleaf/core/ho/data/*.hbm.xml"></property>	
 	</bean>
 	
 	<!--配置事务管理器  -->
@@ -65,7 +65,7 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointCut" />
 	</aop:config>
 	
-	<context:component-scan base-package="com.oneflyingleaf.dao.impl,com.oneflyingleaf.service.impl,com.oneflyingleaf.action"></context:component-scan>
+	<context:component-scan base-package="com.oneflyingleaf.core.dao.impl,com.oneflyingleaf.core.service.impl,com.oneflyingleaf.core.action"></context:component-scan>
 
 	<!-- 标签 -->
 	<import resource="classpath:com/oneflyingleaf/core/tag/tag.xml"/>

@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.oneflyingleaf.ho.data.UserFav" table="USERFAV">
+    <class name="com.oneflyingleaf.core.ho.data.UserFav" table="USERFAV">
         <id name="userFavId" type="java.lang.String">
             <column name="USERFAVID" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="user" class="com.oneflyingleaf.ho.data.User" fetch="join">
+        <many-to-one name="user" class="com.oneflyingleaf.core.ho.data.User" fetch="join">
             <column name="USER" />
         </many-to-one>
         <property name="userId" type="java.lang.String">

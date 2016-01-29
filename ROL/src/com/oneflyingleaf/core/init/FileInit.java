@@ -14,7 +14,7 @@ public class FileInit {
 	}
 	
 	
-	public void Init(){
+	public void init(){
 		//合并Js
 		this.margeJs();
 		//合并Css

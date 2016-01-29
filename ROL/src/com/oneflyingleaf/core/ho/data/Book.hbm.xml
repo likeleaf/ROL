@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.oneflyingleaf.ho.data.Book" table="BOOK">
+    <class name="com.oneflyingleaf.core.ho.data.Book" table="BOOK">
         <id name="bookId" type="java.lang.String">
             <column name="BOOKID" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="auther" class="com.oneflyingleaf.ho.data.Auther" fetch="join">
+        <many-to-one name="auther" class="com.oneflyingleaf.core.ho.data.Author" fetch="join">
             <column name="AUTHER" />
         </many-to-one>
-        <many-to-one name="bookCom" class="com.oneflyingleaf.ho.data.BookCom" fetch="join">
+        <many-to-one name="bookCom" class="com.oneflyingleaf.core.ho.data.BookCom" fetch="join">
             <column name="BOOKCOM" />
         </many-to-one>
         <property name="bookName" type="java.lang.String">

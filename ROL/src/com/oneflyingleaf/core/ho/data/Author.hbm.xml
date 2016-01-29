@@ -1,16 +1,40 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.oneflyingleaf.ho.data.Author" table="AUTHOR">
+    <class name="com.oneflyingleaf.core.ho.data.Author" table="AUTHOR">
         <id name="autId" type="java.lang.String">
             <column name="AUTID" />
             <generator class="uuid" />
         </id>
-        <one-to-one name="user" class="com.oneflyingleaf.ho.data.User"></one-to-one>
+        <one-to-one name="user" class="com.oneflyingleaf.core.ho.data.User"></one-to-one>
         <property name="craeteTime" type="java.sql.Timestamp">
             <column name="CRAETETIME" />
         </property>
+        <set name="users" table="AUTHOR" inverse="false" lazy="true">
+            <key>
+                <column name="AUTID" />
+            </key>
+            <element type="string">
+                <column name="USERS" />
+            </element>
+        </set>
+        <set name="authHons" table="AUTHOR" inverse="false" lazy="true">
+            <key>
+                <column name="AUTID" />
+            </key>
+            <element type="string">
+                <column name="AUTHHONS" />
+            </element>
+        </set>
+        <set name="books" table="AUTHOR" inverse="false" lazy="true">
+            <key>
+                <column name="AUTID" />
+            </key>
+            <element type="string">
+                <column name="BOOKS" />
+            </element>
+        </set>
     </class>
 </hibernate-mapping>

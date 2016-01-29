@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-1-27 15:36:05 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.oneflyingleaf.ho.data.Log" table="LOG">
+    <class name="com.oneflyingleaf.core.ho.data.Log" table="LOG">
         <id name="logId" type="java.lang.String">
             <column name="LOGID" />
             <generator class="uuid" />
