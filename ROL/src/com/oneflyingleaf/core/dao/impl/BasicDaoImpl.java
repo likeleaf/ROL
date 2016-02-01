@@ -10,9 +10,11 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import com.oneflyingleaf.core.dao.BaseDao;
 
+@Component("baseDao")
 public class BasicDaoImpl implements BaseDao{
 	
 	@Resource(name="sessionFactory")

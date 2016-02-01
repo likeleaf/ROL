@@ -1,5 +1,8 @@
 package com.oneflyingleaf.core.init;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.oneflyingleaf.core.util.ConfigUtils;
 import com.oneflyingleaf.core.util.FileUtils;
 
@@ -9,12 +12,14 @@ import com.oneflyingleaf.core.util.FileUtils;
  *
  */
 public class FileInit {
+	Log log = LogFactory.getLog(FileInit.class);
 	public FileInit(){
-		
 	}
 	
 	
 	public void init(){
+		log.info("文件初始化");
+		
 		//合并Js
 		this.margeJs();
 		//合并Css

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../../../css/background/easyui.css">
+<script type="text/javascript" src="../../../js/common/jquery.min.js"></script>
+<script type="text/javascript" src="../../../js/background/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../js/background/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+	<table id="users" title="用户" class="easyui-datagrid" style="width:700px;height:250px"
+			url="./user_getUserJson"
+			toolbar="#toolbar" pagination="true"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr>
+				<th field="userId" width="50">用户id</th>
+				<th field="userName" width="50">用户名</th>
+				<th field="email" width="50">email</th>
+				<th field="qq" width="50">QQ</th>
+				<th field="createTime" width="50">创建时间</th>
+				<th field="permission" width="50">用户权限</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="dlg" class="easyui-dialog" style="width:400px;height:250px;padding:10px 20px;text-align:center"
+			closed="true" buttons="#dlg-buttons">
+		<div  style="text-align:center;font-weight:700">用户添加</div><br>
+		<form id="fm" method="post" novalidate>
+			<div class="fitem">
+				<label>用户名:　</label>
+				<input name="firstname" class="easyui-validatebox" required="true">
+			</div>
+			<div class="fitem">
+				<label>用户密码:</label>
+				<input name="userPw" id="userPw"  class="easyui-validatebox" type="password" onchange="checkPw()" required="true">
+			</div>
+			<div class="fitem">
+				<label>密码确认:</label>
+				<input name="userPwCom"  class="easyui-validatebox"  type="password" required="true">
+			</div>
+		</form>
+	</div>
+	<div id="toolbar">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加用户</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑用户</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">修改用户</a>
+	</div>
+	<div id="dlg-buttons">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+	</div>
+<script>
+	function newUser(){
+		$('#dlg').dialog('open').dialog('setTitle','创建用户');
+		$('#fm').form('clear');
+	}
+
+	function saveUser(){
+	
+	}
+
+	function checkPw(){
+		var value = $("#userPw").val();
+		alert(value);
+		var space = /\s/g;
+		if(space.test(value)){
+			alert("不能包含空格");
+			return false;
+		}
+		if(value.length < 8){
+			alert("密码不能小于8位！");
+			return false;
+		}
+		var reg = /^[\w|-|+|=|\/|\\]*$/;
+		if(reg.test(value)){
+			alert("密码可以由A-Za-z0-9，+，-，=，\，/组成！");
+			return false;
+		} 
+	}
+</script>
+</body>
+</html>
