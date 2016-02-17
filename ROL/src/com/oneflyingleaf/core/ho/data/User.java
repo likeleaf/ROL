@@ -3,6 +3,7 @@ package com.oneflyingleaf.core.ho.data;
 // default package
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class User  implements java.io.Serializable {
 	public static final String 超级管理员 = "50";*/
 	
 	
-	private String userId;
+	 private String userId;
      private Author auther;
      private Vip vip;
      private String userName;
@@ -45,10 +46,10 @@ public class User  implements java.io.Serializable {
      private String qq;
      private String adress;
      private String phone;
-     private Timestamp createTime;
+     private Timestamp createTime = new Timestamp(new Date().getTime());
      private String gender;
      private Short age;
-     private String permission;
+     private String permission = "10";
      private Set authers = new HashSet(0);
      private Set userFavs = new HashSet(0);
      private Set vips = new HashSet(0);
@@ -58,6 +59,11 @@ public class User  implements java.io.Serializable {
 
     /** default constructor */
     public User() {
+    }
+    
+    //for delete
+    public User(String userId) {
+    	this.userId = userId;
     }
 
 	/** minimal constructor */

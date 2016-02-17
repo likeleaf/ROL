@@ -1,16 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+request.setAttribute("basePath", basePath);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>用户管理</title>
-<link rel="stylesheet" type="text/css" href="../../../css/background/easyui.css">
-<script type="text/javascript" src="../../../js/common/jquery.min.js"></script>
-<script type="text/javascript" src="../../../js/background/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../../../js/background/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath }/css/background/easyui.css">
+<script type="text/javascript" src="${basePath }/js/common/jquery.min.js"></script>
+<script type="text/javascript" src="${basePath }/js/common/leaf.js"></script>
+<script type="text/javascript" src="${basePath }/js/background/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${basePath }/js/background/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
 	<table id="users" title="用户" class="easyui-datagrid" style="width:700px;height:250px"
-			url="./user_getUserJson"
+			url="${basePath }/background/jsp/user/user_getUserJson"
 			toolbar="#toolbar" pagination="true"
 			rownumbers="true" fitColumns="true" singleSelect="true">
 		<thead>
@@ -38,7 +46,7 @@
 			</div>
 			<div class="fitem">
 				<label>密码确认<span style='color:red;'>*</span>:</label>
-				<input name="userPwCom"  class="easyui-validatebox"  type="password">
+				<input name="userPwCom"  class="easyui-validatebox"  type="password" onchange="checkUnique()">
 			</div>
 		</form>
 	</div>
@@ -60,25 +68,71 @@
 		var myurl = '${basePath}/background/jsp/user/user_checkName?userName='+name;
 		leaf.ajax(myurl,null,null,checkNameSuc,null);
 	}
-
+	//校验用户名是否存在
 	function checkNameSuc(msg){
 		if(msg == 'err')
 			alert('参数错误');
 		if(msg == 'fal')
 			alert('用户名已存在');
 		if(msg == 'suc')
-			alert('true');
+			 $.messager.alert('true');
 		}
-	
+	//校验用户名的唯一性
+	function checkUnique(){
+		if($('userPw').val() != $('userPwCom').val()){
+			return false;
+			}
+		}
+
+	//添加用户的弹窗
 	function newUser(){
 		$('#dlg').dialog('open').dialog('setTitle','创建用户');
 		$('#fm').form('clear');
 	}
 
+	//添加用户
 	function saveUser(){
-	
+		var myurl = '${basePath}/background/jsp/user/user_saveUser';
+		$('#fm').form('submit',{
+			url: myurl,
+			onSubmit: function(){
+				return $(this).form('validate');
+			},
+			success: function(result){
+				if (result.suc == 'suc'){
+					$('#dlg').dialog('close');		
+					$('#dg').datagrid('reload');	
+				} else {
+					$.messager.show({
+						title: 'Error',
+						msg: result.msg
+					});
+				}
+			}
+		});
+	}
+	//删除用户
+	function removeUser(){
+		var row = $('#dg').datagrid('getSelected');
+		if (row){
+			$.messager.confirm('Confirm','确认删除？',function(r){
+				if (r){
+					$.post('${basePath}/background/jsp/user/user_removeUser',{id:row.id},function(result){
+						if (result.success){
+							$('#dg').datagrid('reload');	
+						} else {
+							$.messager.show({	
+								title: '错误信息',
+								msg: result.msg
+							});
+						}
+					},'json');
+				}
+			});
+		}
 	}
 
+	//easyui的tips
 	function easyuiTips(id,content){
 		$('#'+id).tooltip({
 		    position: 'right',
@@ -95,28 +149,32 @@
 		});
 	}
 
+	//密码规则
 	var pas = ['密码不能包含空格！','密码不能小于8位！','密码只能由数字大小写，+，-，=，\\，/组成！'];
-	
+	//校验密码
 	function checkPw(){
 		var value = $("#userPw").val();
 		var space = /\s/g;
 		if(space.test(value)){
+			leaf.toolsTip("userPw", pas[0])
 			$("#userPw").focus();
 			return false;
 		}
 		if(value.length < 8){
+			leaf.toolsTip("userPw", pas[1])
 			$("#userPw").focus();
 			return false;
 		}
 		var reg = /^[\w|-|+|=|\/|\\]*$/;
 		if(reg.test(value)){
+			leaf.toolsTip("userPw", pas[2])
 			$("#userPw").focus();
 			return false;
 		} 
 	}
 	
 	
-
+	//密码提示框
 	$(function(){
 		var html = '';
 		html += '<ol>'

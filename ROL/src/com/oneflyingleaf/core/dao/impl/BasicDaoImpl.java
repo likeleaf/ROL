@@ -21,13 +21,13 @@ public class BasicDaoImpl implements BaseDao{
 	private SessionFactory sf;
 
 	@SuppressWarnings("unchecked")
-	public <T extends Serializable> List<T> find(String hql, List<Object> params) {
+	public <T extends Serializable> List<T> find(String hql, Object[] params) {
 		Query query = null;
 		try{
 			query = getSession().createQuery(hql);
 			if(params != null){
-				for(int i = 0;i<params.size();i++){
-					query.setParameter(i, params.get(i));
+				for(int i = 0;i<params.length;i++){
+					query.setParameter(i, params[i]);
 				}
 			}
 			return query.list();
@@ -39,13 +39,13 @@ public class BasicDaoImpl implements BaseDao{
 
 	@SuppressWarnings("unchecked")
 	public <T> List<T> findBySQL(String sql,
-			List<Object> params, Class<?> clazz) {
+			Object[] params, Class<?> clazz) {
 		SQLQuery SQLquery = null;
 		try {
 			SQLquery = getSession().createSQLQuery(sql);
 			if(params != null){
-				for(int i = 0;i<params.size();i++){
-					SQLquery.setParameter(i, params.get(i));
+				for(int i = 0;i<params.length;i++){
+					SQLquery.setParameter(i, params[i]);
 				}
 			}
 			
@@ -59,13 +59,13 @@ public class BasicDaoImpl implements BaseDao{
 		return null;
 	}
 
-	public <T extends Serializable> T findOne(String hql, List<Object> params) {
+	public <T extends Serializable> T findOne(String hql, Object[] params) {
 		Query query = null;
 		try{
 			query = getSession().createQuery(hql);
 			if(params != null){
-				for(int i = 0;i<params.size();i++){
-					query.setParameter(i, params.get(i));
+				for(int i = 0;i<params.length;i++){
+					query.setParameter(i, params[i]);
 				}
 			}
 			List<T> list = query.list();
@@ -77,13 +77,13 @@ public class BasicDaoImpl implements BaseDao{
 	}
 
 	public <T> T findOneBySQL(String sql,
-		List<Object> params, Class<?> clazz) {
+		Object[] params, Class<?> clazz) {
 		SQLQuery SQLquery = null;
 		try {
 			SQLquery = getSession().createSQLQuery(sql);
 			if(params != null){
-				for(int i = 0;i<params.size();i++){
-					SQLquery.setParameter(i, params.get(i));
+				for(int i = 0;i<params.length;i++){
+					SQLquery.setParameter(i, params[i]);
 				}
 			}
 			
@@ -182,11 +182,11 @@ public class BasicDaoImpl implements BaseDao{
 		return false;
 	}
 
-	public int exec(String sql, List<Object> params) {
+	public int exec(String sql, Object[] params) {
 		SQLQuery SQLQuery = getSession().createSQLQuery(sql);
 		if(params != null){
-			for(int i = 0;i<params.size();i++){
-				SQLQuery.setParameter(i, params.get(i));
+			for(int i = 0;i<params.length;i++){
+				SQLQuery.setParameter(i, params[i]);
 			}
 		}
 		return SQLQuery.executeUpdate();

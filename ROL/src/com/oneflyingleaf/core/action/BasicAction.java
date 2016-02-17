@@ -37,7 +37,6 @@ public class BasicAction extends ActionSupport {
 		
 			os.write(s.getBytes("utf-8"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			try {
@@ -100,6 +99,15 @@ public class BasicAction extends ActionSupport {
 	 */
 	public void setParameter(String key,String value){
 		getRequest().setAttribute(key, value);
+	}
+	
+	/**
+	 * 获取多个值
+	 * @param key
+	 * @return
+	 */
+	public String[] getParameterValues(String key){
+		return getRequest().getParameterValues(key);
 	}
 
 	/**

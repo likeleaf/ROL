@@ -1,0 +1,37 @@
+/***************************tips工具，一行*******************************/
+.leaf-tips{
+	float:left;
+}
+.leaf-tips-triangle{
+	width: 0px;
+	height: 0px;
+	border-right: 8px solid black;
+	border-bottom: 8px solid transparent;
+	border-top: 8px solid transparent;
+	margin-top: 7px;
+	font-size:0px;
+	line-height:0px;
+	position: relative;
+	float: left;
+}
+.leaf-tips-content-background{
+	height: 30px;
+	/* margin-left: 8px; */
+	background: black;
+	border-radius:5px;
+	display: inline-block;
+}
+.leaf-tips-content{	
+	position: relative;
+	padding-left: 3px;
+	padding-right: 3px; 
+	margin-right: 0px;
+	margin-left: 0px;
+	text-decoration: none;
+	text-align: left;
+	line-height: 30px;
+	font-size: 12px;
+	color: white;
+	display: inline-block;
+	cursor: default;
+}

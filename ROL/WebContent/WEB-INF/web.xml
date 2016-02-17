@@ -8,15 +8,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext*.xml</param-value>
   </context-param>
-  <filter>
-    <filter-name>struts2</filter-name>
-    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>struts2</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <filter>
+   <filter>
     <display-name>SetCharacterEncodingFilter</display-name>
     <filter-name>SetCharacterEncodingFilter</filter-name>
     <filter-class>com.oneflyingleaf.core.filter.SetCharacterEncodingFilter</filter-class>
@@ -34,6 +26,15 @@
     <filter-name>loginFilter</filter-name>
     <url-pattern>/loginFilter</url-pattern>
   </filter-mapping>
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+ 
   <listener>
     <listener-class>com.oneflyingleaf.core.listener.GobalListener</listener-class>
   </listener>

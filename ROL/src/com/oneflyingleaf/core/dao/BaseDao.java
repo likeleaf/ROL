@@ -11,7 +11,7 @@ public interface BaseDao {
 	 * @param params hql的参数，如果没有参数list的值为null
 	 * @return
 	 */
-	<T extends Serializable> List<T> find(String hql,List<Object> params);
+	<T extends Serializable> List<T> find(String hql,Object[] params);
 	
 	/**
 	 * 通过参数查询，使用sql语句
@@ -20,7 +20,7 @@ public interface BaseDao {
 	 * @param clazz sql查找的结果转型为clazz
 	 * @return
 	 */
-	<T> List<T> findBySQL(String sql,List<Object> params,Class<?> clazz);
+	<T> List<T> findBySQL(String sql,Object[] params,Class<?> clazz);
 	
 	/**
 	 * 通过参数条件查询
@@ -28,7 +28,7 @@ public interface BaseDao {
 	 * @param params hql的参数，如果没有参数list的值为null
 	 * @return
 	 */
-	<T extends Serializable> T findOne(String hql,List<Object> params);
+	<T extends Serializable> T findOne(String hql,Object[] params);
 	
 	/**
 	 * 通过参数条件查询
@@ -36,7 +36,7 @@ public interface BaseDao {
 	 * @param params hql的参数，如果没有参数list的值为null
 	 * @return
 	 */
-	<T> T findOneBySQL(String sql,List<Object> params,Class<?> clazz);
+	<T> T findOneBySQL(String sql,Object[] params,Class<?> clazz);
 	
 	/**
 	 * 通过主键查找相关实体
@@ -98,7 +98,7 @@ public interface BaseDao {
 	 * @param params
 	 * @return
 	 */
-	int exec(String sql,List<Object> params);
+	int exec(String sql,Object[] params);
 	
 	
 }

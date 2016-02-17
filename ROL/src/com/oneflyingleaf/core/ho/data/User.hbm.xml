@@ -3,18 +3,18 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.oneflyingleaf.core.ho.data.User" table="USER">
+    <class name="com.oneflyingleaf.core.ho.data.User" table="USERS">
         <id name="userId" type="java.lang.String">
-            <column name="USERID" />
+            <column name="USER_ID" />
             <generator class="uuid" />
         </id>
         <one-to-one name="auther" class="com.oneflyingleaf.core.ho.data.Author" access="field"></one-to-one>
         <one-to-one name="vip" class="com.oneflyingleaf.core.ho.data.Vip"></one-to-one>
         <property name="userName" type="java.lang.String">
-            <column name="USERNAME" />
+            <column name="USER_NAME" />
         </property>
         <property name="userPw" type="java.lang.String">
-            <column name="USERPW" />
+            <column name="USER_PW" />
         </property>
         <property name="email" type="java.lang.String">
             <column name="EMAIL" />
@@ -29,7 +29,7 @@
             <column name="PHONE" />
         </property>
         <property name="createTime" type="java.sql.Timestamp">
-            <column name="CREATETIME" />
+            <column name="CREATE_TIME" />
         </property>
         <property name="gender" type="java.lang.String">
             <column name="GENDER" />
@@ -42,7 +42,7 @@
         </property>
         <set name="authers" table="USER" inverse="false" lazy="true">
             <key>
-                <column name="USERID" />
+                <column name="USER_ID" />
             </key>
             <element type="string">
                 <column name="AUTHERS" />
@@ -50,7 +50,7 @@
         </set>
         <set name="userFavs" table="USER" inverse="false" lazy="true">
             <key>
-                <column name="USERID" />
+                <column name="USER_ID" />
             </key>
             <element type="string">
                 <column name="USERFAVS" />
@@ -58,7 +58,7 @@
         </set>
         <set name="vips" table="USER" inverse="false" lazy="true">
             <key>
-                <column name="USERID" />
+                <column name="USER_ID" />
             </key>
             <element type="string">
                 <column name="VIPS" />

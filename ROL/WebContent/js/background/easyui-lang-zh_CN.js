@@ -13,14 +13,7 @@ if ($.messager){
 	$.messager.defaults.ok = '确定';
 	$.messager.defaults.cancel = '取消';
 }
-$.map(['validatebox','textbox','filebox','searchbox',
-		'combo','combobox','combogrid','combotree',
-		'datebox','datetimebox','numberbox',
-		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
-	if ($.fn[plugin]){
-		$.fn[plugin].defaults.missingMessage = '该输入项为必输项';
-	}
-});
+
 if ($.fn.validatebox){
 	$.fn.validatebox.defaults.rules.email.message = '请输入有效的电子邮件地址';
 	$.fn.validatebox.defaults.rules.url.message = '请输入有效的URL地址';
