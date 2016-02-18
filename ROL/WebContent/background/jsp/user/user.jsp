@@ -10,11 +10,12 @@ request.setAttribute("basePath", basePath);
 <head>
 <meta charset="UTF-8">
 <title>用户管理</title>
-<link rel="stylesheet" type="text/css" href="${basePath }/css/background/easyui.css">
-<script type="text/javascript" src="${basePath }/js/common/jquery.min.js"></script>
-<script type="text/javascript" src="${basePath }/js/common/leaf.js"></script>
-<script type="text/javascript" src="${basePath }/js/background/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${basePath }/js/background/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath }/background/css/easyui.css">
+<link rel="stylesheet" type="text/css" href="${basePath }/common/css/leaf.css">
+<script type="text/javascript" src="${basePath }/common/js/jquery.min.js"></script>
+<script type="text/javascript" src="${basePath }/common/js/leaf.js"></script>
+<script type="text/javascript" src="${basePath }/background/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${basePath }/background/js/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
 	<table id="users" title="用户" class="easyui-datagrid" style="width:700px;height:250px"
@@ -42,11 +43,11 @@ request.setAttribute("basePath", basePath);
 			</div>
 			<div class="fitem">
 					<label>用户密码<span style='color:red;'>*</span>:</label>
-						<input name="userPw" id="userPw"  class="easyui-validatebox" type="password" onchange="checkPw()">
+						<input name="userPw" id="userPw"  class="easyui-validatebox" title="<span>密码不能包含空格！<br>'密码不能小于8位！<br>密码只能由数字大小写，+，-，=，\\，/组成！<span>"type="password" onchange="checkPw()">
 			</div>
 			<div class="fitem">
 				<label>密码确认<span style='color:red;'>*</span>:</label>
-				<input name="userPwCom"  class="easyui-validatebox"  type="password" onchange="checkUnique()">
+				<input name="userPwCom"  class="easyui-validatebox"  type="password" onchange="checkPwCom">
 			</div>
 		</form>
 	</div>
@@ -71,15 +72,17 @@ request.setAttribute("basePath", basePath);
 	//校验用户名是否存在
 	function checkNameSuc(msg){
 		if(msg == 'err')
-			alert('参数错误');
+			leaf.toolsTip("userName", "参数错误！");
 		if(msg == 'fal')
-			alert('用户名已存在');
+			leaf.toolsTip("userName", "用户名已存在！")
 		if(msg == 'suc')
-			 $.messager.alert('true');
+			leaf.toolsTip("userName", "用户名可以使用！")
+			// $.messager.alert('true');
 		}
-	//校验用户名的唯一性
-	function checkUnique(){
+	//校验密码的一致
+	function checkPwCom(){
 		if($('userPw').val() != $('userPwCom').val()){
+			leaf.toolsTip("userPwCom", "密码和确认密码不一致！");
 			return false;
 			}
 		}
@@ -138,7 +141,8 @@ request.setAttribute("basePath", basePath);
 		    position: 'right',
 		    content: '<span style="color:#fff">'+content+'</span>',
 		    trackMouse:true,
-		    
+		    showEvent: 'focus',
+		    hideEvent: 'blur',
 		    onShow: function(){
 				$(this).tooltip('tip').css({
 					backgroundColor: '#666',
@@ -185,6 +189,8 @@ request.setAttribute("basePath", basePath);
 		
 		easyuiTips('userPw',html);
 	});
+	
+	
 </script>
 </body>
 </html>

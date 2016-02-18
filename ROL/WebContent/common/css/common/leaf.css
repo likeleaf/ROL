@@ -1,6 +1,7 @@
 /***************************tips工具，一行*******************************/
 .leaf-tips{
 	float:left;
+	display: block;
 }
 .leaf-tips-triangle{
 	width: 0px;

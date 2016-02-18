@@ -45,16 +45,14 @@ leaf.toolsTip = function (id,content){
 	if(id){
 		var oPar = $("#"+id);
 		var html = "";
-		var tipId = "tip"+(Math.random()<<10).toString().substr(3);
-		while($("#"+tipId)){
-			tipId = "tip"+(Math.random()<<10).toString().substr(3);
-		}
-		html +="<div id='"+tipId+"' class=\"leaf-tips\">"+
-					"<div class=\"leaf-tips-triangle\"></div>"+
-						+"<div class=\"leaf-tips-content-background\">"+	
-						+"<span class=\"leaf-tips-content\">"+content+"</span>"+				
-					+"</div>"
-				+"</div>";
+		var tipId = "tip"+new Date().getTime().toString();
+		html += "<div id='"+tipId+"' class=\"leaf-tips\">";
+		html += "<div class=\"leaf-tips-triangle\"></div>";
+		html += "<div class=\"leaf-tips-content-background\">";
+		html += "<span class=\"leaf-tips-content\">"+content;
+		html += "</span>"
+		html += "</div>";
+		html += "</div>";
 		oPar.html(html);
 		return tipId;
 	}
