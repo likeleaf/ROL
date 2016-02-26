@@ -13,7 +13,7 @@ public class DataUtils {
 	 * 根据传进的范围得到对应的记录的范围，主要用于easyui在oracle中的分页范围的查询
 	 * @param page 当前页
 	 * @param rows 每页的记录数
-	 * @param defaultRows 如果每页的记录数出错返回的值
+	 * @param defaultRows 如果每页的记录数出错返回的值,小于0时，采用默认的DataUtils.DEFAULT_ROWS
 	 * @return 返回长度为2的数组，表示范围[a,b]
 	 */
 	public static int[] getPageRange(String page,String rows,int defaultRows){
@@ -29,7 +29,7 @@ public class DataUtils {
 			ipage = DEFAULT_PAGE;
 		}
 		try {
-			irows = Integer.parseInt(page);
+			irows = Integer.parseInt(rows);
 		} catch (Exception e) {
 			irows = defaultRows;
 		}

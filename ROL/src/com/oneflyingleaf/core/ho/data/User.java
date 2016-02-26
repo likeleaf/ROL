@@ -4,8 +4,11 @@ package com.oneflyingleaf.core.ho.data;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
+
+import org.springframework.util.DigestUtils;
+
+import com.oneflyingleaf.core.util.DateUtils;
 
 
 /**
@@ -47,12 +50,10 @@ public class User  implements java.io.Serializable {
      private String adress;
      private String phone;
      private Timestamp createTime = new Timestamp(new Date().getTime());
+//     private String createTimeForShow;
      private String gender;
      private Short age;
      private String permission = "10";
-     private Set authers = new HashSet(0);
-     private Set userFavs = new HashSet(0);
-     private Set vips = new HashSet(0);
 
 
     // Constructors
@@ -91,9 +92,6 @@ public class User  implements java.io.Serializable {
         this.gender = gender;
         this.age = age;
         this.permission = permission;
-        this.authers = authers;
-        this.userFavs = userFavs;
-        this.vips = vips;
     }
 
    
@@ -136,7 +134,7 @@ public class User  implements java.io.Serializable {
     }
     
     public void setUserPw(String userPw) {
-        this.userPw = userPw;
+    	this.userPw = org.apache.commons.codec.digest.DigestUtils.md5Hex(userPw);
     }
 
     public String getEmail() {
@@ -175,7 +173,7 @@ public class User  implements java.io.Serializable {
         return this.createTime;
     }
     
-    public void setCreateTime(Timestamp createTime) {
+	public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
@@ -203,36 +201,8 @@ public class User  implements java.io.Serializable {
         this.permission = permission;
     }
 
-    public Set getAuthers() {
-        return this.authers;
-    }
-    
-    public void setAuthers(Set authers) {
-        this.authers = authers;
-    }
-
-    public Set getUserFavs() {
-        return this.userFavs;
-    }
-    
-    public void setUserFavs(Set userFavs) {
-        this.userFavs = userFavs;
-    }
-
-    public Set getVips() {
-        return this.vips;
-    }
-    
-    public void setVips(Set vips) {
-        this.vips = vips;
-    }
-   
-
-
-
-
-
-
-
-
+ /*   public String getCreateTimeForShow() {
+    	Timestamp ts = getCreateTime();
+    	return DateUtils.formatDate(ts, "yyyy-MM-dd");
+	}*/
 }

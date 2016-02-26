@@ -42,14 +42,16 @@
 	<classpathentry kind="lib" path="E:/workSpace/myeclipse2014/doctors/WebRoot/WEB-INF/lib/spring-web-4.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="E:/workSpace/myeclipse2014/doctors/WebRoot/WEB-INF/lib/spring-webmvc-4.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="E:/workSpace/myeclipse2014/doctors/WebRoot/WEB-INF/lib/standard.jar"/>
-	<classpathentry kind="lib" path="E:/workSpace/myeclipse2014/doctors/WebRoot/WEB-INF/lib/struts2-core-2.3.20.jar"/>
+	<classpathentry kind="lib" path="E:/workSpace/myeclipse2014/doctors/WebRoot/WEB-INF/lib/struts2-core-2.3.20.jar" sourcepath="E:/res/language/java/java web/ssh/struts-2.3.20-all/struts-2.3.20/src"/>
 	<classpathentry kind="lib" path="E:/workSpace/myeclipse2014/doctors/WebRoot/WEB-INF/lib/struts2-json-plugin-2.3.20.jar"/>
 	<classpathentry kind="lib" path="E:/workSpace/myeclipse2014/doctors/WebRoot/WEB-INF/lib/struts2-spring-plugin-2.3.20.jar"/>
-	<classpathentry kind="lib" path="E:/workSpace/myeclipse2014/doctors/WebRoot/WEB-INF/lib/xwork-core-2.3.20.jar"/>
+	<classpathentry kind="lib" path="E:/workSpace/myeclipse2014/doctors/WebRoot/WEB-INF/lib/xwork-core-2.3.20.jar" sourcepath="E:/res/language/java/java web/ssh/struts-2.3.20-all/struts-2.3.20/src/xwork-core"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/ezmorph-1.0.3.jar"/>
 	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/json-lib-2.1-jdk15.jar"/>
+	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/commons-codec-1.10.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -5,16 +5,16 @@
 <hibernate-mapping>
     <class name="com.oneflyingleaf.core.ho.data.Author" table="AUTHOR">
         <id name="autId" type="java.lang.String">
-            <column name="AUTID" />
+            <column name="AUT_ID" />
             <generator class="uuid" />
         </id>
         <one-to-one name="user" class="com.oneflyingleaf.core.ho.data.User"></one-to-one>
         <property name="craeteTime" type="java.sql.Timestamp">
-            <column name="CRAETETIME" />
+            <column name="CRAETE_TIME" />
         </property>
         <set name="users" table="AUTHOR" inverse="false" lazy="true">
             <key>
-                <column name="AUTID" />
+                <column name="AUT_ID" />
             </key>
             <element type="string">
                 <column name="USERS" />
@@ -22,7 +22,7 @@
         </set>
         <set name="authHons" table="AUTHOR" inverse="false" lazy="true">
             <key>
-                <column name="AUTID" />
+                <column name="AUT_ID" />
             </key>
             <element type="string">
                 <column name="AUTHHONS" />
@@ -30,7 +30,7 @@
         </set>
         <set name="books" table="AUTHOR" inverse="false" lazy="true">
             <key>
-                <column name="AUTID" />
+                <column name="AUT_ID" />
             </key>
             <element type="string">
                 <column name="BOOKS" />

@@ -14,7 +14,7 @@ import com.oneflyingleaf.core.dao.BaseDao;
  */
 public class SpringUtils {
 	
-	
+	public static ServletContext servletContext;
 	
 	/**
 	 * 得到当前的ApplicationContext
@@ -42,6 +42,19 @@ public class SpringUtils {
 	 * @return
 	 */
 	public static BaseDao getBaseDao(){
-		return SpringUtils.getBean(ServletActionContext.getServletContext(), "baseDao");
+		return SpringUtils.getBean(getServletContext(), "baseDao");
+	}
+	
+	public static String getRealPath(String name){
+		String realPath = getServletContext().getRealPath(name);
+		return realPath;
+	}
+	
+	public static ServletContext getServletContext() {
+		return servletContext;
+	}
+	
+	public static void setServletContext(ServletContext sc) {
+		servletContext = sc;
 	}
 }

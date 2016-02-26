@@ -1,11 +1,14 @@
 package com.oneflyingleaf.bacground.user.action;
 
 
+import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
+import java.util.regex.Pattern;
 
 import net.sf.json.JSONArray;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.oneflyingleaf.bacground.util.DataUtils;
 import com.oneflyingleaf.core.action.BasicAction;
@@ -27,7 +30,7 @@ public class UserAction extends BasicAction{
 
 		JSONArray ja = new JSONArray();
 		
-		List<User> users = this.basicService.find("from User where rownums <= "+range[1]+" and rownums >="+range[0], null);
+		List<User> users = this.basicService.find("from User where rownum <= "+range[1]+" and rownum >="+range[0], null);
 		
 		for(User u:users){
 			ja.add(u);
@@ -77,19 +80,33 @@ public class UserAction extends BasicAction{
 	 */
 	public void saveUser(){
 		String userPwCom = this.getParameter("userPwCom");
+		
 		if(StringUtils.isBlank(userPwCom)) {
-			this.outPut("{msg:'保存失败！用户密码确认为空！'}");
+			this.outPut("{'msg':'保存失败！密码确认为空！'}");
 			return ;
 		}
-		if(!userPwCom.equals(user.getUserPw())) {
-			this.outPut("{msg:'保存失败！密码和确认密码不一致！'}");
+		System.out.println(DigestUtils.md5Hex(userPwCom));
+		System.out.println(user.getUserPw());
+		
+		if(!DigestUtils.md5Hex(userPwCom).equals(user.getUserPw())) {
+			this.outPut("{'msg':'保存失败！密码和确认密码不一致！'}");
 			return ;
+		}
+		if(!Pattern.matches("^([a-z0-9_.-]+)@([\\da-z.-]+).([a-z.]{2,6})$", user.getEmail())){
+			this.outPut("{'msg':'保存失败！email格式不正确！'}");
+			return;
 		}
 		
+		if(this.basicService.find("from User where email = ?",new Object[]{user.getEmail()}).size() != 0){
+			this.outPut("{'msg':'保存失败，该email已存在！'}");
+			return;
+		}
+		user.setUserName("用户"+user.getEmail().substring(0, 3));
+		
 		if(this.basicService.save(user)){
-			this.outPut("{suc:suc}");
+			this.outPut("{'suc':'suc'}");
 		}else{
-			this.outPut("{msg:'保存失败！'}");
+			this.outPut("{'msg':'保存失败！'}");
 		}
 	}
 	
@@ -103,6 +120,15 @@ public class UserAction extends BasicAction{
 		}else{
 			this.outPut("{'msg','删除失败！'}");
 		}
+	}
+	
+	
+	public void searchUser(){
+		String createStart = this.getParameter("createStart");
+		String createEnd = this.getParameter("createEnd");
+		
+		
+		
 	}
 	
 	/*********************************************getter/setter*************************************************/

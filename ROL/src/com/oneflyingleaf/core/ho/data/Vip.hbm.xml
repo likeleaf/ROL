@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="com.oneflyingleaf.core.ho.data.Vip" table="VIP">
         <id name="vipId" type="java.lang.String">
-            <column name="VIPID" />
+            <column name="VIP_ID" />
             <generator class="uuid" />
         </id>
         <one-to-one name="user" class="com.oneflyingleaf.core.ho.data.User"></one-to-one>
@@ -13,11 +13,11 @@
             <column name="LEVEL" />
         </property>
         <property name="vipStat" type="java.lang.String">
-            <column name="VIPSTAT" />
+            <column name="VIP_STAT" />
         </property>
         <set name="users" table="VIP" inverse="false" lazy="true">
             <key>
-                <column name="VIPID" />
+                <column name="VIP_ID" />
             </key>
             <element type="string">
                 <column name="USERS" />
@@ -25,10 +25,10 @@
         </set>
         <set name="vipTimes" table="VIP" inverse="false" lazy="true">
             <key>
-                <column name="VIPID" />
+                <column name="VIP_ID" />
             </key>
             <element type="string">
-                <column name="VIPTIMES" />
+                <column name="VIP_TIMES" />
             </element>
         </set>
     </class>

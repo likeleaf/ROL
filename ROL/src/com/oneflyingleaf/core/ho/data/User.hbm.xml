@@ -8,8 +8,6 @@
             <column name="USER_ID" />
             <generator class="uuid" />
         </id>
-        <one-to-one name="auther" class="com.oneflyingleaf.core.ho.data.Author" access="field"></one-to-one>
-        <one-to-one name="vip" class="com.oneflyingleaf.core.ho.data.Vip"></one-to-one>
         <property name="userName" type="java.lang.String">
             <column name="USER_NAME" />
         </property>
@@ -40,29 +38,5 @@
         <property name="permission" type="java.lang.String">
             <column name="PERMISSION" />
         </property>
-        <set name="authers" table="USER" inverse="false" lazy="true">
-            <key>
-                <column name="USER_ID" />
-            </key>
-            <element type="string">
-                <column name="AUTHERS" />
-            </element>
-        </set>
-        <set name="userFavs" table="USER" inverse="false" lazy="true">
-            <key>
-                <column name="USER_ID" />
-            </key>
-            <element type="string">
-                <column name="USERFAVS" />
-            </element>
-        </set>
-        <set name="vips" table="USER" inverse="false" lazy="true">
-            <key>
-                <column name="USER_ID" />
-            </key>
-            <element type="string">
-                <column name="VIPS" />
-            </element>
-        </set>
     </class>
 </hibernate-mapping>
