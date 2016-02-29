@@ -21,7 +21,7 @@ request.setAttribute("basePath", basePath);
 	<table id="users" title="用户信息管理" class="easyui-datagrid" style="width:850px;height:450px;text-align:center"
 			url="${basePath }/background/jsp/user/user_getUserJson"
 			toolbar="#toolbar" pagination="true"
-			rownumbers="true" fitColumns="true" singleSelect="true">
+			rownumbers="true" fitColumns="true" singleSelect="true" pageSize="20" method='get'>
 		<thead>
 			<tr>
 				<!-- <th field="userId" width="150">用户id</th> -->
@@ -57,12 +57,12 @@ request.setAttribute("basePath", basePath);
 				<tr>
 					<td>
 		        		<label for="name">用户名:</label>   
-		        		<input class="easyui-validatebox" type="text" style="width:80px" name="userName"/> 
+		        		<input class="easyui-validatebox" type="text" style="width:80px" name="user.userName"/> 
 						<span>　</span>
 					</td>
 		       		<td>
 		       			 <label for="email">电子邮件:</label>   
-		        		 <input class="easyui-validatebox" type="text" style="width:80px" name="email" />   
+		        		 <input class="easyui-validatebox" type="text" style="width:80px" name="user.email" />   
 		        		 <span>　</span>
 		    	    </td>
 					<td>
@@ -73,7 +73,7 @@ request.setAttribute("basePath", basePath);
 		       		</td>
 		       		<td>
 				        <label for="email">用户角色:</label>   
-						<select id="permission" class="easyui-combobox" name="permission" style="width:80px;" data-options="editable:false">   
+						<select id="permission" class="easyui-combobox" name="user.permission" style="width:80px;" data-options="editable:false">   
 							<option value="">全部</option>
 						    <option value="10">普通用户</option>   
 						    <option value="20">作者</option>   
@@ -202,35 +202,21 @@ request.setAttribute("basePath", basePath);
 
 	//用户查询
 	function searchUser(){
-		var myurl = '${basePath}/background/jsp/user/user_searchUser';
 
 		var createStart = $('#createStart').datebox('getValue');
 
 		var createEnd = $('#createEnd').datebox('getValue');
 
 		if(createStart && createEnd && createStart > createEnd){
-			$.massage.alert({mag:'开始时间不能大于结束时间！'});
+			$.messager.alert({title:'时间选择错误！',msg:'<span style="margin-left:auto;margin-right:auto;display:block;text-align:center; ">开始时间不能大于结束时间！</span>'});
 			return false;
 		}
+
+		var myQueryParams = $("#searchForm").serialize();
 		
-		$('#searchForm').form('submit',{
-			url: myurl,
-			onSubmit: function(){
-				return true;
-			},
-			success: function(result){
-				var data = eval('(' + result + ')');  
-				if (data.suc == 'suc'){
-					$('#users').datagrid('reload');	
-				} else {
-					$.messager.alert({
-						title: '查询出错！',
-						msg: '<span style="text-align:center;margin-left:auto;margin-right:auto;color:red;display:bolck">'+data.msg+'</span>'
-					});
-				}
-				return false;
-			}
-		});
+		var myurl = '${basePath}/background/jsp/user/user_searchUser?'+myQueryParams;
+		$("#users").datagrid({url:myurl });
+		
 	}
 
 	//将值进行替换
@@ -243,16 +229,12 @@ request.setAttribute("basePath", basePath);
 		}
 
 	//创建底面的一栏
-	function init(){
+	function initPager(){
 		var pager = $('#users').datagrid('getPager');    // get the pager of datagrid
 		pager.pagination({
-			showPageList:false,
+			showPageList:true,
+			pageSize:20,
 			buttons:[{
-				iconCls:'icon-search',
-				handler:function(){
-					alert('search');
-				}
-			},{
 				iconCls:'icon-add',
 				handler:function(){
 					newUser();
@@ -266,11 +248,11 @@ request.setAttribute("basePath", basePath);
 		});
 
 	}
-
+	//设置 
 	
 	
 	$(function(){
-		init();
+		initPager();
 	});
 
 </script>

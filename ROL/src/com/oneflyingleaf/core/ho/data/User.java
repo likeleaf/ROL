@@ -4,11 +4,7 @@ package com.oneflyingleaf.core.ho.data;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.Set;
 
-import org.springframework.util.DigestUtils;
-
-import com.oneflyingleaf.core.util.DateUtils;
 
 
 /**
@@ -78,7 +74,7 @@ public class User  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public User(String userId, Author auther, Vip vip, String userName, String userPw, String email, String qq, String adress, String phone, Timestamp createTime, String gender, Short age, String permission, Set authers, Set userFavs, Set vips) {
+    public User(String userId, Author auther, Vip vip, String userName, String userPw, String email, String qq, String adress, String phone, Timestamp createTime, String gender, Short age, String permission) {
         this.userId = userId;
         this.auther = auther;
         this.vip = vip;

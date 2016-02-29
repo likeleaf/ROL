@@ -11,7 +11,7 @@ public interface BaseDao {
 	 * @param params hql的参数，如果没有参数list的值为null
 	 * @return
 	 */
-	<T extends Serializable> List<T> find(String hql,Object[] params);
+	<T> List<T> find(String hql,Object[] params);
 	
 	/**
 	 * 通过参数查询，使用sql语句
@@ -23,12 +23,34 @@ public interface BaseDao {
 	<T> List<T> findBySQL(String sql,Object[] params,Class<?> clazz);
 	
 	/**
+	 * 分页查询 hql
+	 * @param hql
+	 * @param params
+	 * @param pageCount 每页的数量
+	 * @param pageNow 当前页
+	 * @return
+	 */
+	
+	<T> List<T> padingFind(String hql , Object[] params,Integer pageCount,Integer pageNow);
+	
+	/**
+	 * 分页查询 hql
+	 * @param sql
+	 * @param params
+	 * @param pageCount 每页的数量
+	 * @param pageNow 当前页
+	 * @param clazz
+	 * @return
+	 */
+	<T> List<T> padingFindBySQL(String sql , Object[] params,Integer pageCount,Integer pageNow ,Class<?> clazz);
+	
+	/**
 	 * 通过参数条件查询
 	 * @param hql
 	 * @param params hql的参数，如果没有参数list的值为null
 	 * @return
 	 */
-	<T extends Serializable> T findOne(String hql,Object[] params);
+	<T> T findOne(String hql,Object[] params);
 	
 	/**
 	 * 通过参数条件查询
@@ -74,6 +96,8 @@ public interface BaseDao {
 	 * @return
 	 */
 	<T> boolean update(T t);
+	
+
 	
 	//删
 	

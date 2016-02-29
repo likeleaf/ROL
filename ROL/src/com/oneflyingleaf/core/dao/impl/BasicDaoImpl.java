@@ -1,6 +1,7 @@
 package com.oneflyingleaf.core.dao.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,8 +21,21 @@ public class BasicDaoImpl implements BaseDao{
 	@Resource(name="sessionFactory")
 	private SessionFactory sf;
 
+	public <T> List<T> find(String hql, Object[] params) {
+		
+		return padingFind(hql, params, null,null);
+	}
+
+	public <T> List<T> findBySQL(String sql,
+			Object[] params, Class<?> clazz) {
+		return padingFindBySQL(sql, params, null, null, clazz);
+	}
+	
 	@SuppressWarnings("unchecked")
-	public <T extends Serializable> List<T> find(String hql, Object[] params) {
+	@Override
+	public <T> List<T> padingFind(String hql, Object[] params,
+			Integer pageCount, Integer pageNow) {
+		
 		Query query = null;
 		try{
 			query = getSession().createQuery(hql);
@@ -30,16 +44,23 @@ public class BasicDaoImpl implements BaseDao{
 					query.setParameter(i, params[i]);
 				}
 			}
+			
+			/*if(pageCount != null && pageNow != null){
+				query.setMaxResults(pageCount);
+				query.setFirstResult((pageNow-1) * pageCount);
+			}*/
 			return query.list();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return null;
+		return new ArrayList<T>();
+		
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findBySQL(String sql,
-			Object[] params, Class<?> clazz) {
+	public <T> List<T> padingFindBySQL(String sql, Object[] params,
+			Integer pageCount, Integer pageNow, Class<?> clazz) {
 		SQLQuery SQLquery = null;
 		try {
 			SQLquery = getSession().createSQLQuery(sql);
@@ -52,14 +73,20 @@ public class BasicDaoImpl implements BaseDao{
 			if(clazz != null){
 				SQLquery.addEntity(clazz);
 			}
+			
+			if(pageCount != null && pageNow != null){
+				SQLquery.setMaxResults(pageCount);
+				SQLquery.setFirstResult((pageNow-1) * pageCount);
+			}
 			return SQLquery.list();
-		} catch (Exception e) {
+		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return null;
+		return new ArrayList<T>();
 	}
 
-	public <T extends Serializable> T findOne(String hql, Object[] params) {
+	@SuppressWarnings("unchecked")
+	public <T> T findOne(String hql, Object[] params) {
 		Query query = null;
 		try{
 			query = getSession().createQuery(hql);
@@ -76,6 +103,7 @@ public class BasicDaoImpl implements BaseDao{
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T> T findOneBySQL(String sql,
 		Object[] params, Class<?> clazz) {
 		SQLQuery SQLquery = null;
@@ -196,6 +224,7 @@ public class BasicDaoImpl implements BaseDao{
 		return sf.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T> T get(Class<?> clazz, Serializable id) {
 		try {
 			return (T) getSession().get(clazz, id);
@@ -204,4 +233,5 @@ public class BasicDaoImpl implements BaseDao{
 		}
 		return null;
 	}
+
 }

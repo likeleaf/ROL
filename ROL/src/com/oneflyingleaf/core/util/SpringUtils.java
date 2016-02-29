@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.oneflyingleaf.core.dao.BaseDao;
+import com.oneflyingleaf.core.service.BaseService;
 
 /**
  * Spring工具类
@@ -38,11 +39,11 @@ public class SpringUtils {
 	
 	
 	/**
-	 * 得到容器中的baseDao
+	 * 得到容器中的baseService
 	 * @return
 	 */
-	public static BaseDao getBaseDao(){
-		return SpringUtils.getBean(getServletContext(), "baseDao");
+	public static BaseService getBaseService(){
+		return SpringUtils.getBean(getServletContext(), "baseService");
 	}
 	
 	public static String getRealPath(String name){

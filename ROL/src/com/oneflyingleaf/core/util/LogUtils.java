@@ -36,7 +36,7 @@ public class LogUtils {
 	
 	private static void saveLog(String logCode,String logDes,String logIp,String logType,String userId){
 		com.oneflyingleaf.core.ho.data.Log l = new com.oneflyingleaf.core.ho.data.Log(null,logCode,logDes,logIp,new Timestamp(System.currentTimeMillis()),logType,userId);
-		SpringUtils.getBaseDao().save(l);
+		SpringUtils.getBaseService().save(l);
 	}
 	public static void info(String code,String info,String ip){
 		log(code,info,LogType.INFO,ip);

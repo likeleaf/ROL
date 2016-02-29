@@ -17,7 +17,7 @@ public class BasicService implements BaseService{
 	private BaseDao baseDao;
 
 	@Override
-	public <T extends Serializable> List<T> find(String hql, Object[] params) {
+	public <T> List<T> find(String hql, Object[] params) {
 		return baseDao.find(hql, params);
 	}
 
@@ -27,7 +27,7 @@ public class BasicService implements BaseService{
 	}
 
 	@Override
-	public <T extends Serializable> T findOne(String hql, Object[] params) {
+	public <T> T findOne(String hql, Object[] params) {
 		return baseDao.findOne(hql, params);
 	}
 
@@ -74,6 +74,18 @@ public class BasicService implements BaseService{
 	@Override
 	public int exec(String sql, Object[] params) {
 		return baseDao.exec(sql, params);
+	}
+
+	@Override
+	public <T> List<T> padingFind(String hql, Object[] params,
+			Integer pageCount, Integer pageNow) {
+		return baseDao.padingFind(hql, params, pageCount, pageNow);
+	}
+
+	@Override
+	public <T> List<T> padingFindBySQL(String sql, Object[] params,
+			Integer pageCount, Integer pageNow, Class<?> clazz) {
+		return baseDao.padingFindBySQL(sql, params, pageCount, pageNow, clazz);
 	}
 
 }

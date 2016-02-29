@@ -1,18 +1,18 @@
 package com.oneflyingleaf.bacground.user.action;
 
 
-import java.util.Date;
-import java.util.List;
 import java.util.regex.Pattern;
 
-import net.sf.json.JSONArray;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.oneflyingleaf.bacground.util.DataUtils;
+import com.oneflyingleaf.bacground.core.util.GridUtils;
 import com.oneflyingleaf.core.action.BasicAction;
 import com.oneflyingleaf.core.ho.data.User;
+import com.oneflyingleaf.core.util.helper.HelperFactory;
+import com.oneflyingleaf.core.util.helper.QueryHelper;
+
 
 public class UserAction extends BasicAction{
 	private User user;
@@ -24,18 +24,10 @@ public class UserAction extends BasicAction{
 	 * 通过页数和每页的数量得到相关数量的用户信息
 	 */
 	public void getUserJson(){
-		String page = this.getParameter("page");
-		String rows = this.getParameter("rows");
-		int[] range = DataUtils.getPageRange(page, rows);
-
-		JSONArray ja = new JSONArray();
 		
-		List<User> users = this.basicService.find("from User where rownum <= "+range[1]+" and rownum >="+range[0], null);
+		QueryHelper qh = HelperFactory.createQueryHelper(User.class, "u");
 		
-		for(User u:users){
-			ja.add(u);
-		}
-		this.outPut(ja.toString());
+		this.outPut(GridUtils.getJson(this.getRequest(), qh));
 	}
 	
 	/**
@@ -127,7 +119,16 @@ public class UserAction extends BasicAction{
 		String createStart = this.getParameter("createStart");
 		String createEnd = this.getParameter("createEnd");
 		
+		QueryHelper qh = HelperFactory.createQueryHelper(User.class, "u");
+		qh.addCondition("u.userName like ?", "%"+(StringUtils.isNotBlank(user.getUserName())?user.getUserName():"")+"%");
+		qh.addCondition("u.email like ?", "%"+(StringUtils.isNotBlank(user.getEmail())?user.getEmail():"")+"%");
+		qh.addCondition("to_char(u.createTime,'yyyy-MM-dd') >= ?", createStart,true);
+		qh.addCondition("to_char(u.createTime,'yyyy-MM-dd') >= ?", createEnd, true);
+		qh.addCondition("u.permission like ? ", "%"+(StringUtils.isNotBlank(user.getPermission())?user.getPermission():"")+"%",true);
 		
+		qh.addOrderBy("u.createTime", "desc");
+		
+		this.outPut(GridUtils.getJson(this.getRequest(), qh));
 		
 	}
 	

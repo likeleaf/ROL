@@ -1,4 +1,4 @@
-package com.oneflyingleaf.bacground.util;
+package com.oneflyingleaf.bacground.core.util;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,12 +14,12 @@ public class DataUtils {
 	 * @param page 当前页
 	 * @param rows 每页的记录数
 	 * @param defaultRows 如果每页的记录数出错返回的值,小于0时，采用默认的DataUtils.DEFAULT_ROWS
-	 * @return 返回长度为2的数组，表示范围[a,b]
+	 * @return 返回长度为2的数组，表示page和rows
 	 */
-	public static int[] getPageRange(String page,String rows,int defaultRows){
+	public static int[] getPageAndRows(String page,String rows,int defaultRows){
 		if(StringUtils.isBlank(page)) page = String.valueOf(DEFAULT_PAGE);
 		if(defaultRows <= 0) defaultRows = DEFAULT_ROWS;
-		if(StringUtils.isBlank(rows)) page = String.valueOf(defaultRows);
+		if(StringUtils.isBlank(rows)) rows = String.valueOf(defaultRows);
 		
 		int ipage = 0;
 		int irows = 0;
@@ -42,11 +42,12 @@ public class DataUtils {
 			irows = DEFAULT_ROWS;
 		}
 		int[] range = new int[2];
-		range[0] = (ipage-1)*irows;
-		range[1] = ipage*irows;
+		range[0] = ipage;
+		range[1] = irows;
 		
 		return range;
 	}
+	
 	
 	/**
 	 * 根据传进的范围得到对应的记录的范围，主要用于easyui在oracle中的分页范围的查询，如果转换出错，则将使用缺省值
@@ -54,7 +55,7 @@ public class DataUtils {
 	 * @param rows 每页的记录数
 	 * @return 返回长度为2的数组，表示范围[a,b]
 	 */
-	public static int[] getPageRange(String page,String rows){
-		return getPageRange(page, rows, -1);
+	public static int[] getPageAndRows(String page,String rows){
+		return getPageAndRows(page, rows, -1);
 	}
 }

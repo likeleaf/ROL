@@ -70,7 +70,7 @@ public class loginFilter implements Filter {
 		String id = (String)session.getAttribute(SessionEnum.USERID.toString());
 		
 		if(StringUtils.isNotBlank(id)){
-			User user = SpringUtils.getBaseDao().get(User.class, id);
+			User user = SpringUtils.getBaseService().get(User.class, id);
 			//防止出现参数冲突即：www.oneflyingleaf.com/author/*.html?/auther/=...的情况
 			String url = req.getRequestURL().toString().split("?")[0];
 			//作者
