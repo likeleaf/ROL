@@ -12,29 +12,9 @@
         <property name="craeteTime" type="java.sql.Timestamp">
             <column name="CRAETE_TIME" />
         </property>
-        <set name="users" table="AUTHOR" inverse="false" lazy="true">
-            <key>
-                <column name="AUT_ID" />
-            </key>
-            <element type="string">
-                <column name="USERS" />
-            </element>
-        </set>
-        <set name="authHons" table="AUTHOR" inverse="false" lazy="true">
-            <key>
-                <column name="AUT_ID" />
-            </key>
-            <element type="string">
-                <column name="AUTHHONS" />
-            </element>
-        </set>
-        <set name="books" table="AUTHOR" inverse="false" lazy="true">
-            <key>
-                <column name="AUT_ID" />
-            </key>
-            <element type="string">
-                <column name="BOOKS" />
-            </element>
-        </set>
+        <property name="authState" type="java.lang.String">
+            <column name="AUTH_STATE" />
+        </property>
+       
     </class>
 </hibernate-mapping>

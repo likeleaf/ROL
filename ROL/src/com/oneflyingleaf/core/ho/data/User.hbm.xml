@@ -38,5 +38,8 @@
         <property name="permission" type="java.lang.String">
             <column name="PERMISSION" />
         </property>
+        <property name="userState" type="java.lang.String">
+            <column name="USER_STATE" />
+        </property>
     </class>
 </hibernate-mapping>

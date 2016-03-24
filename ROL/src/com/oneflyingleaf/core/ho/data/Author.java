@@ -14,17 +14,13 @@ public class Author  implements java.io.Serializable {
 
     // Fields    
 
-     private String autId;
-     private User user;
-     private Timestamp craeteTime;
-     Set users =  new HashSet();
+	private static final long serialVersionUID = 6891246743780914247L;
+	private String autId;
+    private User user;
+    private Timestamp craeteTime;
+    private String authState; 
 
-	Set authHons = new HashSet();
-     Set books = new HashSet();
-
-    // Constructors
-
-    /** default constructor */
+	/** default constructor */
     public Author() {
     }
 
@@ -35,13 +31,10 @@ public class Author  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public Author(String autId, User user, Timestamp craeteTime, Set users, Set authHons, Set books) {
+    public Author(String autId, User user, Timestamp craeteTime) {
         this.autId = autId;
         this.user = user;
         this.craeteTime = craeteTime;
-        this.users = users;
-        this.authHons = authHons;
-        this.books = books;
     }
 
    
@@ -71,28 +64,13 @@ public class Author  implements java.io.Serializable {
         this.craeteTime = craeteTime;
     }
 
+    // Constructors
 
-    public Set getUsers() {
-    	return users;
-    }
-    
-    public void setUsers(Set users) {
-    	this.users = users;
-    }
-    
-    public Set getAuthHons() {
-    	return authHons;
-    }
-    
-    public void setAuthHons(Set authHons) {
-    	this.authHons = authHons;
-    }
-    
-    public Set getBooks() {
-    	return books;
-    }
-    
-    public void setBooks(Set books) {
-    	this.books = books;
-    }
+    public String getAuthState() {
+		return authState;
+	}
+
+	public void setAuthState(String authState) {
+		this.authState = authState;
+	}
 }

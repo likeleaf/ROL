@@ -17,7 +17,9 @@ public class User  implements java.io.Serializable {
 
     // Fields    
 
-     /**
+  
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5074727592887383184L;
@@ -45,16 +47,25 @@ public class User  implements java.io.Serializable {
      private String qq;
      private String adress;
      private String phone;
-     private Timestamp createTime = new Timestamp(new Date().getTime());
-//     private String createTimeForShow;
+     private Timestamp createTime = new Timestamp(System.currentTimeMillis());
+//   private String createTimeForShow;
      private String gender;
      private Short age;
      private String permission = "10";
+     private String userState = "10";
 
 
     // Constructors
 
-    /** default constructor */
+    public String getUserState() {
+		return userState;
+	}
+
+	public void setUserState(String userState) {
+		this.userState = userState;
+	}
+
+	/** default constructor */
     public User() {
     }
     
@@ -201,4 +212,13 @@ public class User  implements java.io.Serializable {
     	Timestamp ts = getCreateTime();
     	return DateUtils.formatDate(ts, "yyyy-MM-dd");
 	}*/
+    @Override
+ 	public String toString() {
+ 		return "User [userId=" + userId + ", auther=" + auther + ", vip=" + vip
+ 				+ ", userName=" + userName + ", userPw=" + userPw + ", email="
+ 				+ email + ", qq=" + qq + ", adress=" + adress + ", phone="
+ 				+ phone + ", createTime=" + createTime + ", gender=" + gender
+ 				+ ", age=" + age + ", permission=" + permission
+ 				+ ", userState=" + userState + "]";
+ 	}
 }

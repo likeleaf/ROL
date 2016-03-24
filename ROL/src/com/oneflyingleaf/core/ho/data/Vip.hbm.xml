@@ -15,21 +15,6 @@
         <property name="vipStat" type="java.lang.String">
             <column name="VIP_STAT" />
         </property>
-        <set name="users" table="VIP" inverse="false" lazy="true">
-            <key>
-                <column name="VIP_ID" />
-            </key>
-            <element type="string">
-                <column name="USERS" />
-            </element>
-        </set>
-        <set name="vipTimes" table="VIP" inverse="false" lazy="true">
-            <key>
-                <column name="VIP_ID" />
-            </key>
-            <element type="string">
-                <column name="VIP_TIMES" />
-            </element>
-        </set>
+   
     </class>
 </hibernate-mapping>

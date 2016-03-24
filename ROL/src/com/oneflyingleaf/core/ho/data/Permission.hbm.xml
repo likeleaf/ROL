@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.core.ho.data.Permission" table="PERMISSION">
+        <id name="permId" type="java.lang.String">
+            <column name="PERM_ID" />
+            <generator class="uuid" />
+        </id>
+        <property name="rol" type="java.lang.String">
+            <column name="ROL" />
+        </property>
+        <property name="permCod" type="java.sql.Timestamp">
+            <column name="PERM_COD" />
+        </property>
+        <property name="permExp" type="java.lang.String">
+            <column name="PERM_EXP" />
+        </property>
+    </class>
+</hibernate-mapping>

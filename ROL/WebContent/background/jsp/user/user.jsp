@@ -25,11 +25,31 @@ request.setAttribute("basePath", basePath);
 		<thead>
 			<tr>
 				<!-- <th field="userId" width="150">用户id</th> -->
-				<th field="userName" width="100">用户名</th>
-				<th field="email" width="100">email</th>
-				<th field="qq" width="80">QQ</th>
-				<th field="createTime"  width="50" formatter='formatDate'>创建时间</th>
-				<th field="permission" width="50" formatter='swap'>用户权限</th>
+				<!-- <th field="userId" checkbox="true"></th> -->
+				<th field="userName" width="100" data-options="editor:{type:'textbox',options:{
+				required:true
+				}}">用户名</th>
+				<th field="email" width="100" data-options="editor:{type:'textbox',options:{
+				required:true,
+				validType:'email'
+				}}">email</th>
+				<th field="qq" width="80" data-options="editor:{type:'textbox',options:{
+				}}">QQ</th>
+				<th field="createTime"  width="50" formatter='formatDate' >创建时间</th>
+				<th field="permission" width="50" formatter='swap' data-options="editor:{type:'combobox',
+				options:{
+					required:true,
+					valueField :'value',
+					textField:'label',
+					data:[
+						{label:'普通用户',value:'10'},
+						{label:'作者',value:'20'},
+						{label:'vip',value:'30'},
+						{label:'管理员',value:'40'},
+						{label:'超级管理员',value:'50'}
+						]
+					}
+				}">用户权限</th>
 			</tr>
 		</thead>
 	</table>
@@ -39,7 +59,7 @@ request.setAttribute("basePath", basePath);
 		<form id="fm" method="post" novalidate>
 			<div class="fitem">
 				<label>电子邮件<span style='color:red;'>*</span>:</label>
-				<input name="user.email" id="email" class="easyui-validatebox" title="123312" validType="email" required="true">
+				<input name="user.email" id="email" class="easyui-validatebox"  validType="email" required="true" >
 			</div>
 			<div class="fitem">
 					<label>用户密码<span style='color:red;'>*</span>:</label>
@@ -57,7 +77,7 @@ request.setAttribute("basePath", basePath);
 				<tr>
 					<td>
 		        		<label for="name">用户名:</label>   
-		        		<input class="easyui-validatebox" type="text" style="width:80px" name="user.userName"/> 
+		        		<input class="easyui-validatebox" type="text" style="width:80px" name="user.userName" /> 
 						<span>　</span>
 					</td>
 		       		<td>
@@ -66,13 +86,13 @@ request.setAttribute("basePath", basePath);
 		        		 <span>　</span>
 		    	    </td>
 					<td>
-				        <label for="email" colspan='2'>创建时间:</label>   
+				        <label for="createStart" colspan='2'>创建时间:</label>   
 				        <input class="easyui-datebox" type="text" id="createStart" name="createStart" style="width:95px" data-options="editable:false"/> 
 				        <input class="easyui-datebox" type="text" id="createEnd" name="createEnd" style="width:95px" data-options="editable:false"/> 
 				        <span>　</span>  
 		       		</td>
 		       		<td>
-				        <label for="email">用户角色:</label>   
+				        <label for="permission">用户角色:</label>   
 						<select id="permission" class="easyui-combobox" name="user.permission" style="width:80px;" data-options="editable:false">   
 							<option value="">全部</option>
 						    <option value="10">普通用户</option>   
@@ -105,13 +125,7 @@ request.setAttribute("basePath", basePath);
 		var myurl = '${basePath}/background/jsp/user/user_checkName?userName='+name;
 		leaf.ajax(myurl,null,null,checkNameSuc,null);
 	}
-	//校验密码的一致
-	function checkPwCom(){
-		if($('userPw').val() != $('userPwCom').val()){
-			leaf.toolsTip("userPwCom", "密码和确认密码不一致！");
-			return false;
-			}
-		}
+
 
 	//添加用户的弹窗
 	function newUser(){
@@ -135,10 +149,7 @@ request.setAttribute("basePath", basePath);
 					$('#dlg').dialog('close');		
 					$('#users').datagrid('reload');	
 				} else {
-					$.messager.alert({
-						title: '添加用户出错！',
-						msg: '<span style="text-align:center;margin-left:auto;margin-right:auto;color:red;display:bolck">'+data.msg+'</span>'
-					});
+					$.messager.alert('添加用户出错！','<span style="text-align:center;margin-left:auto;margin-right:auto;display:bolck">'+data.msg+'</span>','error');
 				}
 			}
 		});
@@ -178,27 +189,7 @@ request.setAttribute("basePath", basePath);
 	});
 
 	
-	//删除用户
-	function removeUser(){
-		var row = $('#dg').datagrid('getSelected');
-		
-		if (row){
-			$.messager.confirm('Confirm','确认删除？',function(r){
-				if (r){
-					$.post('${basePath}/background/jsp/user/user_removeUser',{id:row.id},function(result){
-						if (result.success){
-							$('#dg').datagrid('reload');	
-						} else {
-							$.messager.show({	
-								title: '错误信息',
-								msg: result.msg
-							});
-						}
-					},'json');
-				}
-			});
-		}
-	}
+
 
 	//用户查询
 	function searchUser(){
@@ -208,7 +199,7 @@ request.setAttribute("basePath", basePath);
 		var createEnd = $('#createEnd').datebox('getValue');
 
 		if(createStart && createEnd && createStart > createEnd){
-			$.messager.alert({title:'时间选择错误！',msg:'<span style="margin-left:auto;margin-right:auto;display:block;text-align:center; ">开始时间不能大于结束时间！</span>'});
+			$.messager.alert('时间选择错误！','开始时间不能大于结束时间！','error');
 			return false;
 		}
 
@@ -216,6 +207,8 @@ request.setAttribute("basePath", basePath);
 		
 		var myurl = '${basePath}/background/jsp/user/user_searchUser?'+myQueryParams;
 		$("#users").datagrid({url:myurl });
+		//设置尾部栏
+		initPager();
 		
 	}
 
@@ -228,9 +221,13 @@ request.setAttribute("basePath", basePath);
 		return leaf.formatDate(new Date(value.time),'yyyy-MM-dd');
 		}
 
-	//创建底面的一栏
+	var editRow = undefined;
+
+
+	//设置相关的属性
 	function initPager(){
 		var pager = $('#users').datagrid('getPager');    // get the pager of datagrid
+		console.log(pager);
 		pager.pagination({
 			showPageList:true,
 			pageSize:20,
@@ -242,11 +239,88 @@ request.setAttribute("basePath", basePath);
 			},{
 				iconCls:'icon-edit',
 				handler:function(){
-					alert('edit');
-				}
-			}]
+	                var row = $("#users").datagrid('getSelected');
+	                var myurl = '${basePath}/background/jsp/user/user_updateUser';
+	                
+					
+	                if (row !=null || editRow != undefined  ) {
+	                    if (editRow != undefined) {
+	                    	$("#users").datagrid('endEdit', editRow);
+							if(editRow != undefined){
+			                	var editRowDetail =  $('#users').datagrid('getRows')[editRow];
+								//保存数据
+								leaf.ajax({url:myurl,
+										   data:{'user.userId':editRowDetail['userId'],'user.email':editRowDetail['email'],'user.userName':editRowDetail['userName'],'user.qq':editRowDetail['qq']},
+										   success:function(result){
+												var res = eval('('+result+')');
+												if(res.msg != 'suc'){
+													if(res.msg == 'noPermisison'){
+									                     $.messager.alert("错误", "非常抱歉，您所在的用户组没有没有权限更改权限！", "error");
+								                     	 $("#users").datagrid('reload');
+													}else{
+									                     $.messager.alert("错误",res.msg, "error");
+														}	
+									}
+										   }
+										  });
+							}
+							editRow = undefined;
+							return ;
+	                    }
+	 
+	                    if (editRow == undefined) {
+	                        var index = $("#users").datagrid('getRowIndex', row);
+	                        $("#users").datagrid('beginEdit', index);
+	                        editRow = index;
+	                        $("#users").datagrid('unselectAll');
+	                    }
+	                } else {
+	                     $.messager.alert("提示", "未选中行！", "info");
+	                }
+	            }
+			},{
+				iconCls:'icon-no',
+				handler:function(){
+					var row = $('#users').datagrid('getSelected');
+					if(!row){
+						$.messager.alert({title:'删除用户',msg:leaf.alertContent('请选择要删除的用户！')});
+						}
+					var myurl = '${basePath}/background/jsp/user/user_deleteUser?userId='+row['userId'];
+
+					$.messager.confirm('删除','确认删除？',function(e){
+						if(e){
+							leaf.ajax({url:myurl,success:function deleteSuc(res){
+								var res = eval('('+res+')');
+								if(res.msg == 'suc'){
+									$('#users').datagrid('reload');
+								}else if(res.msg == 'noPermission'){
+									$.massager.alert('删除出错','您没有权限进行该项操作！请联系管理员！','error');
+								}else{
+									$.massager.alert('删除出错','删除出错，请稍后再试！','error');
+									}
+							}});
+						}
+					});
+					}
+				}]
 		});
 
+		
+	}
+
+
+	function initDetail(){
+		$("#users").datagrid({
+			detailFormatter: function(rowIndex, rowData){
+				alert(123);
+				return '<table><tr>' +
+						'<td style="border:0">' +
+						'<p>Attribute: ' + rowData.email + '</p>' +
+						'<p>Status: ' + rowData.permission + '</p>' +
+						'</td>' +
+						'</tr></table>';
+				}
+			});
 	}
 	//设置 
 	

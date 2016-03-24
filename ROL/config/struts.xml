@@ -19,5 +19,5 @@
 		</action>
 	</package> -->
 	
-	<include file="./com/oneflyingleaf/bacground/user/config/struts_user.xml"></include>
+	<include file="./com/oneflyingleaf/background/config/struts_background.xml"></include>
 </struts>

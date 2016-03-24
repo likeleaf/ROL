@@ -45,10 +45,10 @@ public class BasicDaoImpl implements BaseDao{
 				}
 			}
 			
-			/*if(pageCount != null && pageNow != null){
+			if(pageCount != null && pageNow != null){
 				query.setMaxResults(pageCount);
 				query.setFirstResult((pageNow-1) * pageCount);
-			}*/
+			}
 			return query.list();
 		}catch(Exception e){
 			e.printStackTrace();

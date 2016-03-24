@@ -1,4 +1,4 @@
-package com.oneflyingleaf.bacground.core.util;
+package com.oneflyingleaf.background.core.util;
 
 import java.io.Serializable;
 import java.util.List;

@@ -69,5 +69,9 @@
 
 	<!-- 标签 -->
 	<import resource="classpath:com/oneflyingleaf/core/tag/tag.xml"/>
+	<!-- 后台 -->
+	<import resource="classpath:com/oneflyingleaf/background/config/application_background.xml"/>
+	
+	
 
 </beans>
