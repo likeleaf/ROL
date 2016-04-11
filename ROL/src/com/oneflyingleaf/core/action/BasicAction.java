@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
+import net.sf.json.JSONObject;
+
 import org.apache.struts2.ServletActionContext;
-import org.springframework.http.HttpRequest;
 
 import com.oneflyingleaf.core.service.BaseService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -48,6 +51,14 @@ public class BasicAction extends ActionSupport {
 			}
 			
 		}
+	}
+	
+	/**
+	 * 将json传到前台
+	 * 
+	 */
+	public void outPut(JSONObject jo){
+		this.outPut(jo.toString());
 	}
 	
 	/**
@@ -115,7 +126,7 @@ public class BasicAction extends ActionSupport {
 	 * @param key
 	 * @return
 	 */
-	public Object getAttribute(String key){
+	public Object getSessionAttribute(String key){
 		return getSession(true).getAttribute(key);
 	}
 	
@@ -124,7 +135,7 @@ public class BasicAction extends ActionSupport {
 	 * @param key
 	 * @param value
 	 */
-	public void setAttribute(String key,String value){
+	public void setSessionAttribute(String key,Object value){
 		getSession(true).setAttribute(key, value);
 	}
 	
@@ -132,6 +143,9 @@ public class BasicAction extends ActionSupport {
 	 * 删除当前的session
 	 */
 	public void deleteSession(){
-		getSession(true).setMaxInactiveInterval(-1);
+		getSession(true).invalidate();
 	}
+	
+	
+
 }

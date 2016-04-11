@@ -9,6 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.context.ContextLoaderListener;
 
+import com.oneflyingleaf.core.data.SystemData;
 import com.oneflyingleaf.core.init.FileInit;
 import com.oneflyingleaf.core.util.ClassUtils;
 import com.oneflyingleaf.core.util.SpringUtils;
@@ -37,12 +38,12 @@ public class GobalListener extends ContextLoaderListener implements HttpSessionL
 
 	@Override
 	public void sessionCreated(HttpSessionEvent se) {
-		
+		SystemData.onlineUser ++ ;
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {
-		
+		SystemData.onlineUser --;
 	}
 
 }

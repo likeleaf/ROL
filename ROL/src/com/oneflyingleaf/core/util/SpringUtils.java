@@ -2,11 +2,9 @@ package com.oneflyingleaf.core.util;
 
 import javax.servlet.ServletContext;
 
-import org.apache.struts2.ServletActionContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.oneflyingleaf.core.dao.BaseDao;
 import com.oneflyingleaf.core.service.BaseService;
 
 /**
@@ -16,6 +14,7 @@ import com.oneflyingleaf.core.service.BaseService;
 public class SpringUtils {
 	
 	public static ServletContext servletContext;
+	public static int onLineUser = 0;
 	
 	/**
 	 * 得到当前的ApplicationContext

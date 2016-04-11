@@ -28,7 +28,20 @@ leaf.ajax = function(json){
 /***********************************标签工具*****************************************/
 leaf.alertContent = function(content){
 	return "<span style=\"margin-left:auto;margin-right:auto;display:block;text-align:center\">"+content+"</span>";
-}
+};
+
+leaf.msg = function (content){
+	var hid = $('.hidden-window');
+	if(hid){
+		hid.removeClass('hid');
+	}
+	var obj = $("<div style='color:red;text-shadow:1px 1px 0 #FF9900;font-weight:bolder;font-size:28px;text-align:center;top:200px;right:620px;position:fixed;'>"+content+"</div>");
+	$('body').append(obj);
+	setTimeout(function(){
+		obj.remove();
+		hid.addClass("hid");
+	}, 1500);
+};
 
 /***********************************时间工具*****************************************/
 /**

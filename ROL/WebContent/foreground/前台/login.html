@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	
+	<title>用户登录</title>
+	
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/leaf.css">
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+		<div class="header">
+			<img src="../images/login.png">
+		</div>
+
+		<hr class="lab-split">
+		<div class="form">
+			<form role="form">
+				<input type="input" class="form-control" placeholder="邮箱"></input>
+				<input type="password" class="form-control" placeholder="密码"></input>
+				<input type="botton" class="btn btn-primary" value="登录"></input>
+			</form>
+				
+			<div>
+				<div>
+					<div class="checkbox">
+					            <label>
+					               <input type="checkbox"> 请记住我
+					            </label>
+	        		</div>
+	        		<span class="redirect"><a href="">忘记密码？</a><a href="">注册</a></span>	
+        		</div>	
+    		</div>
+    		<div class="unflo"></div>
+			
+		</div>
+
+		
+		<div class="footer">
+			<hr class="lab-split">
+			<div class="container">
+				<div class="row"> 
+					<div class="col-lg-3">专业：计算机科学与技术</div>
+					<div class="col-lg-2">班级：计科2</div>
+					<div class="col-lg-2">学号：20122308045</div>
+					<div class="col-lg-2">指导老师：李振宏</div>
+					<div class="col-lg-3">设计题目：在线阅读设计与实现</div>
+				</div>
+			</div>
+
+		</div>
+		<hr class="lab-split">
+		<hr class="lab-split">
+
+
+</body>
+
+<script type="text/javascript">
+
+	//lab1中对中间下面部分对应的内容
+	function setLab(id,doc){
+		
+		var oArr = $('#listFocus').children();
+
+		oArr.removeClass('active');
+		console.log(oArr);
+
+
+	 	$(doc).addClass('active');
+
+	 	oArr = $('#labDisplay').children();
+	 	oArr.addClass('hid');
+	 
+		console.log($('#'+id));
+		$('#'+id).removeClass('hid');
+
+	}
+
+	
+	//lab1中右边部分的标签
+	function setRightLabel(doc){
+
+		var oArr = $("#firstRightLabel img");
+
+		oArr.addClass("hid")
+		console.log($(doc));
+		$(doc).children(".lab").children().children("img").removeClass("hid");
+	}
+
+	//tab2右边的标签
+	function tab2Right(show,hidden){
+		$("#"+hidden).addClass('hid');
+		$("#"+show).removeClass('hid');
+
+
+
+	}
+
+</script>
+</html>

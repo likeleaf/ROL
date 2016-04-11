@@ -1,0 +1,77 @@
+.container .content{
+
+	margin-top: 10px;
+	margin-right: 5% ;
+	margin-left: 6.5% ;
+	padding-right: 10px;
+	padding-left:10px; 
+}
+
+.produce-h3{
+	color: #888;
+	margin-top: 10px;
+	margin-left: 0px;
+	font-size: 27px;
+	font-weight: 300;
+}
+
+.blue-line{
+	border: 2px solid #A8E3E3;
+	border-left-width: 0px; 
+	border-right-width: 0px;
+	border-top-width: 0px;
+	margin: 2px 0px 15px 0px; 
+
+}
+
+.book-select-title{
+	width: 10%;
+	display: block;
+	float: left;
+}
+
+.book-display-list{
+	width: 90%;
+	display: block;
+	float: left;
+}
+.book-display-list li{
+	
+	font-size: 13px;
+	margin-top: 5px;
+	margin-left: 15px;
+	float: left;	
+}
+
+.book-display-list li a{
+
+	padding: 3px;
+	color: #888;
+}
+
+.cur{
+	color: #fff !important;
+	background:#A8E3E3;
+	border-radius: 2px; 
+}
+
+.table tr th{
+	font-size: 12px;
+	color: #888;
+	font-weight: 50	0;
+}
+
+/* 书籍选择 */
+
+
+
+/* 分页 */
+.page{
+	width: 40%;
+	margin-top: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	text-align: center;
+}	
+

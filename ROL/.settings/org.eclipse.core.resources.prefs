@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//WebContent/common/css/leaf.css=UTF-8
+encoding//WebContent/foreground/css/leaf.css=UTF-8
+encoding//WebContent/foreground/jsp/user/register.jsp=UTF-8
+encoding//WebContent/index.jsp=UTF-8
 encoding//config/config.properties=UTF-8

@@ -19,6 +19,11 @@
 		</action>
 	</package> -->
 	
-	<include file="./com/oneflyingleaf/background/config/struts_background.xml"></include>
-	<include file="./com/oneflyingleaf/foreground/config/struts_foreground_user.xml"></include>
+	<package name="foreground" namespace="/foreground/jsp/user" extends="struts-default">
+		<action name="user_*" class="com.oneflyingleaf.foreground.action.user.UserAction" method="{1}">
+			<result name="success" type="redirect">../../../index.jsp</result>
+		</action>
+	</package>
+	
+	
 </struts>
