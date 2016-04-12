@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="l" uri="http://tag.oneflyingleaf.com" %>
+  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="./foreground/jsp/common/top.jsp"></jsp:include>
 <jsp:include page="./foreground/jsp/common/header.jsp"></jsp:include>
 
@@ -14,53 +15,13 @@
 								<h3>热门推荐</h3>
 								<i></i>
 								
-								<l:lists name="Book" var="" />
+								<l:lists name="Book" var="labList1" order="bookId desc" pageCount="15" pageNow="1"/>
 								<ul class="list-unstyled list-memu">
+									<c:forEach var="lab1" items="${labList1 }">
 									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
+										<a href="">[${lab1.bookType}]${lab1.bookName }</a><hr class="hr-color">
 									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">
-									</li>
+									</c:forEach>
 								</ul>
 							</div>
 						
@@ -111,124 +72,91 @@
 									<li onmouseover="javascript:setLab('lab4',this)" style="border-right-width: 0px;"> <a href="javascript:;">玄幻</a></li>
 								</ul>
 							</div>
-							<div id="labDisplay" class="lab-display">
-
+							<div id="labDisplay" class="lab-display"><!-- 25 -->
 								<div id="lab1">
-									<div class="row">
-										<div class="col-lg-3">
-											<a href="javascript:;">
-												<img src="${ctx}/foreground/images/focus-lab/1.jpg">
-											</a>
-										</div>
-										<div class="col-lg-9">
-											<a href="javascript:;">女神的天眼神卫</a>
-											<p class="p-lab">类型：都市 </p>
-											<p class="p-lab">
-												韩少白意外和玉帝成为了企鹅好友，从此一只天眼看破世间虚妄，一双铁拳打遍天下无敌手。 在他看来，纵使你腰缠万贯不如美人一笑；纵使你身世显赫，也不如美人投怀送抱来
-											</p>
-										</div>
-									</div>
-									<hr>
-									<div class="row">
-										<div class="col-lg-3">
-											<img src="${ctx}/foreground/images/focus-lab/2.jpg">
-										</div>
-										<div class="col-lg-9">
-											<a href="javascript:;">五行农夫</a>
-											<p class="p-lab">类型：都市 </p>
-											<p class="p-lab">
-												体内有个五行气，妙用多多赚大钱。别人种田我打牌，亩产十万如小菜。小村花，大小姐，稻花香里犁犁田。大姑娘、小媳妇，农夫山泉有点甜，小农夫有理想，全球播种把地填。
-											</p>
-										</div>
-									</div>
+									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="2" pageNow="80"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+									
+												<div class="row">
+													<div class="col-lg-3">
+														<a href="javascript:;">
+															<img src="${lab2.bookImg}">
+														</a>
+													</div>
+													<div class="col-lg-9">
+														<a href="javascript:;">${lab2.bookName }</a>
+														<p class="p-lab">类型：${lab2.bookType } </p>
+														<p class="p-lab">
+															${fn:substring(lab2.bookDes,0,60) }
+														</p>
+													</div>
+												</div>
+											<c:if test="${!sta.last }"><hr></c:if><!--最后一条不显示  -->
+									</c:forEach>
 								</div>
 								<div id="lab2" class="hid">
-									<div class="row">
-										<div class="col-lg-3">
-											<a href="javascript:;">
-												<img src="${ctx}/foreground/images/focus-lab/1.jpg">
-											</a>
-										</div>
-										<div class="col-lg-9">
-											<a href="javascript:;">女神的天眼神卫</a>
-											<p class="p-lab">类型：都市 </p>
-											<p class="p-lab">
-												韩少白意外和玉帝成为了企鹅好友，从此一只天眼看破世间虚妄，一双铁拳打遍天下无敌手。 在他看来，纵使你腰缠万贯不如美人一笑；纵使你身世显赫，也不如美人投怀送抱来
-											</p>
-										</div>
-									</div>
-									<hr>
-									<div class="row">
-										<div class="col-lg-3">
-											<img src="${ctx}/foreground/images/focus-lab/2.jpg">
-										</div>
-										<div class="col-lg-9">
-											<a href="javascript:;">五行农夫</a>
-											<p class="p-lab">类型：都市 </p>
-											<p class="p-lab">
-												体内有个五行气，妙用多多赚大钱。别人种田我打牌，亩产十万如小菜。小村花，大小姐，稻花香里犁犁田。大姑娘、小媳妇，农夫山泉有点甜，小农夫有理想，全球播种把地填。
-											</p>
-										</div>
-									</div>
+									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="2" pageNow="111"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+									
+												<div class="row">
+													<div class="col-lg-3">
+														<a href="javascript:;">
+															<img src="${lab2.bookImg}">
+														</a>
+													</div>
+													<div class="col-lg-9">
+														<a href="javascript:;">${lab2.bookName }</a>
+														<p class="p-lab">类型：${lab2.bookType } </p>
+														<p class="p-lab">
+															${fn:substring(lab2.bookDes,0,60) }
+														</p>
+													</div>
+												</div>
+											<c:if test="${!sta.last }"><hr></c:if><!--最后一条不显示  -->
+									</c:forEach>
 								</div>
 								<div id="lab3" class="hid">
-									<div class="row">
-										<div class="col-lg-3">
-											<a href="javascript:;">
-												<img src="${ctx}/foreground/images/focus-lab/1.jpg">
-											</a>
-										</div>
-										<div class="col-lg-9">
-											<a href="javascript:;">女神的天眼神卫</a>
-											<p class="p-lab">类型：都市 </p>
-											<p class="p-lab">
-												韩少白意外和玉帝成为了企鹅好友，从此一只天眼看破世间虚妄，一双铁拳打遍天下无敌手。 在他看来，纵使你腰缠万贯不如美人一笑；纵使你身世显赫，也不如美人投怀送抱来
-											</p>
-										</div>
-									</div>
-									<hr>
-									<div class="row">
-										<div class="col-lg-3">
-											<img src="${ctx}/foreground/images/focus-lab/2.jpg">
-										</div>
-										<div class="col-lg-9">
-											<a href="javascript:;">五行农夫</a>
-											<p class="p-lab">类型：都市 </p>
-											<p class="p-lab">
-												体内有个五行气，妙用多多赚大钱。别人种田我打牌，亩产十万如小菜。小村花，大小姐，稻花香里犁犁田。大姑娘、小媳妇，农夫山泉有点甜，小农夫有理想，全球播种把地填。
-											</p>
-										</div>
-									</div>
+									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="2" pageNow="123"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+									
+												<div class="row">
+													<div class="col-lg-3">
+														<a href="javascript:;">
+															<img src="${lab2.bookImg}">
+														</a>
+													</div>
+													<div class="col-lg-9">
+														<a href="javascript:;">${lab2.bookName }</a>
+														<p class="p-lab">类型：${lab2.bookType } </p>
+														<p class="p-lab">
+															${fn:substring(lab2.bookDes,0,60) }
+														</p>
+													</div>
+												</div>
+											<c:if test="${!sta.last }"><hr></c:if><!--最后一条不显示  -->
+									</c:forEach>
 								</div>
 								<div id="lab4" class="hid">
 
-									<div class="row">
-										<div class="col-lg-3">
-											<img src="${ctx}/foreground/images/focus-lab/2.jpg">
-										</div>
-										<div class="col-lg-9">
-											<a href="javascript:;">五行农夫</a>
-											<p class="p-lab">类型：都市 </p>
-											<p class="p-lab">
-												体内有个五行气，妙用多多赚大钱。别人种田我打牌，亩产十万如小菜。小村花，大小姐，稻花香里犁犁田。大姑娘、小媳妇，农夫山泉有点甜，小农夫有理想，全球播种把地填。
-											</p>
-										</div>
-									</div>
-									<hr>
-									<div class="row">
-										<div class="col-lg-3">
-											<a href="javascript:;">
-												<img src="${ctx}/foreground/images/focus-lab/1.jpg">
-											</a>
-										</div>
-										<div class="col-lg-9">
-											<a href="javascript:;">女神的天眼神卫</a>
-											<p class="p-lab">类型：都市 </p>
-											<p class="p-lab">
-												韩少白意外和玉帝成为了企鹅好友，从此一只天眼看破世间虚妄，一双铁拳打遍天下无敌手。 在他看来，纵使你腰缠万贯不如美人一笑；纵使你身世显赫，也不如美人投怀送抱来
-											</p>
-										</div>
-									</div>
+								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="2" pageNow="100"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+									
+												<div class="row">
+													<div class="col-lg-3">
+														<a href="javascript:;">
+															<img src="${lab2.bookImg}">
+														</a>
+													</div>
+													<div class="col-lg-9">
+														<a href="javascript:;">${lab2.bookName }</a>
+														<p class="p-lab">类型：${lab2.bookType } </p>
+														<p class="p-lab">
+															${fn:substring(lab2.bookDes,0,60) }
+														</p>
+													</div>
+												</div>
+											<c:if test="${!sta.last }"><hr></c:if><!--最后一条不显示  -->
+									</c:forEach>
 								
 									
 								</div>
@@ -243,113 +171,27 @@
 						<div class="lab-display-inner-right">
 								<h3>追更榜</h3>
 								<ul class="list-unstyled list-memu" id="firstRightLabel">
-									<li onmouseover="javascript:setRightLabel(this)">
-										<span class="circle flo">01</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
-										<div class="unflo"></div>
-									</li>
-									<hr class="hr-color">
-									<li onmouseover="javascript:setRightLabel(this)">
-										<span class="circle flo">02</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img hid"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
-										<div class="unflo"></div>
-									</li>
-									<hr class="hr-color">
-									<li onmouseover="javascript:setRightLabel(this)">
-										<span class="circle flo">03</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img hid"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
-										<div class="unflo"></div>
-									</li>
-									<hr class="hr-color">
-									<li onmouseover="javascript:setRightLabel(this)">
-										<span class="circle flo">04</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img hid"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
-										<div class="unflo"></div>
-									</li>
-									<hr class="hr-color">
-									<li onmouseover="javascript:setRightLabel(this)">
-										<span class="circle flo">05</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img hid"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
-										<div class="unflo"></div>
-									</li>
-									<hr class="hr-color">
-									<li onmouseover="javascript:setRightLabel(this)" >
-										<span class="circle flo">06</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img hid"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
-										<div class="unflo"></div>
-									</li>
-									<hr class="hr-color">
-									<li onmouseover="javascript:setRightLabel(this)">
-										<span class="circle flo">07</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img hid"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
-										<div class="unflo"></div>
-									</li>
-									<hr class="hr-color">
-									<li onmouseover="javascript:setRightLabel(this)">
-										<span class="circle flo">08</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img hid"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
-										<div class="unflo"></div>
-									</li>
-									<hr class="hr-color">
-									<li onmouseover="javascript:setRightLabel(this)">
-										<span class="circle flo">09</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img hid"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
-										<div class="unflo"></div>
-									</li>
-									<hr class="hr-color">
-									<li onmouseover="javascript:setRightLabel(this)">
-										<span class="circle flo">10</span>
-										<div class="lab flo">
-											<a class="" href="">
-												<img class="display-right-img hid"  src="${ctx}/foreground/images/display-right/1.jpg">
-												<p class="display-right-p">[玄幻]战神年代</p>
-											</a>
-										</div>
+									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="10" pageNow="100"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+										<li onmouseover="javascript:setRightLabel(this)">
+											<span class="circle flo">${sta.count }</span>
+											<div class="lab flo">
+												<a class="" href="">
+													<c:choose>
+														<c:when test="${sta.first }">
+															<img class="display-right-img" src="${lab2.bookImg }">
+														</c:when>
+														<c:otherwise>
+															<img class="display-right-img hid"    src="${lab2.bookImg }">
+														</c:otherwise>
+													</c:choose>
+													<p class="display-right-p">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</p>
+												</a>
+											</div>
+											<div class="unflo"></div>
+										</li>
+										<c:if test="${!sta.last }"><hr class="hr-color"></c:if>
+									</c:forEach>
 										<div class="unflo"></div>
 									</li>
 								</ul>
@@ -370,48 +212,12 @@
 								<h3>精品推荐</h3>
 								<i></i>
 								<ul class="list-unstyled list-memu">
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
+								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="66"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+										<li>
+											<a href="">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
+										</li>
+									</c:forEach>
 								</ul>
 							</div>
 						
@@ -420,103 +226,40 @@
 						<div class="tab2-center">
 							<h3>热门精选</h3>
 							<hr>
-
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="" style="">
-											<img class="tab2-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab2-center-display-p">[玄幻]战神年代</p>
-											<p class="tab2-center-display-p">作者：逍遥幻想生</p>
-										</a>
+							<l:lists name="Book" var="labList2" order="bookId desc" pageCount="6" pageNow="34"/>
+							<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+								<c:if test="${sta.index%3 ==0 }"><div class="row"></c:if>
+									<div class="col-lg-4">
+										<div class="lab">
+											<a class="" href="" style="">
+												<img class="tab2-center-display-img"  src="${lab2.bookImg }" style="width:100px;height:136px">
+												<p class="tab2-center-display-p">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</p>
+												<p class="tab2-center-display-p">作者：${fn:substring(lab2.authName,0,8 )}</p>
+											</a>
+										</div>
 									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab2-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab2-center-display-p">[玄幻]战神年代</p>
-											<p class="tab2-center-display-p">作者：逍遥幻想生</p>
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab2-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab2-center-display-p">[玄幻]战神年代</p>
-											<p class="tab2-center-display-p">作者：逍遥幻想生</p>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab2-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab2-center-display-p">[玄幻]战神年代</p>
-											<p class="tab2-center-display-p">作者：逍遥幻想生</p>
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab2-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab2-center-display-p">[玄幻]战神年代</p>
-											<p class="tab2-center-display-p">作者：逍遥幻想生</p>
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab2-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab2-center-display-p">[玄幻]战神年代</p>
-											<p class="tab2-center-display-p">作者：逍遥幻想生</p>
-										</a>
-									</div>
-								</div>
-									
-							</div>
+								<c:if test="${sta.index%3 ==2 }"></div></c:if>
+							</c:forEach>
 
 							<div class="tab2-center-buttom-menu">
 								<div class="title flo">
 									热书速递
 								</div>
 								<div class="list flo">
-
+									
 									<div class="row">
-										<div class="col-lg-3">
-											<ul class="list-unstyled menu line">
-												<li><a href="">医道天王</a></li>
-												<li><a href="">医道天王</a></li>
-												<li><a href="">医道天王</a></li>
-											</ul>
-										</div>
-
-										<div class="col-lg-3">
-											<ul class="list-unstyled menu line">
-												<li><a href="">医道天王</a></li>
-												<li><a href="">医道天王</a></li>
-												<li><a href="">医道天王</a></li>
-											</ul>
-										</div>
-										<div class="col-lg-3">
-											<ul class="list-unstyled menu line">
-												<li><a href="">医道天王</a></li>
-												<li><a href="">医道天王</a></li>
-												<li><a href="">医道天王</a></li>
-											</ul>
-										</div>
-										<div class="col-lg-3">
-											<ul class="list-unstyled menu">
-												<li><a href="">医道天王</a></li>
-												<li><a href="">医道天王</a></li>
-												<li><a href="">医道天王</a></li>
-											</ul>
-										</div>
+										<l:lists name="Book" var="labList2" order="bookId desc" pageCount="12" pageNow="34"/>
+										<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+										<c:if test="${sta.index %3==0}">
+											<div class="col-lg-3">
+												<ul class="list-unstyled menu">
+										</c:if>
+													<li><a href="">${fn:substring(lab2.bookName,0,6 )}</a></li>
+										<c:if test="${sta.index %3 ==2}">
+												</ul>
+											</div>
+										</c:if>
+										</c:forEach>
 									</div>
 								</div>
 								<div class="unflo"></div>
@@ -535,233 +278,31 @@
 						<div class="lab-display-inner-right">
 								<h3><a href="javascript:;" onclick="javascript:tab2Right('tab2Lab1','tab2Lab2')">鲜花新书榜</a> <a href="javascript:;" onclick="javascript:tab2Right('tab2Lab2','tab2Lab1')">鲜花月榜</a></h3>
 								<ul class="list-unstyled list-memu" id="tab2Lab1">
-									<li>
-										<a href="">护花仙医1</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
+									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="34"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+										<li>
+											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+												<div class="lab-brand">
+													<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
+													${lab.bookAtt }
+												</div>
+											<hr class="hr-color">
+										</li>
+									</c:forEach>
 
 								</ul>
 								<ul class="list-unstyled list-memu hid" id="tab2Lab2">
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
+										<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="54"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+										<li>
+											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+												<div class="lab-brand">
+													<div class="glyphicon glyphicon-certificate color" style="color: #F9CFCC"></div>
+													${lab.bookAtt }
+												</div>
+											<hr class="hr-color">
+										</li>
+									</c:forEach>
 									
 								</ul>
 							</div>
@@ -781,48 +322,12 @@
 								<h3>VIP作品推荐</h3>
 								<i></i>
 								<ul class="list-unstyled list-memu">
+								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="66"/>
+								<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
+										<a href="">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
 									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
+								</c:forEach>
 								</ul>
 							</div>
 						
@@ -864,74 +369,22 @@
 									<span class="glyphicon glyphicon-chevron-right"></span>
 								</a>
 						</div>
-
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="" style="">
-											<img class="tab3-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab3-center-display-p">战神年代</p>
-											
-										</a>
+							<l:lists name="Book" var="labList2" order="bookId desc" pageCount="6" pageNow="87"/>
+							<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+								<c:if test="${sta.index%3 ==0 }"><div class="row"></c:if>
+									<div class="col-lg-4">
+										<div class="lab">
+											<a class="" href="" style="">
+												<img class="tab3-center-display-img"  src="${lab2.bookImg }" >
+												<p class="tab3-center-display-p">${fn:substring(lab2.bookName,0,6 )}</p>
+											</a>
+										</div>
 									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab3-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab3-center-display-p">战神年代</p>
-											
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab3-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab3-center-display-p">战神年代</p>
-											
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab3-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab3-center-display-p">战神年代</p>
-											
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab3-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab3-center-display-p">战神年代</p>
-										
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="lab">
-										<a class="" href="">
-											<img class="tab3-center-display-img"  src="${ctx}/foreground/images/display-right/1.jpg">
-											<p class="tab3-center-display-p">战神年代</p>
-
-										</a>
-									</div>
-								</div>
-									
-							</div>
-
+								<c:if test="${sta.index%3 ==2 }"></div></c:if>
+							</c:forEach>
 								
 							</div>
 						</div>
-					
-
-
-						
 					
 
 
@@ -941,119 +394,16 @@
 						<div class="lab-display-inner-right">
 								<h3>月票总榜</h3>
 								<ul class="list-unstyled list-memu " >
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-											
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									
+									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="54"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+										<li>
+											<a href="">${fn:substring(lab2.bookName,0,10 )}</a> 
+												<div class="lab-brand">
+													${lab.bookAtt }
+												</div>
+											<hr class="hr-color">
+										</li>
+									</c:forEach>
 								</ul>
 							</div>
 					</div>
@@ -1068,51 +418,15 @@
 				<div class="row main">
 					<div class="col-lg-3 lab-display-left">
 							<div class="lab-display-inner-left">
-								<h3>精品推荐</h3>
+								<h3>最近更新</h3>
 								<i></i>
 								<ul class="list-unstyled list-memu">
+								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="66"/>
+								<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
+										<a href="">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
 									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
+								</c:forEach>
 								</ul>
 							</div>
 						
@@ -1122,81 +436,17 @@
 						<h3 class="tab4-h3">最热男生小说</h3>
 						<div class="tab4-center">
 							<table width="100%" class="table table-striped table-hover">
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
+								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="15" pageNow="54"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+									<tr>
+										<td width="70%"> [${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}　
+												<l:lists name="BookChaper" var="bbc" order="bookChaIndex desc" limit="bookId = '${lab2.bookId }'" onlyOne="true"/>
+											<%-- 	${bbc.bookChaIndex } --%>
+										</td>
+										<td width="20%">${fn:substring(lab2.authName,0,6) }</td>
+										<td width="10%">${lab.bookDate }</td>
+									</tr>
+									</c:forEach>
 							</table>
 								
 						
@@ -1213,235 +463,33 @@
 					<div class="col-lg-3 lab-display-right" >
 
 						<div class="lab-display-inner-right">
-								<h3><a href="javascript:;" onclick="javascript:tab2Right('tab2Lab1','tab2Lab2')">鲜花新书榜</a> <a href="javascript:;" onclick="javascript:tab2Right('tab2Lab2','tab2Lab1')">鲜花月榜</a></h3>
-								<ul class="list-unstyled list-memu" id="tab2Lab1">
-									<li>
-										<a href="">护花仙医1</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
+								<h3><a href="javascript:;" onclick="javascript:tab2Right('tab2Lab3','tab2Lab4')">月票榜</a> <a href="javascript:;" onclick="javascript:tab2Right('tab2Lab4','tab2Lab3')">推荐榜</a></h3>
+								<ul class="list-unstyled list-memu" id="tab2Lab3">
+									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="60"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+										<li>
+											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+												<div class="lab-brand">
+													<div class="glyphicon glyphicon-heart color" style="color:blue !important;"></div>
+													${lab.bookAtt }
+												</div>
+											<hr class="hr-color">
+										</li>
+									</c:forEach>
 
 								</ul>
-								<ul class="list-unstyled list-memu hid" id="tab2Lab2">
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
+								<ul class="list-unstyled list-memu hid" id="tab2Lab4">
+										<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="39"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+										<li>
+											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+												<div class="lab-brand">
+													<div class="glyphicon glyphicon-certificate color" style="color:#3399ff !important;"></div>
+													${lab.bookAtt }
+												</div>
+											<hr class="hr-color">
+										</li>
+									</c:forEach>
 									
 								</ul>
 							</div>
@@ -1460,48 +508,12 @@
 								<h3>最新独家私藏</h3>
 								<i></i>
 								<ul class="list-unstyled list-memu">
+								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="76"/>
+								<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
+										<a href="">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
 									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
-									<li>
-										<a href="">[都市] 护花仙医</a><hr class="hr-color">
-									</li>
+								</c:forEach>
 								</ul>
 							</div>
 						
@@ -1511,81 +523,17 @@
 						<h3 class="tab4-h3">最受书友热追</h3>
 						<div class="tab4-center">
 							<table width="100%" class="table table-striped table-hover">
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
-								<tr>
-									<td width="70%"> [玄幻] 天荒仙庭 第五章 精锐尽出 </td>
-									<td width="20%">奇开得胜</td>
-									<td width="10%">04-07</td>
-								</tr>
+								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="15" pageNow="54"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+									<tr>
+										<td width="70%"> [${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}　
+												<l:lists name="BookChaper" var="bbc" order="bookChaIndex desc" limit="bookId = '${lab2.bookId }'" onlyOne="true"/>
+											<%-- 	${bbc.bookChaIndex } --%>
+										</td>
+										<td width="20%">${fn:substring(lab2.authName,0,6) }</td>
+										<td width="10%">${lab.bookDate }</td>
+									</tr>
+									</c:forEach>
 							</table>
 								
 						
@@ -1604,233 +552,17 @@
 						<div class="lab-display-inner-right">
 								<h3>最新女生小说</h3>
 								<ul class="list-unstyled list-memu" id="tab2Lab1">
-									<li>
-										<a href="">护花仙医1</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-
-								</ul>
-								<ul class="list-unstyled list-memu hid" id="tab2Lab2">
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
-									<li>
-										<a href="">护花仙医</a> 
-											<div class="lab-brand">
-												<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-												12313
-											</div>
-										<hr class="hr-color">
-									</li>
+									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="60"/>
+									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
+										<li>
+											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+												<div class="lab-brand">
+													<div class="glyphicon glyphicon-arrow-up purple" style="color: purple"></div>
+													${lab.bookAtt }
+												</div>
+											<hr class="hr-color">
+										</li>
+									</c:forEach>
 									
 								</ul>
 							</div>

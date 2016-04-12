@@ -21,7 +21,7 @@
         <property name="bookChaTitle" type="java.lang.String">
             <column name="BOOK_CHA_TITLE" />
         </property>
-        <property name="boodId" type="java.lang.String">
+        <property name="bookId" type="java.lang.String">
         	<column name="BOOK_ID"></column>
         </property>
     </class>

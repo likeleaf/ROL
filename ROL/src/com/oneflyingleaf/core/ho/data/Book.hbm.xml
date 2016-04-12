@@ -6,7 +6,9 @@
     <class name="com.oneflyingleaf.core.ho.data.Book" table="BOOKS">
         <id name="bookId" type="java.lang.String">
             <column name="BOOK_ID" />
-            <generator class="uuid" />
+            <generator class="sequence">
+				<param name="sequence">rol.C_BOOK</param>
+		    </generator>
         </id>
       
         <property name="bookName" type="java.lang.String">
@@ -35,6 +37,12 @@
         </property>
         <property name="authName" type="java.lang.String">
         	<column name="AUTH_NAME"/>
+        </property>
+          <property name="bookImg" type="java.lang.String">
+        	<column name="BOOK_IMG"/>
+        </property>
+        <property name="bookType" type="java.lang.String">
+        	<column name="BOOK_TYPE"/>
         </property>
         
     </class>

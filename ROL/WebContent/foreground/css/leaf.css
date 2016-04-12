@@ -299,7 +299,8 @@ h3{
 /* lab2 部分css */
 
 .tab2-center-display-img{
-	width: 60%;
+	width:100px;
+	height:136px;
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
@@ -415,7 +416,8 @@ h3{
 }
 
 .lab-display-inner-right .display-right-img{
-	width: 40%; 
+	width: 70px; 
+	height:94px;
 	text-align: center;
 
 }

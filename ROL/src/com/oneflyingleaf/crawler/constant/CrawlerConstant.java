@@ -7,6 +7,9 @@ public class CrawlerConstant {
 	public static final String BOOK_PATH = "F:\\book\\book";
 	
 	public static final String BOOK_IMG = "F:\\book\\img";
+	public static final String BOOK_IMG2 = "F:\\\\book\\\\img";
+	
+	public static final String BOOK_USE = "http://localhost:8080/file/img";
 	
 
 

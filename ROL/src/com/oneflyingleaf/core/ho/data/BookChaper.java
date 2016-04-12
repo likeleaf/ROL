@@ -1,5 +1,9 @@
 package com.oneflyingleaf.core.ho.data;
 
+import java.io.File;
+
+import com.oneflyingleaf.core.util.FileUtils;
+
 // default package
 
 
@@ -19,6 +23,8 @@ public class BookChaper  implements java.io.Serializable {
      private Integer bookChaIndex;
      private String bookChaTitle;
      private String bookId;
+     private String text;
+     private int wordSize;
 
 
 
@@ -74,7 +80,16 @@ public class BookChaper  implements java.io.Serializable {
 	}
    
 
+	public String getText(){
+		if(text == null){
+			text = FileUtils.getFileContent(new File(bookChaCon)).toString();
+		}
+		return text;
+	}
 
+	public int getWordSize() {
+		return getText().length();
+	}
 
 
 

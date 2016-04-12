@@ -122,6 +122,18 @@
 		 <type>Boolean</type>
 		 <description>该记录是否只有一条</description>
 	</attribute>
+	<attribute>
+		 <name>scope</name>
+		 <required>false</required>
+		 <rtexprvalue>false</rtexprvalue>
+		 <description>标签存放的域，默认为jspContext，/现添加session</description>
+	</attribute>
+	<attribute>
+		 <name>sname</name>
+		 <required>false</required>
+		 <rtexprvalue>false</rtexprvalue>
+		 <description>标签存放的域中的名称，不设置为var的值</description>
+	</attribute>
 <!--  	<attribute>
  		<name>number</name>
  		<required>false</required>

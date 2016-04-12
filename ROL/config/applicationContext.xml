@@ -54,7 +54,7 @@
 			<tx:method name="load*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
 			<tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
 			<tx:method name="find*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
-			<tx:method name="*" propagation="REQUIRED"/>
+			<tx:method name="*" propagation="REQUIRED" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
 	

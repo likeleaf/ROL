@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -155,6 +157,71 @@ public class FileUtils {
 						osw.close();
 				} catch (Exception e2) {
 					e2.printStackTrace();
+				}
+			}
+		}
+		
+	}
+	
+	public static StringBuilder getFileContent(File f){
+		StringBuilder sb = new StringBuilder();
+		if(f == null || f.isDirectory() || !f.canRead()){
+			return sb;
+		}
+		FileReader fr = null;
+		BufferedReader br = null;
+		try{
+			fr = new FileReader(f);
+			br = new BufferedReader(fr);
+			String temp = null;
+			while((temp = br.readLine())!= null){
+				sb.append(temp).append("<br>");
+			}
+			return sb;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(fr, br, null, null);
+		}
+		return sb;
+	}
+	
+	
+	/**
+	 * ¹Ø±ÕÁ÷
+	 */
+	private static void close(FileReader fr, BufferedReader br, FileWriter fw,
+			BufferedWriter bw) {
+		if(br != null){
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				if(fr != null){
+					try {
+						fr.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}finally{
+						if(bw != null){
+							try {
+								bw.close();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}finally{
+								if(fw != null){
+									try {
+										fw.close();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}

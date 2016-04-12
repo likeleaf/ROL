@@ -1,6 +1,9 @@
 package com.oneflyingleaf.core.ho.data;
 
 import java.sql.Timestamp;
+import java.util.Random;
+
+import com.oneflyingleaf.crawler.constant.CrawlerConstant;
 
 // default package
 
@@ -27,6 +30,10 @@ public class Book  implements java.io.Serializable {
      private String bookPay;
      private Timestamp bookDate;//最新的更新时间
      private String authName;//作者名
+     private String bookImg;
+     private String bookType;
+     
+     private String bookAtt;//制造数据
 
      
      
@@ -109,6 +116,30 @@ public class Book  implements java.io.Serializable {
 
 	public void setBookDate(Timestamp bookDate) {
 		this.bookDate = bookDate;
+	}
+
+	public String getBookImg() {
+		return CrawlerConstant.BOOK_USE+bookImg.replaceAll(CrawlerConstant.BOOK_IMG2,"" ).replaceAll("\\\\", "/");
+	}
+
+	public void setBookImg(String bookImg) {
+		this.bookImg = bookImg;
+	}
+	public String getBookType() {
+		return bookType;
+	}
+
+	public void setBookType(String bookType) {
+		this.bookType = bookType;
+	}
+
+	public String getBookAtt() {
+		bookAtt = new Random().nextInt(90000)+10000+"";
+		return bookAtt;
+	}
+
+	public void setBookAtt(String bookAtt) {
+		this.bookAtt = bookAtt;
 	}
 
 

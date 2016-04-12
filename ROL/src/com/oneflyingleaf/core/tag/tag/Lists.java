@@ -3,6 +3,7 @@ package com.oneflyingleaf.core.tag.tag;
 import java.util.List;
 
 import javax.servlet.jsp.JspContext;
+import javax.servlet.jsp.PageContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -52,6 +53,10 @@ public class Lists extends BasicTag{
 
 	//是否只有一条记录
 	private boolean onlyOne = false;
+	//标签存放的域
+	private String scope ;
+	//标签存放的域中的名称，不设置为var
+	private String sname;
 	
 	
 	private JspContext pc;
@@ -77,7 +82,13 @@ public class Lists extends BasicTag{
 				pc.setAttribute(var,getList().get(0));
 			}
 		}
-		pc.setAttribute(var, getList());
+		
+		String str = StringUtils.isNotBlank(sname)?sname:var;
+		if("session".equals(scope)){
+			((PageContext)this.getJspContext()).getSession().setAttribute(str, getList());
+		}else{
+			pc.setAttribute(str, getList());
+		}
 	}
 	
 	
@@ -251,6 +262,14 @@ public class Lists extends BasicTag{
 
 	public void setLimitCheck(boolean limitCheck) {
 		this.limitCheck = limitCheck;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
+
+	public void setSname(String sname) {
+		this.sname = sname;
 	}
 
 
