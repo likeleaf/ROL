@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-12 0:38:04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.core.ho.data.Menu" table="MENU">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="sequence">
+				<param name="sequence">rol.C_MENU</param>
+		    </generator>
+        </id>
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" />
+        </property>
+        <property name="Path" type="java.lang.String">
+            <column name="PATH" />
+        </property>
+        <property name="localPath" type="java.lang.String">
+            <column name="LOCAL_PATH" />
+        </property>
+        <property name="bookDetailId" type="java.lang.Integer">
+            <column name="BOOK_DETAIL_ID" />
+        </property>
+        <property name="menuIndex" type="java.lang.Integer">
+            <column name="MENU_INDEX" />
+        </property>
+    </class>
+</hibernate-mapping>

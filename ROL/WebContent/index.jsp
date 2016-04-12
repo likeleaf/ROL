@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="l" uri="http://tag.oneflyingleaf.com" %>
 <jsp:include page="./foreground/jsp/common/top.jsp"></jsp:include>
 <jsp:include page="./foreground/jsp/common/header.jsp"></jsp:include>
 
@@ -11,6 +13,8 @@
 							<div class="lab-display-inner-left">
 								<h3>热门推荐</h3>
 								<i></i>
+								
+								<l:lists name="Book" var="" />
 								<ul class="list-unstyled list-memu">
 									<li>
 										<a href="">开挖掘机的异能明星：鬼迷星途</a><hr class="hr-color">

@@ -9,11 +9,13 @@ import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 import com.oneflyingleaf.core.action.BasicAction;
 import com.oneflyingleaf.core.constant.SessionEnum;
 import com.oneflyingleaf.core.ho.data.User;
 import com.oneflyingleaf.core.util.JsonUtils;
+import com.oneflyingleaf.core.util.SpringUtils;
 
 /**
  * ǰ̨user
@@ -119,7 +121,6 @@ public class UserAction extends BasicAction{
 		
 		return ERROR;
 	}
-	
 	
 	
 	public String logout(){

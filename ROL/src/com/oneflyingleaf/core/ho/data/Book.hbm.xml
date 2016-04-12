@@ -3,61 +3,39 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.oneflyingleaf.core.ho.data.Book" table="BOOK">
+    <class name="com.oneflyingleaf.core.ho.data.Book" table="BOOKS">
         <id name="bookId" type="java.lang.String">
-            <column name="BOOKID" />
+            <column name="BOOK_ID" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="auther" class="com.oneflyingleaf.core.ho.data.Author" fetch="join">
-            <column name="AUTHER" />
-        </many-to-one>
-        <many-to-one name="bookCom" class="com.oneflyingleaf.core.ho.data.BookCom" fetch="join">
-            <column name="BOOKCOM" />
-        </many-to-one>
+      
         <property name="bookName" type="java.lang.String">
-            <column name="BOOKNAME" />
+            <column name="BOOK_NAME" />
         </property>
         <property name="authorId" type="java.lang.String">
-            <column name="AUTHORID" />
+            <column name="AUTHOR_ID" />
         </property>
         <property name="bookDes" type="java.lang.String">
-            <column name="BOOKDES" />
+            <column name="BOOK_DES" />
         </property>
         <property name="bookSize" type="java.lang.String">
-            <column name="BOOKSIZE" />
+            <column name="BOOK_SIZE" />
         </property>
         <property name="bookTextCount" type="java.lang.String">
-            <column name="BOOKTEXTCOUNT" />
+            <column name="BOOK_TEXT_COUNT" />
         </property>
         <property name="bookStat" type="java.lang.String">
-            <column name="BOOKSTAT" />
+            <column name="BOOK_STAT" />
         </property>
         <property name="bookPay" type="java.lang.String">
-            <column name="BOOKPAY" />
+            <column name="BOOK_PAY" />
         </property>
-        <set name="honors" table="BOOK" inverse="false" lazy="true">
-            <key>
-                <column name="BOOKID" />
-            </key>
-            <element type="string">
-                <column name="HONORS" />
-            </element>
-        </set>
-        <set name="bookParts" table="BOOK" inverse="false" lazy="true">
-            <key>
-                <column name="BOOKID" />
-            </key>
-            <element type="string">
-                <column name="BOOKPARTS" />
-            </element>
-        </set>
-        <set name="bookDyns" table="BOOK" inverse="false" lazy="true">
-            <key>
-                <column name="BOOKID" />
-            </key>
-            <element type="string">
-                <column name="BOOKDYNS" />
-            </element>
-        </set>
+        <property name="bookDate" type="java.sql.Timestamp">
+            <column name="BOOK_DATE" />
+        </property>
+        <property name="authName" type="java.lang.String">
+        	<column name="AUTH_NAME"/>
+        </property>
+        
     </class>
 </hibernate-mapping>

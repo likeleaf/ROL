@@ -54,5 +54,7 @@
 	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/json-lib-2.1-jdk15.jar"/>
 	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/commons-lang-2.4.jar"/>
 	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="E:/res/app/git/ROL/WebContent/WEB-INF/lib/pinyin4j-2.5.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

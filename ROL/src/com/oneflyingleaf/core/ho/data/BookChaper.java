@@ -14,34 +14,13 @@ public class BookChaper  implements java.io.Serializable {
     // Fields    
 
      private String bookChaId;
-     private BookPart bookPart;
      private String bookPartId;
      private String bookChaCon;
      private Integer bookChaIndex;
+     private String bookChaTitle;
+     private String bookId;
 
 
-    // Constructors
-
-    /** default constructor */
-    public BookChaper() {
-    }
-
-	/** minimal constructor */
-    public BookChaper(String bookChaId, String bookPartId, String bookChaCon, Integer bookChaIndex) {
-        this.bookChaId = bookChaId;
-        this.bookPartId = bookPartId;
-        this.bookChaCon = bookChaCon;
-        this.bookChaIndex = bookChaIndex;
-    }
-    
-    /** full constructor */
-    public BookChaper(String bookChaId, BookPart bookPart, String bookPartId, String bookChaCon, Integer bookChaIndex) {
-        this.bookChaId = bookChaId;
-        this.bookPart = bookPart;
-        this.bookPartId = bookPartId;
-        this.bookChaCon = bookChaCon;
-        this.bookChaIndex = bookChaIndex;
-    }
 
    
     // Property accessors
@@ -52,14 +31,6 @@ public class BookChaper  implements java.io.Serializable {
     
     public void setBookChaId(String bookChaId) {
         this.bookChaId = bookChaId;
-    }
-
-    public BookPart getBookPart() {
-        return this.bookPart;
-    }
-    
-    public void setBookPart(BookPart bookPart) {
-        this.bookPart = bookPart;
     }
 
     public String getBookPartId() {
@@ -85,6 +56,22 @@ public class BookChaper  implements java.io.Serializable {
     public void setBookChaIndex(Integer bookChaIndex) {
         this.bookChaIndex = bookChaIndex;
     }
+
+	public String getBookChaTitle() {
+		return bookChaTitle;
+	}
+
+	public void setBookChaTitle(String bookChaTitle) {
+		this.bookChaTitle = bookChaTitle;
+	}
+
+	public String getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
+	}
    
 
 

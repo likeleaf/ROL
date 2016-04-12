@@ -31,7 +31,6 @@ public class GobalListener extends ContextLoaderListener implements HttpSessionL
 		log.info("servletContext ≥ı ºªØ");
 		
 		SpringUtils.setServletContext(sce.getServletContext());
-
 		ClassUtils.runMethod(FileInit.class,"init");
 		
 	}

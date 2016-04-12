@@ -3,22 +3,26 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.oneflyingleaf.core.ho.data.BookChaper" table="BOOKCHAPER">
-        <id name="bookChaId" type="java.lang.String">
-            <column name="BOOKCHAID" />
-            <generator class="uuid" />
-        </id>
-        <many-to-one name="bookPart" class="com.oneflyingleaf.core.ho.data.BookPart" fetch="join">
-            <column name="BOOKPART" />
-        </many-to-one>
+    <class name="com.oneflyingleaf.core.ho.data.BookChaper" table="BOOK_CHAPERS">
+        <id name="bookChaId"  type="java.lang.String"  column="BOOK_CHA_ID" >
+			<generator class="sequence">
+				<param name="sequence">rol.C_BOOK_CHAPER</param>
+		    </generator>
+		</id>
         <property name="bookPartId" type="java.lang.String">
-            <column name="BOOKPARTID" />
+            <column name="BOOK_PART_ID" />
         </property>
         <property name="bookChaCon" type="java.lang.String">
-            <column name="BOOKCHACON" />
+            <column name="BOOK_CHA_CON" />
         </property>
         <property name="bookChaIndex" type="java.lang.Integer">
-            <column name="BOOKCHAINDEX" />
+            <column name="BOOK_CHA_INDEX" />
+        </property>
+        <property name="bookChaTitle" type="java.lang.String">
+            <column name="BOOK_CHA_TITLE" />
+        </property>
+        <property name="boodId" type="java.lang.String">
+        	<column name="BOOK_ID"></column>
         </property>
     </class>
 </hibernate-mapping>
