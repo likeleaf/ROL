@@ -9,7 +9,6 @@
 
 }
 .path{
-	padding-left: 0px;
 	margin-bottom: 5px;
 }
 
@@ -17,7 +16,6 @@
 /* 改写面包屑导航 */
 .breadcrumb {
   padding: 8px 15px;
-  padding-left:0px;
   margin-left: 13%;
   margin-bottom: 5px;
   list-style: none;

@@ -20,7 +20,7 @@
 						注册leaf账号
 					</div>
 					<div class="redirect">
-						如果您已经有leaf账号，点此<a href="">登录</a>
+						如果您已经有leaf账号，点此<a href="login.jsp">登录</a>
 					</div>
 				</div>
 

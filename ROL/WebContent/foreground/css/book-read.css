@@ -45,14 +45,14 @@
 }
 
 .text-outer{
-
+	line-height: 20px !important;
 }
 .text-show{
+	font-size: 13px;
+	line-height: 20px !important;
 	white-space: pre-wrap !important;
 	word-wrap: break-word!important;
 	*white-space:normal!important;
-	line-height: 20px !important;
-	font-size: 13px;
 
 }
 

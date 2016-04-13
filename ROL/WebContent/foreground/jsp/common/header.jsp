@@ -31,7 +31,7 @@
 			<div class="container" >
 				<div class="row">
 					<div class="col-lg-2 col-md-2 col-sm-2 col-md-offset-1 col-md-offset-1 col-lg-offset-1 hidden-xs">					
-						<a href="###" class="logo" title="leaf阅读网"></a>
+						<a href="${ctx }" class="logo" title="leaf阅读网"></a>
 					</div>
 					<div class="col-lg-6 col-md-7 col-sm-8">
 						<form class="form-group form" rol="search">
@@ -59,7 +59,7 @@
 			<div class="">
 			 	<ul class="nav nav-tabs nav-justified nav-bar" >
 			 		<li class="">
-			 			<a href="">首页</a>
+			 			<a href="${ctx }">首页</a>
 			 		</li>
 			 		<li>
 			 			<a href="">全本小说</a>
@@ -98,4 +98,7 @@
 					<li><a href="">传统文学</a></li>
 				</ul>
 			</div>
+		</div>
+		
+		
 		</div>

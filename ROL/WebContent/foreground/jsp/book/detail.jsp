@@ -53,7 +53,7 @@
 									${book[0].bookDes }
 							</div>
 							<div class="check">
-								<button class="btn btn-primary">开始阅读</button>
+								<button class="btn btn-primary" onclick="redirect('${book[0].bookId }')">开始阅读</button>
 								<button class="btn btn-default">加入书架</button>
 							</div>
 							<div class="lastest">
@@ -74,22 +74,13 @@
 				<h3>仁者天下  章节目录</h3>
 				<hr class="lab-split">
 				<ul class="list-unstyled">
-					<li><a href="">第五九四章 公孙冶之死</a></li>
-					<li><a href="">第五九五章 杨战天之死</a></li>
-					<li><a href="">第五九六章 阶下囚</a></li>
-					<li><a href="">第五九七章 最后的一战</a></li>
-					<li><a href="">第五九八章 天下一统</a></li>
-					<li><a href="">第五九九章 恶有恶报</a></li>
-					<li><a href="">第六零零章 回到原来的世界</a></li>
-					<li><a href="">第六零一章 龙组的出现</a></li>
-					<li><a href="">第六零二章 萧诚的报复</a></li>
-					<li><a href="">第六零三章 强大的萧诚</a></li>
-					<li><a href="">第六零四章 归来的萧晨</a></li>
-					<li><a href="">第六零五章 归去来兮（大结局）</a></li>
+				<c:forEach var="lab" items="${bc }">
+					<li><a href="${ctx }/foreground/jsp/book/book_read.jsp?bookId=${book[0].bookId }&&bookChaId=${lab.bookChaId }">${lab.bookChaTitle }</a></li>
+				</c:forEach>
 				</ul>
 				<div class="unflo"></div>
-				<button class="btn btn-success"> 查看全部章节</button>
-				<button class="btn btn-info	"> 订阅全部章节</button>
+				<button class="btn btn-success" onclick="redirect('${book[0].bookId }')"> 查看全部章节</button>
+				<button class="btn btn-info	" onclick="redirect('${book[0].bookId }')"> 订阅全部章节</button>
 			</div>
 
 			<!--书籍评论-->
@@ -395,7 +386,9 @@
 
 </html>
 <script>
-
+function redirect(val){
+	   window.location.href='${ctx}/foreground/jsp/book/book_menu.jsp?bookId='+val; 
+}
 
 
 </script>

@@ -5,7 +5,10 @@
   <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="./foreground/jsp/common/top.jsp"></jsp:include>
 <jsp:include page="./foreground/jsp/common/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="${ctx}/foreground/css/style.css"/>
 
+
+	<div class="container">
 		<!--tab1 热门推荐，图片的轮转 -->
 		<div class="content-tab1">
 			<div class="container extra">
@@ -19,7 +22,7 @@
 								<ul class="list-unstyled list-memu">
 									<c:forEach var="lab1" items="${labList1 }">
 									<li>
-										<a href="">[${lab1.bookType}]${lab1.bookName }</a><hr class="hr-color">
+										<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab1.bookId }">[${lab1.bookType}]${lab1.bookName }</a><hr class="hr-color">
 									</li>
 									</c:forEach>
 								</ul>
@@ -79,12 +82,12 @@
 									
 												<div class="row">
 													<div class="col-lg-3">
-														<a href="javascript:;">
+														<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">
 															<img src="${lab2.bookImg}">
 														</a>
 													</div>
 													<div class="col-lg-9">
-														<a href="javascript:;">${lab2.bookName }</a>
+														<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${lab2.bookName }</a>
 														<p class="p-lab">类型：${lab2.bookType } </p>
 														<p class="p-lab">
 															${fn:substring(lab2.bookDes,0,60) }
@@ -100,12 +103,12 @@
 									
 												<div class="row">
 													<div class="col-lg-3">
-														<a href="javascript:;">
+														<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">
 															<img src="${lab2.bookImg}">
 														</a>
 													</div>
 													<div class="col-lg-9">
-														<a href="javascript:;">${lab2.bookName }</a>
+														<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${lab2.bookName }</a>
 														<p class="p-lab">类型：${lab2.bookType } </p>
 														<p class="p-lab">
 															${fn:substring(lab2.bookDes,0,60) }
@@ -121,12 +124,12 @@
 									
 												<div class="row">
 													<div class="col-lg-3">
-														<a href="javascript:;">
+														<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">
 															<img src="${lab2.bookImg}">
 														</a>
 													</div>
 													<div class="col-lg-9">
-														<a href="javascript:;">${lab2.bookName }</a>
+														<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${lab2.bookName }</a>
 														<p class="p-lab">类型：${lab2.bookType } </p>
 														<p class="p-lab">
 															${fn:substring(lab2.bookDes,0,60) }
@@ -143,12 +146,12 @@
 									
 												<div class="row">
 													<div class="col-lg-3">
-														<a href="javascript:;">
+														<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">
 															<img src="${lab2.bookImg}">
 														</a>
 													</div>
 													<div class="col-lg-9">
-														<a href="javascript:;">${lab2.bookName }</a>
+														<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${lab2.bookName }</a>
 														<p class="p-lab">类型：${lab2.bookType } </p>
 														<p class="p-lab">
 															${fn:substring(lab2.bookDes,0,60) }
@@ -176,7 +179,7 @@
 										<li onmouseover="javascript:setRightLabel(this)">
 											<span class="circle flo">${sta.count }</span>
 											<div class="lab flo">
-												<a class="" href="">
+												<a class="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }" href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">
 													<c:choose>
 														<c:when test="${sta.first }">
 															<img class="display-right-img" src="${lab2.bookImg }">
@@ -215,7 +218,7 @@
 								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="66"/>
 									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 										<li>
-											<a href="">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
+											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
 										</li>
 									</c:forEach>
 								</ul>
@@ -231,7 +234,7 @@
 								<c:if test="${sta.index%3 ==0 }"><div class="row"></c:if>
 									<div class="col-lg-4">
 										<div class="lab">
-											<a class="" href="" style="">
+											<a class="" href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }" style="">
 												<img class="tab2-center-display-img"  src="${lab2.bookImg }" style="width:100px;height:136px">
 												<p class="tab2-center-display-p">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</p>
 												<p class="tab2-center-display-p">作者：${fn:substring(lab2.authName,0,8 )}</p>
@@ -254,7 +257,7 @@
 											<div class="col-lg-3">
 												<ul class="list-unstyled menu">
 										</c:if>
-													<li><a href="">${fn:substring(lab2.bookName,0,6 )}</a></li>
+													<li><a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a></li>
 										<c:if test="${sta.index %3 ==2}">
 												</ul>
 											</div>
@@ -281,7 +284,7 @@
 									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="34"/>
 									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 										<li>
-											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
 													${lab.bookAtt }
@@ -295,7 +298,7 @@
 										<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="54"/>
 									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 										<li>
-											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-certificate color" style="color: #F9CFCC"></div>
 													${lab.bookAtt }
@@ -325,7 +328,7 @@
 								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="66"/>
 								<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 									<li>
-										<a href="">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
+										<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
 									</li>
 								</c:forEach>
 								</ul>
@@ -374,7 +377,7 @@
 								<c:if test="${sta.index%3 ==0 }"><div class="row"></c:if>
 									<div class="col-lg-4">
 										<div class="lab">
-											<a class="" href="" style="">
+											<a class="" href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }" style="">
 												<img class="tab3-center-display-img"  src="${lab2.bookImg }" >
 												<p class="tab3-center-display-p">${fn:substring(lab2.bookName,0,6 )}</p>
 											</a>
@@ -397,7 +400,7 @@
 									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="54"/>
 									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 										<li>
-											<a href="">${fn:substring(lab2.bookName,0,10 )}</a> 
+											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,10 )}</a> 
 												<div class="lab-brand">
 													${lab.bookAtt }
 												</div>
@@ -424,7 +427,7 @@
 								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="66"/>
 								<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 									<li>
-										<a href="">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
+										<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
 									</li>
 								</c:forEach>
 								</ul>
@@ -468,7 +471,7 @@
 									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="60"/>
 									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 										<li>
-											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-heart color" style="color:blue !important;"></div>
 													${lab.bookAtt }
@@ -482,7 +485,7 @@
 										<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="39"/>
 									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 										<li>
-											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-certificate color" style="color:#3399ff !important;"></div>
 													${lab.bookAtt }
@@ -511,7 +514,7 @@
 								<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="76"/>
 								<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 									<li>
-										<a href="">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
+										<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">[${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}</a><hr class="hr-color">
 									</li>
 								</c:forEach>
 								</ul>
@@ -527,8 +530,8 @@
 									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 									<tr>
 										<td width="70%"> [${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}　
-												<l:lists name="BookChaper" var="bbc" order="bookChaIndex desc" limit="bookId = '${lab2.bookId }'" onlyOne="true"/>
-											<%-- 	${bbc.bookChaIndex } --%>
+												<l:lists name="BookChaper" var="bbc" order="bookChaIndex desc" limit="bookId = '${lab2.bookId }'"/>
+												${bbc[0].bookChaIndex } 
 										</td>
 										<td width="20%">${fn:substring(lab2.authName,0,6) }</td>
 										<td width="10%">${lab.bookDate }</td>
@@ -555,7 +558,7 @@
 									<l:lists name="Book" var="labList2" order="bookId desc" pageCount="14" pageNow="60"/>
 									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 										<li>
-											<a href="">${fn:substring(lab2.bookName,0,6 )}</a> 
+											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-arrow-up purple" style="color: purple"></div>
 													${lab.bookAtt }
@@ -684,9 +687,19 @@
 		$("#"+hidden).addClass('hid');
 		$("#"+show).removeClass('hid');
 
-
-
 	}
+
+
+	//设置图片自动滚动
+	//轮播自动播放
+	$('#carouselTba1').carousel({
+		//自动4秒播放
+		interval : 4000,
+	}); 
+	$('#carouselTba3').carousel({
+		//自动4秒播放
+		interval : 4000,
+	}); 
 
 </script>
 </html>

@@ -1,0 +1,295 @@
+/* 子列表 */
+.content-tab1{
+	
+	margin-top: 10px;
+
+}
+
+.row.main{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.lab-display-left{
+	/* padding-right: 25px; */
+	padding-left: 0px;
+	padding-right: 5px;
+}
+
+.lab-display-right{
+	padding-right: 0px;
+	padding-left:5px;
+}
+
+/* 改写相关标签 */
+.col-lg-3.lab-display-left{
+	width: 23%;
+}
+
+.col-lg-6.lab-dispaly-center{
+	width: 54%;
+	/* right: 1%; */
+}
+
+.col-lg-3.lab-display-right{
+	width: 23%;
+	float: right;
+}
+
+.lab-display-inner-left{
+
+	padding-top: 5px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	background: #EEEEEE;
+
+}
+
+.lab-display-inner-right{
+
+	padding-top: 5px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	background: #EEEEEE;
+
+}
+
+
+.list-memu>li{
+	margin-top: 10px;
+	text-align: left;
+}
+
+.lab-dispaly-center{
+	 padding-left: 0px ; 
+	 padding-right: 0px;
+	 margin 0; 
+
+}
+
+.list-unstyled.focus-on{
+	height: 30px;
+	width: 100%;
+	
+}
+
+.list-unstyled.focus-on li{
+	width: 25%;
+	float: left;
+	text-align: center;
+	line-height: 30px;
+	border:1px solid #ddd;
+	border-top-width: 0px; 
+	
+}
+
+.active{
+	border-bottom-width: 0px !important;
+	border-top-width: 2px !important;
+	border-top-color: #0895CE !important;
+	
+}
+
+/* .list-focus-lab{
+	border: 1px solid #ddd;
+}
+ */
+
+ #list{
+ 	width: 100%;
+ 	height:100%; 
+ 	margin-top: 12px;
+
+ 	border: 1px solid #ddd;
+ }
+
+ .lab-display .row{
+ 	margin-left: 0px;
+ 	margin-right: 0px;
+ 	margin-top: 24px;
+ 	margin-bottom: 20px;
+ }
+
+ .lab-display img{
+ 	margin-left: 20px;
+ 	height: 125px;
+
+ }
+
+.p-lab{
+ 	margin-top: 15px;
+ 	margin-bottom: 15px; 
+	font-family: "Hiragino Sans GB",​"Micr...a,​Arial",​"宋体",​"sans-serif";
+	font-size: 12px !important;
+	line-height: 17px;
+ }
+
+.content-tab2{
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* lab2 部分css */
+
+.tab2-center-display-img{
+	width:100px;
+	height:136px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	background: red;
+}
+.tab2-center-display-p{
+	margin-top: 5px;
+	width: 100%;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+.tab2-center .row{
+	margin-top: 15px;
+}
+.tab2-center .row a{
+	text-align: center;
+}
+
+
+.tab2-center-buttom-menu {
+	width: 100%;
+	height: 94px;
+	margin-top: 15px;
+	
+}
+.tab2-center-buttom-menu .list{
+	width: 93%;
+	height: 100%;
+	border: 1px solid #888;
+
+}
+
+.tab2-center-buttom-menu .title{
+	height: 100%;
+	width: 23px;
+	padding-top: 3px;
+	font-size: 14px;
+	text-align: center;
+	color: #eee;
+	background: #48a2e0 none repeat scroll 0 0;
+}
+
+.tab2-center-buttom-menu .menu{
+	text-align: center;
+	margin-bottom: 3px;
+	
+}
+.tab2-center-buttom-menu .line{
+	border:1px solid #888;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+	height: 70px;
+
+	padding-bottom: 5px;
+}
+
+
+
+ .lab-display-inner-right li{
+ 	display: block;
+ 	  
+ }
+/* .focus-lab-dispaly a:link,a:visited {
+	color: #333;
+ }
+ */
+.seq{
+	margin-top: 10px;
+}
+
+.circle {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    background: red;
+    display: block;
+    text-align: center;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+   /*  float: left; */
+    color: #fff;
+    margin-right: 5px;
+}
+
+.lab-display-inner-right .lab{
+	width: 80%;
+	display: block;
+	text-align: center;
+	/* float: left; */
+
+}
+
+.lab-display-inner-right .display-right-img{
+	width: 70px; 
+	height:94px;
+	text-align: center;
+
+}
+
+.lab-display-inner-right .display-right-p{
+	width: 100%;
+	display: block;
+	text-align: center;
+	margin-left: auto;
+	margin-right:auto; 
+	margin-top: 1px;
+}
+
+.lab-display-inner-right .lab-brand{
+	color: red;
+	float: right;
+	margin-right: 10px;
+}
+
+
+
+
+
+
+
+/* 控制glyphicon */
+.lab-display-inner-right .lab-brand .color{
+	color: #FB0800 !important;
+}
+
+
+
+/* lab3 */
+.tab3-center-display-img{
+	width: 50%;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	background: red;
+}
+.tab3-center-display-p{
+	margin-top: 4px;
+	width: 100%;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+
+}
+/* lab4 */
+.tab4-center{
+	/* border: 1px solid #aaa; */
+	width: 100%;
+	height:100%;
+	background: white;
+}
+.tab4-h3{
+	margin-bottom: 5px;
+	margin-top: 5px;
+}

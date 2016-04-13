@@ -11,7 +11,7 @@
 <body>
 
 		<div class="header">
-			<img src="${ctx }/foreground/images/login.png">
+			<a href="${ctx }"><img src="${ctx }/foreground/images/login.png"></a>
 		</div>
 
 		<hr class="lab-split">
@@ -34,7 +34,7 @@
 					               <input type="checkbox"> 请记住我
 					            </label>
 	        		</div>
-	        		<span class="redirect"><a href="">忘记密码？</a><a href="">注册</a></span>	
+	        		<span class="redirect"><a href="">忘记密码？</a><a href="register.jsp">注册</a></span>	
         		</div>	
     		</div>
     		<div class="unflo"></div>
