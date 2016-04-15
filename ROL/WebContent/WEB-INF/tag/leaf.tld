@@ -30,9 +30,9 @@
  	</example>
  	<attribute>
  		<name>name</name>
- 		<required>true</required>
+ 		<required>false</required>
  		<rtexprvalue>true</rtexprvalue>
- 		<description>javaBean，该实体变量是一个list，每一个属性都是一个该javabean的实例</description>
+ 		<description>javaBean，该实体变量是一个list，每一个属性都是一个该javabean的实例,只有使用纯sql或者hql时才可以缺失</description>
  	</attribute>
  	<attribute>
  		<name>var</name>
@@ -133,6 +133,13 @@
 		 <required>false</required>
 		 <rtexprvalue>false</rtexprvalue>
 		 <description>标签存放的域中的名称，不设置为var的值</description>
+	</attribute>
+	<attribute>
+		 <name>checkClass</name>
+		 <required>false</required>
+		 <rtexprvalue>false</rtexprvalue>
+		 <type>Boolean</type>
+		 <description>是否实例化类，默认实例化，如果没有该类，就不实例化，即没有name标签时，不实例化</description>
 	</attribute>
 <!--  	<attribute>
  		<name>number</name>

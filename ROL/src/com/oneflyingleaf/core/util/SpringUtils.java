@@ -5,6 +5,7 @@ import javax.servlet.ServletContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.oneflyingleaf.core.constant.ApplicationConstant;
 import com.oneflyingleaf.core.service.BaseService;
 
 /**
@@ -36,6 +37,11 @@ public class SpringUtils {
 		return (T) getApplicationContext(sc).getBean(obj);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static <T> T getBean(String obj){
+		return (T) getApplicationContext(getServletContext()).getBean(obj);
+	}
+	
 	
 	/**
 	 * 得到容器中的baseService
@@ -56,5 +62,13 @@ public class SpringUtils {
 	
 	public static void setServletContext(ServletContext sc) {
 		servletContext = sc;
+	}
+	
+	public static void setApplicationAttr(String key,String value){
+		servletContext.setAttribute(key,value);
+	}
+
+	public static Object getApplicationContextAttr(String key) {
+		return servletContext.getAttribute(key);
 	}
 }

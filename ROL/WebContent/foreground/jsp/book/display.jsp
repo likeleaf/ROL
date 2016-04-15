@@ -10,319 +10,154 @@
 
 <link rel="stylesheet" type="text/css" href="${ctx}/foreground/css/display.css"/>
 
-<l:lists name="Book" var="book" order="bookId desc" limit= "bookId = ${param.bookId }" onlyOne="true"/>
-<l:lists name="BookChaper" var="bc" order="bookChaIndex desc" limit= "bookId = ${param.bookId }" pageCount="20"/>
+<%-- <l:lists name="Book" var="book" order="bookId desc" limit= "bookId = ${param.bookId }" onlyOne="true"/>
+<l:lists name="BookChaper" var="bc" order="bookChaIndex desc" limit= "bookId = ${param.bookId }" pageCount="20"/> --%>
 
 
-	<!--书籍位置-->
-	<div class="path">
-		<ol class="breadcrumb">
-			<li>当前位置</li>
-			<li><a href="#">${book[0].bookType }</a></li>
-			<li><a class="active" href="">  ${book[0].bookName }  </a></li>
-		</ol>
-	</div>
-
-
-	<!---->
+	<!--书籍选择展示-->
 	<div class="container">
 		<div class="content">
-			<div class="book-detail">
-				<div class="book-img flo">
-					<div class="img">
-						<img src="${book[0].bookImg }" width="180px" height="250px">
-					</div>
-					<div class="function">
-						<a class="btn btn-default" href="">打赏作品</a>
-						<a class="btn btn-default" href="">送张月票</a>
-						<a class="btn btn-default" href="">送朵鲜花</a>
-					</div>
-				</div>
-				<div class="detail flo">
-					<div class="detail-content">
-						<div class="top">
-							<div class="head">
-								<label class="title"> ${book[0].bookName }</label><label class="auth">作者： ${book[0].authName }</label>
-							</div>
-							<div class="info">
-								 <span>类别：${book[0].bookType }</span> <span>点击：-</span> <span>字数：2448367</span><span> 授权：A级签约</span>
-							</div>
-						</div>
-						<div class="buttom" style="marfin-button:20px">
-							<div class="intro">
-									${book[0].bookDes }
-							</div>
-							<div class="check">
-								<button class="btn btn-primary">开始阅读</button>
-								<button class="btn btn-default">加入书架</button>
-							</div>
-							<div class="lastest">
-								<h5><label class="back flo" style="padding-left:20px;width:300px">${bc[0].bookChaTitle }</label> <span class="time">2015-10-31 18:20:00</span></h5>
-								<span>
-										${fn:substring(bc[0].text,0,200)}
-								</span>
-							</div>
+			<div class="produce-h3">全本</div>
+			<hr class="blue-line">
 
-						</div>
-					</div>
+			<div class="book-select">
+				<div class="book-select-title">
+					作品频道:
 				</div>
-				<div class="unflo"></div>
-			</div>
-
-			
-			<div class="book-menu">
-				<h3>仁者天下  章节目录</h3>
-				<hr class="lab-split">
-				<ul class="list-unstyled">
-					<li><a href="">第五九四章 公孙冶之死</a></li>
-					<li><a href="">第五九五章 杨战天之死</a></li>
-					<li><a href="">第五九六章 阶下囚</a></li>
-					<li><a href="">第五九七章 最后的一战</a></li>
-					<li><a href="">第五九八章 天下一统</a></li>
-					<li><a href="">第五九九章 恶有恶报</a></li>
-					<li><a href="">第六零零章 回到原来的世界</a></li>
-					<li><a href="">第六零一章 龙组的出现</a></li>
-					<li><a href="">第六零二章 萧诚的报复</a></li>
-					<li><a href="">第六零三章 强大的萧诚</a></li>
-					<li><a href="">第六零四章 归来的萧晨</a></li>
-					<li><a href="">第六零五章 归去来兮（大结局）</a></li>
+				<ul class="book-display-list list-unstyled">
+					<li><a class="cur" href="javascript:;" data-type="bookType">全部</a></li>
+					 <l:lists  var="t" type="sql" sql="SELECT DISTINCT BOOK_TYPE FROM BOOKS" checkClass="false"/>
+					 <c:forEach var="lab" items="${t }">
+						<li><a href="javascript:;" data-type="bookType">${lab }</a></li>
+					 </c:forEach>
 				</ul>
-				<div class="unflo"></div>
-				<button class="btn btn-success"> 查看全部章节</button>
-				<button class="btn btn-info	"> 订阅全部章节</button>
 			</div>
-
-			<!--书籍评论-->
-			<div class="book-comment">
-				<div class="header">
-					<label class="title">仁者天下  书评区</label>
-					<label class="comment-count">全部123条 </label>
-					<button class="btn btn-default btn-sm">我要评论</button>
+			<div class="unflo">
+				
+			</div>
+				<div class="book-select">
+				<div class="book-select-title">
+					作品字数:
 				</div>
-				<div class="comment-input">
-					<textarea class="form-control" cols="4"></textarea>
-				</div>
-				<ul class="list-unstyled comment-detail">
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li><li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-					<li>
-						<div class="img"><img class="img-circle" src="${ctx}/foreground/images/user-icon/1.gif.jpg"></div>
-						<div class="comment-display">
-							<div class="owner">
-								厚土
-							</div>
-							<div class="comment-content">
-								大帅哥，强烈要求加更！好书，荡气回肠让人回味，跪求加更！《逆尘》前来问坊，望回坊，新人写作之路艰辛，需要道友间相互扶持！！！求赞！求赏！求花！求收藏！求订阅，新人写作之路艰辛，需要道友间相互扶持！！！
-							</div>
-							<div class="date">2015-10-23 17:19:44</div>
-						</div>
-						<div class="unflo"></div>
-					</li>
-
+				<ul class="book-display-list list-unstyled">
 					
-				</ul>
+					<li><a href="javascript:;">不限</a></li>
+					
+					
+					
+					<li><a href="javascript:;">30万以下</a></li>
+					<li><a href="javascript:;">30-50万</a></li>
+					<li><a href="javascript:;">50-100万</a></li>
+					<li><a href="javascript:;">100-200万</a></li>
+					<li><a href="javascript:;">200万以上</a></li>
 
+				</ul>
+			</div>
+			<div class="unflo"></div>
+		
+
+		
+			<div class="book-select">
+				<div class="book-select-title">
+					更新时间:
+				</div>
+				<ul class="book-display-list list-unstyled">
+					
+					<li><a href="javascript:;">不限</a></li>
+					<li><a href="javascript:;">三日内</a></li>
+					
+					
+					<li><a href="javascript:;">七日内</a></li>
+					<li><a href="javascript:;">半月内</a></li>
+					<li><a href="javascript:;">一月内</a></li>
+		
+
+				</ul>
+			</div>
+			<div class="unflo"></div>
+
+			<div class="book-select">
+				<div class="book-select-title">
+					排序方式:
+				</div>
+				<ul class="book-display-list list-unstyled">
+					
+					<li><a href="javascript:;">更新时间</a></li>
+					<li><a href="javascript:;">点击数</a></li>
+					
+					<li><a href="javascript:;">鲜花数</a></li>
+		
+
+				</ul>
+			</div>
+			<div class="unflo"></div>
+
+
+			<table class="table table-hover">
+				<tr class="success">
+					<th width="10%">序号</th>
+					<th width="44%">书名</th>
+					<th width="10%">作者</th>
+					<th width="10%">字数</th>
+					<th width="10%">点击</th>
+					<th width="16%">更新时间</th>
+				</tr>
+
+				<tr>
+					<td style="color: #ff6600">1</td>
+					<td> 	[异世大陆]   <a href=""> 战梦天道</a> <a href="">完本感言</a> </td>
+					<td><a href="">永世幻生</a></td>
+					<td>1231231</td>
+					<td>12312</td>
+					<td> 2016-03-31 15:48:55</td>
+				</tr>
+				<tr>
+					<td style="color: #ff6600">1</td>
+					<td> 	[异世大陆]   <a href=""> 战梦天道</a> <a href="">完本感言</a> </td>
+					<td><a href="">永世幻生</a></td>
+					<td>1231231</td>
+					<td>12312</td>
+					<td> 2016-03-31 15:48:55</td>
+				</tr><tr>
+					<td style="color: #ff6600">1</td>
+					<td> 	[异世大陆]   <a href=""> 战梦天道</a> <a href="">完本感言</a> </td>
+					<td><a href="">永世幻生</a></td>
+					<td>1231231</td>
+					<td>12312</td>
+					<td> 2016-03-31 15:48:55</td>
+				</tr><tr>
+					<td style="color: #ff6600">1</td>
+					<td> 	[异世大陆]   <a href=""> 战梦天道</a> <a href="">完本感言</a> </td>
+					<td><a href="">永世幻生</a></td>
+					<td>1231231</td>
+					<td>12312</td>
+					<td> 2016-03-31 15:48:55</td>
+				</tr>
+			</table>
+			<hr class="lab-split">
 			<div class="page">
 				<div class="page-list">
-					<a class="btn btn-default btn-sm active">第一页</a>
-					<a class="btn btn-default btn-sm" href="">1</a>
+					<a class="btn btn-default btn-sm active">1</a>
 					<a class="btn btn-default btn-sm" href="">2</a>
 					<a class="btn btn-default btn-sm" href="">3</a>
 					<a class="btn btn-default btn-sm" href="">4</a>
 					<a class="btn btn-default btn-sm" href="">5</a>
 					<a class="btn btn-default btn-sm" href="">6</a>
 					<a class="btn btn-default btn-sm" href="">...</a>
-					<a class="btn btn-default btn-sm disabled" href="">最后一页</a>
+					<a class="btn btn-default btn-sm" href="">78</a>
 				</div>
 			</div>
 
-			</div>
-
 		</div>
+	
+	
+
+
 	</div>
 
 
-		<hr class="lab-split">
-		
+	<!--尾部 -->
+	</div>
 		<div class="footer">
 			<div class="container">	
 				<div class="outer-link"> 
@@ -392,10 +227,50 @@
 
 </body>
 
+<script type="text/javascript">
+	//用来存放选中的标签的内容
+	var arr = {};
+	var myurl = '${ctx}/ajax/ajax_ajax?'
+	$(function(){
+		$('.book-display-list li a').on("click",function(e){
+			$(e.target).parent().parent().children().children().removeClass('cur');
+			$(e.target).addClass('cur');
+			var key = $(e.target).attr("data-type");
+			var value = $(e.target).text();
+			arr[key] = value;
+			var temp = '';
+			for(var key in arr){
+				temp = 'and ' +key+ '='+ arr[key] ;
+			}
+			if(temp.length > 1){
+				temp = "'"+temp.substr(3)+"'";
+				}
+			var jsonStr =  "{'name':'Book','likeLimit':"+temp+",'pageCount':10}";
+			jsonStr = "json=" + encodeURI(jsonStr);
+			
+			leaf.ajax({url:myurl+jsonStr,dataType:'json',success:doPage});
+		});
+	});
 
-</html>
-<script>
 
-
+	function doPage(msg){
+		var obj = $('.table.table-hover');
+			obj.children().remove();	
+		var str = "";
+		var i=1;
+		for(var key in msg){
+			str  += '<tr> <td style="color: #ff6600">'+i+'</td><td> 	['+msg[key]['bookType']+']   <a href=""> '+msg[key]['bookName']+'</a> <a href="">完本感言</a> </td>'
+			+'<td><a href="">永世幻生</a></td>'
+			+'<td>1231231</td>'
+			+'<td>12312</td>'
+			+'<td> 2016-03-31 15:48:55</td>'+
+			+'</tr>';
+			obj.append($(str));
+			str = ""
+			i++;
+		}	
+		console.log(obj);
+	}
 
 </script>
+</html>

@@ -21,4 +21,5 @@
 	
 	<include file="./com/oneflyingleaf/background/config/struts_background.xml"></include>
 	<include file="./com/oneflyingleaf/foreground/config/struts_foreground_user.xml"></include>
+	<include file="./com/oneflyingleaf/core/tag/struts_ajax.xml"></include>
 </struts>

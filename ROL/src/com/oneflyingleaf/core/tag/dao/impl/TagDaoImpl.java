@@ -36,7 +36,9 @@ public class TagDaoImpl implements TagDao{
 	@Override
 	public <T> List<T> listBySql(String sql, T t) {
 		SQLQuery query = getSession().createSQLQuery(sql);
-		query.addEntity(t.getClass());
+		if(t != null){
+			query.addEntity(t.getClass());
+		}
 		return query.list();
 	}
 

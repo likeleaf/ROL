@@ -22,7 +22,7 @@
 		<property name="tagDao" ref="tagDao"></property>
 	</bean>
 
-	<bean id="basicTag" class="com.oneflyingleaf.core.tag.tag.BasicTag" scope="singleton">
+	<!-- <bean id="query" class="com.oneflyingleaf.core.tag.controller.ListDeal" abstract="true">
 		<property name="tagService" ref="tagService"></property>
-	</bean> 
+	</bean>  -->
 </beans>
