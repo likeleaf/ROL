@@ -10,14 +10,14 @@ import java.io.IOException;
 import org.junit.Test;
 
 /**
- * ´ÓÍøÉÏÅÀÏÂÀ´µÄÄÚÈİ£¬ÓÉÓÚÓĞĞ©×Ö·ûÓĞ×ªÂëÎÊÌâ£¬»áÏÔÊ¾????£¬¶øÇ¡ºÃ£¬ÏÔÊ¾Õâ¸öÄÚÈİÊÇÕıÊÇ»»ĞĞÊ±£¬ËùÒÔ½«????×ª»¯Îª»»ĞĞ
+ * ä»ç½‘ä¸Šçˆ¬ä¸‹æ¥çš„å†…å®¹ï¼Œç”±äºæœ‰äº›å­—ç¬¦æœ‰è½¬ç é—®é¢˜ï¼Œä¼šæ˜¾ç¤º????ï¼Œè€Œæ°å¥½ï¼Œæ˜¾ç¤ºè¿™ä¸ªå†…å®¹æ˜¯æ­£æ˜¯æ¢è¡Œæ—¶ï¼Œæ‰€ä»¥å°†????è½¬åŒ–ä¸ºæ¢è¡Œ
  * @author Administrator
  *
  */
 public class TransData {
 	
 	/**
-	 * ½«ÎÄ¼şÄÚÈİÖĞµÄ????»»³É»»ĞĞ
+	 * å°†æ–‡ä»¶å†…å®¹ä¸­çš„????æ¢æˆæ¢è¡Œ
 	 * @param src
 	 * @param target
 	 * @throws Exception
@@ -40,7 +40,7 @@ public class TransData {
 	
 	
 	/**
-	 * µü´ú×ª»»
+	 * è¿­ä»£è½¬æ¢
 	 * @param f
 	 * @return
 	 * @throws Exception 
@@ -71,7 +71,7 @@ public class TransData {
 	
 
 	/**
-	 * ¹Ø±ÕÁ÷
+	 * å…³é—­æµ
 	 */
 	private static void close(FileReader fr, BufferedReader br, FileWriter fw,
 			BufferedWriter bw) {
@@ -115,7 +115,7 @@ public class TransData {
 	@Test
 	public void testTransFile(){
 		try {
-			transFile(new File("F:\\book\\book\\dsxs\\°à»¨\\463ÕÂ.txt"),new File("D:\\test.txt"));
+			transFile(new File("F:\\book\\book\\dsxs\\ç­èŠ±\\463ç« .txt"),new File("D:\\test.txt"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -134,7 +134,7 @@ public class TransData {
 		try {
 			transFiles(new File("F:\\book\\book"),new File("D:\\book\\book"));
 			System.out.println("--------------------------------------------------------");
-			System.out.println("-----------------------×ª»»Íê³É-------------------------");
+			System.out.println("-----------------------è½¬æ¢å®Œæˆ-------------------------");
 			System.out.println("--------------------------------------------------------");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

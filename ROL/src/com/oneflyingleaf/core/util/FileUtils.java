@@ -26,12 +26,12 @@ public class FileUtils {
 	
 	
 	/**
-	 * ¶ÁÈ¡Èô¸ÉÎÄ¼ş²¢½«ÆäĞ´ÈëÏà¹ØµÄÒ»¸öÎÄ¼şÖĞ£¨Ê¹ÓÃReaderºÍWriterÁ÷£©£¬Ö÷ÒªÓÃÓÚjsºÍcssÔÚÏµÍ³³õÊ¼»¯Ê±µÄºÏ²¢
+	 * è¯»å–è‹¥å¹²æ–‡ä»¶å¹¶å°†å…¶å†™å…¥ç›¸å…³çš„ä¸€ä¸ªæ–‡ä»¶ä¸­ï¼ˆä½¿ç”¨Readerå’ŒWriteræµï¼‰ï¼Œä¸»è¦ç”¨äºjså’Œcssåœ¨ç³»ç»Ÿåˆå§‹åŒ–æ—¶çš„åˆå¹¶
 	 * @param readDir
 	 * @param readFileNames
 	 * @param writeDir
 	 * @param writeFileNames
-	 * @param containCom ºÏ²¢ÎÄ¼şÊ±ÊÇ·ñ°üº¬¹«¹²Àà¿âµÄÎÄ¼ş
+	 * @param containCom åˆå¹¶æ–‡ä»¶æ—¶æ˜¯å¦åŒ…å«å…¬å…±ç±»åº“çš„æ–‡ä»¶
 	 * @throws Exception 
 	 */
 	public static void readAndWriteFile(String readDir,String []readFileNames,String writeDir,String writeFileNames,String mod) throws Exception{
@@ -45,7 +45,7 @@ public class FileUtils {
 		
 		List<String> fileContent = getFileContent(readDir, readFileNames);
 		
-		//ºÏ²¢commonÎÄ¼şµ½ÆäËûÎÄ¼şÉÏ,commonÔÚÇ°
+		//åˆå¹¶commonæ–‡ä»¶åˆ°å…¶ä»–æ–‡ä»¶ä¸Š,commonåœ¨å‰
 		if(fileContent != null && modContent != null){
 			modContent.addAll(fileContent);
 			fileContent = modContent;
@@ -56,7 +56,7 @@ public class FileUtils {
 	}
 	
 	/**
-	 * ¶ÁÈ¡Èô¸ÉÎÄ¼ş²¢½«ÆäĞ´ÈëÏà¹ØµÄÒ»¸öÎÄ¼şÖĞ£¨Ê¹ÓÃReaderºÍWriterÁ÷£©£¬
+	 * è¯»å–è‹¥å¹²æ–‡ä»¶å¹¶å°†å…¶å†™å…¥ç›¸å…³çš„ä¸€ä¸ªæ–‡ä»¶ä¸­ï¼ˆä½¿ç”¨Readerå’ŒWriteræµï¼‰ï¼Œ
 	 * @param readDir
 	 * @param readFileNames
 	 * @param writeDir
@@ -68,8 +68,8 @@ public class FileUtils {
 	}
 	
 	/**
-	 * Í¨¹ıÎÄ¼şÂ·¾¶£¬½«ÆäÖĞµÄÏà¹ØÄÚÈİ¶ÁÈ¡µ½listÖĞ
-	 * @param dir dirÎªnullÊ±£¬Ïà¶ÔÎ»ÖÃÎªÏîÄ¿Î»ÖÃ
+	 * é€šè¿‡æ–‡ä»¶è·¯å¾„ï¼Œå°†å…¶ä¸­çš„ç›¸å…³å†…å®¹è¯»å–åˆ°listä¸­
+	 * @param dir dirä¸ºnullæ—¶ï¼Œç›¸å¯¹ä½ç½®ä¸ºé¡¹ç›®ä½ç½®
 	 * @param fileNames
 	 * @return
 	 * @throws Exception 
@@ -97,7 +97,7 @@ public class FileUtils {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("ÎÄ¼ş¶ÁÈ¡Ê§°Ü£º"+e.getMessage());
+			log.error("æ–‡ä»¶è¯»å–å¤±è´¥ï¼š"+e.getMessage());
 			throw new Exception();
 		}finally{
 			try {
@@ -120,7 +120,7 @@ public class FileUtils {
 	
 	
 	/**
-	 * ½«contentµÄÄÚÈİÈ¡³öĞ´Èë¶ÔÓ¦µÄÎÄ¼şÖĞ
+	 * å°†contentçš„å†…å®¹å–å‡ºå†™å…¥å¯¹åº”çš„æ–‡ä»¶ä¸­
 	 * @param dir
 	 * @param fileNames
 	 * @param content
@@ -141,7 +141,7 @@ public class FileUtils {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-			log.error("ÎÄ¼şĞ´ÈëÊ§°Ü£º"+e.getMessage());
+			log.error("æ–‡ä»¶å†™å…¥å¤±è´¥ï¼š"+e.getMessage());
 			throw new IOException();
 			
 		}finally{
@@ -186,9 +186,32 @@ public class FileUtils {
 		return sb;
 	}
 	
+	public static StringBuilder getFileContent2(File f){
+		StringBuilder sb = new StringBuilder();
+		if(f == null || f.isDirectory() || !f.canRead()){
+			return sb;
+		}
+		FileReader fr = null;
+		BufferedReader br = null;
+		try{
+			fr = new FileReader(f);
+			br = new BufferedReader(fr);
+			String temp = null;
+			while((temp = br.readLine())!= null){
+				sb.append(temp).append("\r\n");
+			}
+			return sb;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(fr, br, null, null);
+		}
+		return sb;
+	}
+	
 	
 	/**
-	 * ¹Ø±ÕÁ÷
+	 * å…³é—­æµ
 	 */
 	private static void close(FileReader fr, BufferedReader br, FileWriter fw,
 			BufferedWriter bw) {

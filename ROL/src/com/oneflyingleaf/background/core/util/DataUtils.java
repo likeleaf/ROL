@@ -4,17 +4,17 @@ import org.apache.commons.lang3.StringUtils;
 
 public class DataUtils {
 	
-	//getPageRange·½·¨ÖĞrowsÖµ×ª»»³ö´íÊ±Ê¹ÓÃ
+	//getPageRangeæ–¹æ³•ä¸­rowså€¼è½¬æ¢å‡ºé”™æ—¶ä½¿ç”¨
 	private final static int DEFAULT_ROWS = 15;
-	//getPageRange·½·¨ÖĞpageÖµ×ª»»³ö´íÊ±Ê¹ÓÃ
+	//getPageRangeæ–¹æ³•ä¸­pageå€¼è½¬æ¢å‡ºé”™æ—¶ä½¿ç”¨
 	private final static int DEFAULT_PAGE = 1;
 	
 	/**
-	 * ¸ù¾İ´«½øµÄ·¶Î§µÃµ½¶ÔÓ¦µÄ¼ÇÂ¼µÄ·¶Î§£¬Ö÷ÒªÓÃÓÚeasyuiÔÚoracleÖĞµÄ·ÖÒ³·¶Î§µÄ²éÑ¯
-	 * @param page µ±Ç°Ò³
-	 * @param rows Ã¿Ò³µÄ¼ÇÂ¼Êı
-	 * @param defaultRows Èç¹ûÃ¿Ò³µÄ¼ÇÂ¼Êı³ö´í·µ»ØµÄÖµ,Ğ¡ÓÚ0Ê±£¬²ÉÓÃÄ¬ÈÏµÄDataUtils.DEFAULT_ROWS
-	 * @return ·µ»Ø³¤¶ÈÎª2µÄÊı×é£¬±íÊ¾pageºÍrows
+	 * æ ¹æ®ä¼ è¿›çš„èŒƒå›´å¾—åˆ°å¯¹åº”çš„è®°å½•çš„èŒƒå›´ï¼Œä¸»è¦ç”¨äºeasyuiåœ¨oracleä¸­çš„åˆ†é¡µèŒƒå›´çš„æŸ¥è¯¢
+	 * @param page å½“å‰é¡µ
+	 * @param rows æ¯é¡µçš„è®°å½•æ•°
+	 * @param defaultRows å¦‚æœæ¯é¡µçš„è®°å½•æ•°å‡ºé”™è¿”å›çš„å€¼,å°äº0æ—¶ï¼Œé‡‡ç”¨é»˜è®¤çš„DataUtils.DEFAULT_ROWS
+	 * @return è¿”å›é•¿åº¦ä¸º2çš„æ•°ç»„ï¼Œè¡¨ç¤ºpageå’Œrows
 	 */
 	public static int[] getPageAndRows(String page,String rows,int defaultRows){
 		if(StringUtils.isBlank(page)) page = String.valueOf(DEFAULT_PAGE);
@@ -50,12 +50,15 @@ public class DataUtils {
 	
 	
 	/**
-	 * ¸ù¾İ´«½øµÄ·¶Î§µÃµ½¶ÔÓ¦µÄ¼ÇÂ¼µÄ·¶Î§£¬Ö÷ÒªÓÃÓÚeasyuiÔÚoracleÖĞµÄ·ÖÒ³·¶Î§µÄ²éÑ¯£¬Èç¹û×ª»»³ö´í£¬Ôò½«Ê¹ÓÃÈ±Ê¡Öµ
-	 * @param page µ±Ç°Ò³
-	 * @param rows Ã¿Ò³µÄ¼ÇÂ¼Êı
-	 * @return ·µ»Ø³¤¶ÈÎª2µÄÊı×é£¬±íÊ¾·¶Î§[a,b]
+	 * æ ¹æ®ä¼ è¿›çš„èŒƒå›´å¾—åˆ°å¯¹åº”çš„è®°å½•çš„èŒƒå›´ï¼Œä¸»è¦ç”¨äºeasyuiåœ¨oracleä¸­çš„åˆ†é¡µèŒƒå›´çš„æŸ¥è¯¢ï¼Œå¦‚æœè½¬æ¢å‡ºé”™ï¼Œåˆ™å°†ä½¿ç”¨ç¼ºçœå€¼
+	 * @param page å½“å‰é¡µ
+	 * @param rows æ¯é¡µçš„è®°å½•æ•°
+	 * @return è¿”å›é•¿åº¦ä¸º2çš„æ•°ç»„ï¼Œè¡¨ç¤ºèŒƒå›´[a,b]
 	 */
 	public static int[] getPageAndRows(String page,String rows){
 		return getPageAndRows(page, rows, -1);
 	}
+	
+	
+	
 }

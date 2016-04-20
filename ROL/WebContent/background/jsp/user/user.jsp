@@ -42,11 +42,11 @@ request.setAttribute("basePath", basePath);
 					valueField :'value',
 					textField:'label',
 					data:[
-						{label:'普通用户',value:'10'},
-						{label:'作者',value:'20'},
-						{label:'vip',value:'30'},
-						{label:'管理员',value:'40'},
-						{label:'超级管理员',value:'50'}
+						{'label':'普通用户','value':'10'},
+						{'label':'作者','value':'20'},
+						{'label':'vip','value':'30'},
+						{'label':'管理员','value':'40'},
+						{'label':'超级管理员','value':'50'}
 						]
 					}
 				}">用户权限</th>
@@ -250,7 +250,7 @@ request.setAttribute("basePath", basePath);
 			                	var editRowDetail =  $('#users').datagrid('getRows')[editRow];
 								//保存数据
 								leaf.ajax({url:myurl,
-										   data:{'user.userId':editRowDetail['userId'],'user.email':editRowDetail['email'],'user.userName':editRowDetail['userName'],'user.qq':editRowDetail['qq']},
+										   data:{'user.userId':editRowDetail['userId'],'user.email':editRowDetail['email'],'user.userName':editRowDetail['userName'],'user.qq':editRowDetail['qq'],'user.permission':editRowDetail['permission']},
 										   success:function(result){
 												var res = eval('('+result+')');
 												if(res.msg != 'suc'){

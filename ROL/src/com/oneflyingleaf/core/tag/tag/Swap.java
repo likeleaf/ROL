@@ -12,15 +12,15 @@ import com.oneflyingleaf.core.tag.utils.ContextUtils;
 
 
 /**
- * ½«ÌØ¶¨µÄÖµ½»»»Îª¶ÔÓ¦µÄÖµ£¬¸ÃÖµĞèÒªÔÚContextUtilÖĞÅäÖÃ
+ * å°†ç‰¹å®šçš„å€¼äº¤æ¢ä¸ºå¯¹åº”çš„å€¼ï¼Œè¯¥å€¼éœ€è¦åœ¨ContextUtilä¸­é…ç½®
  * @author leaf
  *
  */
 public class Swap extends SimpleTagSupport{
 
-	//ĞèÒª½»»»Ãû
+	//éœ€è¦äº¤æ¢å
 	private String key;
-	//ÊôĞÔ±êÇ©Öµ
+	//å±æ€§æ ‡ç­¾å€¼
 	private String value;
 	
 	

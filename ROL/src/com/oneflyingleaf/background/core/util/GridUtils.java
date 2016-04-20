@@ -15,8 +15,8 @@ public class GridUtils {
 	
 	
 	/**
-	 * µÃµ½¶ÔÓ¦µÄqh²éÑ¯ÖµµÄjson£¬Ä¬ÈÏÖ»²éÑ¯¶ÔÓ¦rownumµÄÄÚÈİ
-	 * @param req ĞèÒªÉèÖÃrownum ¿ÉÒÔÍùÀïÃæ´«µİ rowsºÍpages
+	 * å¾—åˆ°å¯¹åº”çš„qhæŸ¥è¯¢å€¼çš„jsonï¼Œé»˜è®¤åªæŸ¥è¯¢å¯¹åº”rownumçš„å†…å®¹
+	 * @param req éœ€è¦è®¾ç½®rownum å¯ä»¥å¾€é‡Œé¢ä¼ é€’ rowså’Œpages
 	 * @param qh
 	 * @return
 	 */

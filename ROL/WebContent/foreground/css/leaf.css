@@ -29,6 +29,10 @@ h3{
 	font-weight: 800;
 }
  /* 单属性的标签 */
+ 
+ .cur{
+ 	cursor: pointer;
+ }
  .floR{
  	float: right;
  }
@@ -187,7 +191,6 @@ h3{
 .kind-bar-main{
 
 }
-
 
 
 

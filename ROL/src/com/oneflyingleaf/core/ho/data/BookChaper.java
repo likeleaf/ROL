@@ -81,8 +81,17 @@ public class BookChaper  implements java.io.Serializable {
    
 
 	public String getText(){
+		if(bookChaCon == null) return "";
 		if(text == null){
 			text = FileUtils.getFileContent(new File(bookChaCon)).toString();
+		}
+		return text;
+	}
+	
+	public String getText2(){
+		if(bookChaCon == null) return "";
+		if(text == null){
+			text = FileUtils.getFileContent2(new File(bookChaCon)).toString();
 		}
 		return text;
 	}

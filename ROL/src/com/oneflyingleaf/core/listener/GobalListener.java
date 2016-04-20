@@ -23,12 +23,12 @@ public class GobalListener extends ContextLoaderListener implements HttpSessionL
 	}
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		log.info("servletContext Ïú»Ù");
+		log.info("servletContext é”€æ¯");
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		log.info("servletContext ³õÊ¼»¯");
+		log.info("servletContext åˆå§‹åŒ–");
 		
 		SpringUtils.setServletContext(sce.getServletContext());
 		ClassUtils.runMethod(FileInit.class,"init");

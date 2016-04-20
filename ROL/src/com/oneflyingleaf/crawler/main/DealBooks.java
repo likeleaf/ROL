@@ -47,7 +47,7 @@ public class DealBooks {
 								}
 								
 							} catch (Exception e) {
-								//²É¼¯ÎÄÕÂ³ö´í
+								//é‡‡é›†æ–‡ç« å‡ºé”™
 								//e.printStackTrace();
 							}
 							
@@ -57,7 +57,7 @@ public class DealBooks {
 							
 						}else{
 							stop = true;
-							System.out.println("Íê³É");
+							System.out.println("å®Œæˆ");
 							System.exit(0);
 						}
 					 }
@@ -67,12 +67,12 @@ public class DealBooks {
 	 }
 	 
 	 
-	 //Ö´ĞĞ
+	 //æ‰§è¡Œ
 	 public static void main(String[] args) {
 		
-		 //10000µ½11941×óÓÒ²É¼¯Íê±Ï
-		 int start = 12500;
-		int end = 13500;
+		 //10000åˆ°11941å·¦å³é‡‡é›†å®Œæ¯•  12500åˆ°13500é‡‡é›†å®Œæ¯•
+		 int start = 13501;
+		int end = 14500;
 		for(int i = start;i <end ;i++ ){
 			queue.add(CrawlerConstant.CRAWLER_URL+i+"//");
 			System.out.println(CrawlerConstant.CRAWLER_URL+i+"//");

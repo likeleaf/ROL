@@ -9,7 +9,7 @@
 
 
 	<div class="container">
-		<!--tab1 热门推荐，图片的轮转 -->
+		<!--tab1 热门推荐，图片的轮转 -->x	
 		<div class="content-tab1">
 			<div class="container extra">
 				<div class="row main">
@@ -287,7 +287,7 @@
 											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-certificate color" style="color: red"></div>
-													${lab.bookAtt }
+													${lab2.bookAtt }
 												</div>
 											<hr class="hr-color">
 										</li>
@@ -301,7 +301,7 @@
 											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-certificate color" style="color: #F9CFCC"></div>
-													${lab.bookAtt }
+													${lab2.bookAtt }
 												</div>
 											<hr class="hr-color">
 										</li>
@@ -402,7 +402,7 @@
 										<li>
 											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,10 )}</a> 
 												<div class="lab-brand">
-													${lab.bookAtt }
+													${lab2.bookAtt }
 												</div>
 											<hr class="hr-color">
 										</li>
@@ -474,7 +474,7 @@
 											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-heart color" style="color:blue !important;"></div>
-													${lab.bookAtt }
+													${lab2.bookAtt }
 												</div>
 											<hr class="hr-color">
 										</li>
@@ -488,7 +488,7 @@
 											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-certificate color" style="color:#3399ff !important;"></div>
-													${lab.bookAtt }
+													${lab2.bookAtt }
 												</div>
 											<hr class="hr-color">
 										</li>
@@ -561,7 +561,7 @@
 											<a href="${ctx }/foreground/jsp/book/detail.jsp?bookId=${lab2.bookId }">${fn:substring(lab2.bookName,0,6 )}</a> 
 												<div class="lab-brand">
 													<div class="glyphicon glyphicon-arrow-up purple" style="color: purple"></div>
-													${lab.bookAtt }
+													${lab2.bookAtt }
 												</div>
 											<hr class="hr-color">
 										</li>

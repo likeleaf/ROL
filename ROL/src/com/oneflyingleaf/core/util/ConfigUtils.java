@@ -8,8 +8,8 @@ public class ConfigUtils {
 	private static final ResourceBundle rb = ResourceBundle.getBundle("config");
 	
 	/**
-	 * µÃµ½Ïà¹ØµÄ×éµÄ¹«¹²ÎÄ¼şµÄ°ü
-	 * @param name js»òÕßcss
+	 * å¾—åˆ°ç›¸å…³çš„ç»„çš„å…¬å…±æ–‡ä»¶çš„åŒ…
+	 * @param name jsæˆ–è€…css
 	 * @return 
 	 */
 	public static String getCommonPackage(String name){
@@ -18,8 +18,8 @@ public class ConfigUtils {
 	}
 	
 	/**
-	 * µÃµ½Ïà¹ØµÄ×éµÄ¹«¹²ÎÄ¼şµÄÃû³Æ
-	 * @param name js»òÕßcss
+	 * å¾—åˆ°ç›¸å…³çš„ç»„çš„å…¬å…±æ–‡ä»¶çš„åç§°
+	 * @param name jsæˆ–è€…css
 	 * @return 
 	 */
 	public static String[] getCommonName(String name){
@@ -28,9 +28,9 @@ public class ConfigUtils {
 	}
 	
 	/**
-	 * µÃµ½Ïà¹ØµÄ×éµÄ¾ßÌåÖµ
-	 * @param name js»òÕßcss
-	 * @return js»òÕßcss×éÄÚ¸÷¸öÃû³Æ
+	 * å¾—åˆ°ç›¸å…³çš„ç»„çš„å…·ä½“å€¼
+	 * @param name jsæˆ–è€…css
+	 * @return jsæˆ–è€…cssç»„å†…å„ä¸ªåç§°
 	 */
 	public static String[] getGroupName(String name){
 		String value = getString("init."+name+".name");
@@ -42,8 +42,8 @@ public class ConfigUtils {
 	}
 	
 	/**
-	 * µÃµ½js´æ·ÅµÄ°üµÄÏà¶ÔÂ·¾¶
-	 * @param group jsµÄ×é±ğ
+	 * å¾—åˆ°jså­˜æ”¾çš„åŒ…çš„ç›¸å¯¹è·¯å¾„
+	 * @param group jsçš„ç»„åˆ«
 	 * @return
 	 */
 	public static String getJsPackage(String group){
@@ -51,8 +51,8 @@ public class ConfigUtils {
 	}
 	
 	/**
-	 * µÃµ½jsµÄÃû³Æ
-	 * @param group jsµÄ×é±ğ
+	 * å¾—åˆ°jsçš„åç§°
+	 * @param group jsçš„ç»„åˆ«
 	 * @return
 	 */
 	public static String[] getJsName(String group){
@@ -61,8 +61,8 @@ public class ConfigUtils {
 	}
 	
 	/**
-	 * µÃµ½js´æ·ÅµÄ°üµÄÏà¶ÔÂ·¾¶
-	 * @param group ×é±ğ
+	 * å¾—åˆ°jså­˜æ”¾çš„åŒ…çš„ç›¸å¯¹è·¯å¾„
+	 * @param group ç»„åˆ«
 	 * @return
 	 */
 	public static String getCssPackage(String group){
@@ -70,15 +70,15 @@ public class ConfigUtils {
 	}
 	
 	/**
-	 * µÃµ½jsµÄÃû³Æ
-	 * @param group css×é±ğ
+	 * å¾—åˆ°jsçš„åç§°
+	 * @param group cssç»„åˆ«
 	 * @return
 	 */
 	public static String[] getCssName(String group){
 		return getString("init."+group+".css.name").split("#");
 	}
 	/**
-	 * ¸ù¾İkeyÖµµÃµ½Ïà¹ØµÄvalue
+	 * æ ¹æ®keyå€¼å¾—åˆ°ç›¸å…³çš„value
 	 * @param key
 	 * @return
 	 */

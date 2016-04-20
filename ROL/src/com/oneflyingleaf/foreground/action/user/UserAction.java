@@ -18,7 +18,7 @@ import com.oneflyingleaf.core.util.JsonUtils;
 import com.oneflyingleaf.core.util.SpringUtils;
 
 /**
- * Ç°Ì¨user
+ * å‰å°user
  * @author Administrator
  *
  */
@@ -38,9 +38,9 @@ public class UserAction extends BasicAction{
 
 		if(StringUtils.isBlank(email) || StringUtils.isBlank(password) || StringUtils.isBlank(passwordCheck)){
 			
-			/*this.outPut(JsonUtils.toJsonString("stat:fal,msg:ÓÊÏä£¬ÃÜÂë£¬È·ÈÏÃÜÂë¾ù²»ÄÜÎª¿Õ"));*/
+			/*this.outPut(JsonUtils.toJsonString("stat:fal,msg:é‚®ç®±ï¼Œå¯†ç ï¼Œç¡®è®¤å¯†ç å‡ä¸èƒ½ä¸ºç©º"));*/
 		}else if(isExitEmail(email,null ,false)){
-			/*this.outPut(JsonUtils.toJsonString("stat:fal,msg:¸ÃÓÊÏäÒÑ´æÔÚ"));*/
+			/*this.outPut(JsonUtils.toJsonString("stat:fal,msg:è¯¥é‚®ç®±å·²å­˜åœ¨"));*/
 		}else{
 			User u = new User();
 			u.setEmail(email);
@@ -54,7 +54,7 @@ public class UserAction extends BasicAction{
 	}
 	
 	/**
-	 * Ğ£Ñéemail
+	 * æ ¡éªŒemail
 	 */
 	public void checkEmail(){
 		String email = this.getParameter("email");
@@ -67,15 +67,15 @@ public class UserAction extends BasicAction{
 	}
 	
 	/**
-	 * ÑéÖ¤emailÓĞĞ§  £¨ ÕâÑùĞ´¸Ğ¾õ²»ÊÇºÜºÃ  Ö°Ôğ²»Çå£¬ÂÒ£©
+	 * éªŒè¯emailæœ‰æ•ˆ  ï¼ˆ è¿™æ ·å†™æ„Ÿè§‰ä¸æ˜¯å¾ˆå¥½  èŒè´£ä¸æ¸…ï¼Œä¹±ï¼‰
 	 */
 	private boolean isExitEmail(String email ,String userId,boolean outPut){
 		
 		String str = "";
 		if(StringUtils.isBlank(email)){
-			str = JsonUtils.toJsonString("stat:fal,msg:email²»ÄÜÎª¿Õ");
+			str = JsonUtils.toJsonString("stat:fal,msg:emailä¸èƒ½ä¸ºç©º");
 		}else if(!Pattern.matches("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$", email)){
-			str = JsonUtils.toJsonString("stat:fal,msg:email¸ñÊ½²»ÕıÈ·");
+			str = JsonUtils.toJsonString("stat:fal,msg:emailæ ¼å¼ä¸æ­£ç¡®");
 		}else{
 			List<User> lists = null;
 			if(StringUtils.isBlank(userId)){
@@ -85,13 +85,13 @@ public class UserAction extends BasicAction{
 			}
 			
 			if(lists == null || lists.size() == 0){
-				str = JsonUtils.toJsonString("stat:suc,msg:¸Ãemail¿ÉÒÔÊ¹ÓÃ");
+				str = JsonUtils.toJsonString("stat:suc,msg:è¯¥emailå¯ä»¥ä½¿ç”¨");
 				if(outPut){
 					this.outPut(str);
 				}
 				return false;
 			}
-			str = JsonUtils.toJsonString("stat:fal,msg:¸ÃemailÒÑ¾­´æÔÚ");
+			str = JsonUtils.toJsonString("stat:fal,msg:è¯¥emailå·²ç»å­˜åœ¨");
 		}	
 		
 		if(outPut){
@@ -103,7 +103,7 @@ public class UserAction extends BasicAction{
 	
 	
 	/**
-	 * µÇÂ¼
+	 * ç™»å½•
 	 */
 	public String login(){
 		String email = this.getParameter("email");
@@ -114,7 +114,14 @@ public class UserAction extends BasicAction{
 			User user =  this.basicService.findOne("from User u where u.email = ? and u.userPw =?",new Object[]{email,password});
 			if(user != null){
 				this.setSessionAttribute(SessionEnum.USER.toString(), user);
-				return SUCCESS;
+				//ä¸åŒè§’è‰²çš„è·³è½¬
+				if(user.getPermission().equals(User.USER_AUTHOR)){    //ä½œè€…
+					return "author";
+				}else if(user.getPermission().equals(User.USER_NOR)){  //æ™®é€šç”¨æˆ·
+					return SUCCESS;
+				} else{   //ç®¡ç†å‘˜
+					return "manager";
+				}
 			}
 		}
 		

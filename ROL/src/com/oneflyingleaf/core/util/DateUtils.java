@@ -4,15 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Ê±¼äÈÕÆÚ¹¤¾ßÀà
+ * æ—¶é—´æ—¥æœŸå·¥å…·ç±»
  * @author Administrator
  */
 public class DateUtils {
 
 	/**
-	 * ½«Ê±¼ä×ª»»³É×Ö·û×ª
-	 * @param date ĞèÒª×ª»»µÄÊ±¼ä
-	 * @param format ¸ñÊ½»¯  Èç"yyyy-MM-dd"
+	 * å°†æ—¶é—´è½¬æ¢æˆå­—ç¬¦è½¬
+	 * @param date éœ€è¦è½¬æ¢çš„æ—¶é—´
+	 * @param format æ ¼å¼åŒ–  å¦‚"yyyy-MM-dd"
 	 */
 	public static String formatDate(Date date,String format){
 		SimpleDateFormat sdf = new SimpleDateFormat(format);

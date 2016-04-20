@@ -28,7 +28,7 @@ public class UserAction extends BasicAction{
 	private static final long serialVersionUID = 9038518566365097307L;
 	
 	/**
-	 * Í¨¹ıÒ³ÊıºÍÃ¿Ò³µÄÊıÁ¿µÃµ½Ïà¹ØÊıÁ¿µÄÓÃ»§ĞÅÏ¢
+	 * é€šè¿‡é¡µæ•°å’Œæ¯é¡µçš„æ•°é‡å¾—åˆ°ç›¸å…³æ•°é‡çš„ç”¨æˆ·ä¿¡æ¯
 	 */
 	public void getUserJson(){
 		
@@ -41,11 +41,11 @@ public class UserAction extends BasicAction{
 	}
 	
 	/**
-	 * Ç°Ì¨ajaxĞ£ÑéÓÃ»§ÃûµÄÎ¨Ò»ĞÔ,²åÈëºÍĞŞ¸Ä,ºÏ·¨Îªsuc£¬²»ºÏ·¨Îªfal£¬²ÎÊı³öÏÖ´íÎóÎªerr
+	 * å‰å°ajaxæ ¡éªŒç”¨æˆ·åçš„å”¯ä¸€æ€§,æ’å…¥å’Œä¿®æ”¹,åˆæ³•ä¸ºsucï¼Œä¸åˆæ³•ä¸ºfalï¼Œå‚æ•°å‡ºç°é”™è¯¯ä¸ºerr
 	 */
 	public void checkName(){
 		String name = this.getParameter("userName");
-		//Ä¬ÈÏÎª²åÈë
+		//é»˜è®¤ä¸ºæ’å…¥
 		String type = this.getParameter("type");
 		if(StringUtils.isBlank(name)){
 			this.outPut("err");
@@ -57,7 +57,7 @@ public class UserAction extends BasicAction{
 				this.outPut("err");
 				return ;
 			}
-			//²»´æÔÚ
+			//ä¸å­˜åœ¨
 			if(userService.find("from User where userName = ? and userId != ?",new Object[]{name,id}).size() == 0){
 				this.outPut("suc");
 				return ;
@@ -65,7 +65,7 @@ public class UserAction extends BasicAction{
 			this.outPut("fal");
 			return ;
 		}
-		//²»´æÔÚ
+		//ä¸å­˜åœ¨
 		if(userService.find("from User where userName = ?",new Object[]{name}).size() == 0){
 			this.outPut("suc");
 			return;
@@ -78,40 +78,40 @@ public class UserAction extends BasicAction{
 	
 	
 	/**
-	 * Ğ£ÑéÒÔ¼°±£´æÓÃ»§µÄÏà¹ØµÄĞÅÏ¢
+	 * æ ¡éªŒä»¥åŠä¿å­˜ç”¨æˆ·çš„ç›¸å…³çš„ä¿¡æ¯
 	 */
 	public void saveUser(){
 		String userPwCom = this.getParameter("userPwCom");
 		
 		if(StringUtils.isBlank(userPwCom)) {
-			this.outPut("{'msg':'±£´æÊ§°Ü£¡ÃÜÂëÈ·ÈÏÎª¿Õ£¡'}");
+			this.outPut("{'msg':'ä¿å­˜å¤±è´¥ï¼å¯†ç ç¡®è®¤ä¸ºç©ºï¼'}");
 			return ;
 		}
 		
 		if(!DigestUtils.md5Hex(userPwCom).equals(user.getUserPw())) {
-			this.outPut("{'msg':'±£´æÊ§°Ü£¡ÃÜÂëºÍÈ·ÈÏÃÜÂë²»Ò»ÖÂ£¡'}");
+			this.outPut("{'msg':'ä¿å­˜å¤±è´¥ï¼å¯†ç å’Œç¡®è®¤å¯†ç ä¸ä¸€è‡´ï¼'}");
 			return ;
 		}
 		if(!Pattern.matches("^([a-z0-9_.-]+)@([\\da-z.-]+).([a-z.]{2,6})$", user.getEmail())){
-			this.outPut("{'msg':'±£´æÊ§°Ü£¡email¸ñÊ½²»ÕıÈ·£¡'}");
+			this.outPut("{'msg':'ä¿å­˜å¤±è´¥ï¼emailæ ¼å¼ä¸æ­£ç¡®ï¼'}");
 			return;
 		}
 		
 		if(userService.find("from User where email = ?",new Object[]{user.getEmail()}).size() != 0){
-			this.outPut("{'msg':'±£´æÊ§°Ü£¬¸ÃemailÒÑ´æÔÚ£¡'}");
+			this.outPut("{'msg':'ä¿å­˜å¤±è´¥ï¼Œè¯¥emailå·²å­˜åœ¨ï¼'}");
 			return;
 		}
-		user.setUserName("ÓÃ»§"+user.getEmail().substring(0, 3));
+		user.setUserName("ç”¨æˆ·"+user.getEmail().substring(0, 3));
 		
 		if(userService.save(user)){
 			this.outPut("{'suc':'suc'}");
 		}else{
-			this.outPut("{'msg':'±£´æÊ§°Ü£¡'}");
+			this.outPut("{'msg':'ä¿å­˜å¤±è´¥ï¼'}");
 		}
 	}
 
 	/**
-	 * ËÑË÷ÓÃ»§
+	 * æœç´¢ç”¨æˆ·
 	 */
 	public void searchUser(){
 		String createStart = this.getParameter("createStart");
@@ -132,7 +132,7 @@ public class UserAction extends BasicAction{
 	}
 	
 	/**
-	 * É¾³ıÏà¹ØµÄÓÃ»§
+	 * åˆ é™¤ç›¸å…³çš„ç”¨æˆ·
 	 */
 	public void deleteUser(){
 		String id = this.getParameter("userId");
@@ -151,34 +151,34 @@ public class UserAction extends BasicAction{
 	}
 	
 	/**
-	 * ¸üĞÂÓÃ»§ĞÅÏ¢
+	 * æ›´æ–°ç”¨æˆ·ä¿¡æ¯
 	 */
 	public void updateUser(){
 		if(StringUtils.isBlank(user.getUserName())){
-			this.outPut("{msg:'ÓÃ»§Ãû²»ÄÜÎª¿Õ'}");
+			this.outPut("{msg:'ç”¨æˆ·åä¸èƒ½ä¸ºç©º'}");
 			return ;
 		}
 		
 		if(!Pattern.matches("^([a-z0-9_.-]+)@([\\da-z.-]+).([a-z.]{2,6})$", user.getEmail())){
-			this.outPut("{'msg':'±£´æÊ§°Ü£¡email¸ñÊ½²»ÕıÈ·£¡'}");
+			this.outPut("{'msg':'ä¿å­˜å¤±è´¥ï¼emailæ ¼å¼ä¸æ­£ç¡®ï¼'}");
 			return;
 		}
 		
 		if(userService.find("from User where email = ? and userId != ?",new Object[]{user.getEmail(),user.getUserId()}).size() != 0){
-			this.outPut("{'msg':'±£´æÊ§°Ü£¬¸ÃemailÒÑ´æÔÚ£¡'}");
+			this.outPut("{'msg':'ä¿å­˜å¤±è´¥ï¼Œè¯¥emailå·²å­˜åœ¨ï¼'}");
 			return;
 		}
 		
 		if(PermissionUtils.hasPermission(this.getSession(), PermissionCon.UPDATE_USER_WITH_NO_PERMISSION)){
 			if(StringUtils.isBlank(user.getUserId())){
-				this.outPut("{msg:'²ÎÊı´íÎó£¬ÇëË¢ĞÂÖØÊÔ£¡'}");
+				this.outPut("{msg:'å‚æ•°é”™è¯¯ï¼Œè¯·åˆ·æ–°é‡è¯•ï¼'}");
 				return;
 			}
 			
 			User u = userService.get(User.class, user.getUserId());
 			
 			if(u == null){
-				this.outPut("{msg:'Êı¾İÒÑ±»É¾³ı£¬ÇëË¢ĞÂÖØÊÔ£¡'}");
+				this.outPut("{msg:'æ•°æ®å·²è¢«åˆ é™¤ï¼Œè¯·åˆ·æ–°é‡è¯•ï¼'}");
 				return;
 			}
 
@@ -194,8 +194,8 @@ public class UserAction extends BasicAction{
 			u.setPermission(user.getPermission());
 			u.setEmail(user.getEmail());
 			
-			if(userService.save(u)){
-				this.outPut("{msg:suc}");
+			if(userService.update(u)){
+				this.outPut("{msg:'suc'}");
 			}
 		}
 		

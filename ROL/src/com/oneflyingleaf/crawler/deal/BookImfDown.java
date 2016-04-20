@@ -23,7 +23,7 @@ import com.oneflyingleaf.crawler.constant.CrawlerConstant;
 import com.oneflyingleaf.crawler.util.FileUtils;
 
 /**
- * ²É¼¯Êı¾İ
+ * é‡‡é›†æ•°æ®
  * @author leaf
  */
 public class BookImfDown {
@@ -34,22 +34,22 @@ public class BookImfDown {
 		try {
 			Document doc = Jsoup.connect(url).get();
 			Element intro = doc.select("#detail-box .box_intro").first();
-			//Í¼Æ¬µØÖ·
+			//å›¾ç‰‡åœ°å€
 			try{
 				
 				bookDetail.setPicturePath(intro.select(".pic img[src]").first().attr("src"));
-				//×÷Õß
+				//ä½œè€…
 				bookDetail.setAuth(intro.select(".box_info .ui_tb1 td").first().select("p a[href]").first().text());
-				//×îºó¸üĞÂÊ±¼ä
-				bookDetail.setTime(intro.select(".box_info .ui_tb1 tr").eq(2).select("td div").first().text().split("£º")[1]);
-				//±êÇ©
+				//æœ€åæ›´æ–°æ—¶é—´
+				bookDetail.setTime(intro.select(".box_info .ui_tb1 tr").eq(2).select("td div").first().text().split("ï¼š")[1]);
+				//æ ‡ç­¾
 				bookDetail.setBookLab(intro.select(".box_info .ui_tb1 td").first().select("p").eq(1).select("a").first().text());
 			}catch(Exception e){
 				
 			}
 			
 			
-			//Ä¿Â¼Â·¾¶
+			//ç›®å½•è·¯å¾„
 			bookDetail.setMenuPath(intro.select(".option .btopt a").first().attr("href"));
 			
 			downBookMenu(bookDetail);
@@ -62,27 +62,27 @@ public class BookImfDown {
 	
 	
 	/**
-	 * ÏÂÔØÊé¼®Ä¿Â¼£¨ÕÂ½ÚÏà¹ØµÄĞÅÏ¢£©
+	 * ä¸‹è½½ä¹¦ç±ç›®å½•ï¼ˆç« èŠ‚ç›¸å…³çš„ä¿¡æ¯ï¼‰
 	 * @param bookDetail
 	 */
 	public void downBookMenu(BookDetail bookDetail){
 		if(StringUtils.isBlank(bookDetail.getMenuPath())){
-			throw new NullPointerException("Êé¼®Ä¿Â¼µØÖ·Îª¿Õ");
+			throw new NullPointerException("ä¹¦ç±ç›®å½•åœ°å€ä¸ºç©º");
 		}
-		//¶ÁÈ¡Ä¿Â¼Ò³
+		//è¯»å–ç›®å½•é¡µ
 		try {
 			Document doc = Jsoup.connect(bookDetail.getMenuPath()).get();
 			Element content = doc.select("#header .warpper .mu_contain").first();
-			//ÊéÃû
-			bookDetail.setBookName(content.select(" .mu_h1 h1").first().text().replace("È«ÎÄÔÄ¶Á", ""));
-			//Êé¼®ÃèÊö
+			//ä¹¦å
+			bookDetail.setBookName(content.select(" .mu_h1 h1").first().text().replace("å…¨æ–‡é˜…è¯»", ""));
+			//ä¹¦ç±æè¿°
 			bookDetail.setIntro(content.select("p").first().text());
 			Elements menus = doc.select(".mulu_list li");
-			//´æ·ÅÕÂ½Ú
+			//å­˜æ”¾ç« èŠ‚
 			List<Menu> list = new ArrayList<Menu>();
 			Menu m = null;
 			Element temp = null;
-			//¶ÁÈ¡ÕÂ½Ú
+			//è¯»å–ç« èŠ‚
 			for (int i = 0; i < menus.size(); i++) {
 				m = new Menu();
 				temp = menus.get(i).select("a[href]").first();
@@ -100,7 +100,7 @@ public class BookImfDown {
 	}
 	
 	/**
-	 * ´¦ÀíÍ¼Æ¬
+	 * å¤„ç†å›¾ç‰‡
 	 * @param bookDetail
 	 */
 	public void dealPic(BookDetail bookDetail){
@@ -110,7 +110,7 @@ public class BookImfDown {
 			
 			URLConnection uc = url.openConnection();
 			InputStream is = uc.getInputStream();
-			//±£´æÎÄ¼ş
+			//ä¿å­˜æ–‡ä»¶
 			String str = PinYinUtils.getPinYinHeadChar(bookDetail.getBookLab());
 			String path = CrawlerConstant.BOOK_IMG+"\\"+str;
 			File f = new File(path);
@@ -131,7 +131,7 @@ public class BookImfDown {
 	
 	
 	/**
-	 * ´¦ÀíÕÂ½Ú
+	 * å¤„ç†ç« èŠ‚
 	 * @param bookDetail
 	 */
 	public void dealCha(Menu menu,String bookName,String bookLab){
@@ -142,17 +142,17 @@ public class BookImfDown {
 			
 			String bookContent = doc.select("#htmlContent").first().text();
 			
-			//±£´æÎÄ¼ş
+			//ä¿å­˜æ–‡ä»¶
 			String str = PinYinUtils.getPinYinHeadChar(bookLab);
 			String path = CrawlerConstant.BOOK_PATH+"\\"+str;
 			
-			//¸ÏÊ±¼ä£¬²»·â×°·½·¨
-			//±êÇ©µØÖ·
+			//èµ¶æ—¶é—´ï¼Œä¸å°è£…æ–¹æ³•
+			//æ ‡ç­¾åœ°å€
 			File f = new File(path);
 			if(!f.exists()){
 				f.mkdir();
 			}
-			//Êé¼®µØÖ·
+			//ä¹¦ç±åœ°å€
 			String path2 = path+"\\"+bookName; 
 			File f2 = new File(path2);
 			if(!f2.exists()){

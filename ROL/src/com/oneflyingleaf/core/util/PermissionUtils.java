@@ -11,7 +11,7 @@ public class PermissionUtils {
 	
 	
 	/**
-	 * 校验该用户是否具有相关的权限
+	 * 鏍￠獙璇ョ敤鎴锋槸鍚﹀叿鏈夌浉鍏崇殑鏉冮檺
 	 * @param session
 	 * @param permission
 	 * @return
@@ -31,7 +31,7 @@ public class PermissionUtils {
 
 	
 	/**
-	 * 校验该用户是否具有相关的权限
+	 * 鏍￠獙璇ョ敤鎴锋槸鍚﹀叿鏈夌浉鍏崇殑鏉冮檺
 	 * @param session
 	 * @param permission
 	 * @return

@@ -106,7 +106,7 @@
  	<attribute>
  		<name>likeLimit</name>
  		<required>false</required>
- 		<rtexprvalue>false</rtexprvalue>
+ 		<rtexprvalue>true</rtexprvalue>
  		<description>模糊查询字段</description>
  	</attribute>
  	<attribute>
@@ -140,6 +140,12 @@
 		 <rtexprvalue>false</rtexprvalue>
 		 <type>Boolean</type>
 		 <description>是否实例化类，默认实例化，如果没有该类，就不实例化，即没有name标签时，不实例化</description>
+	</attribute>
+	<attribute>
+		 <name>showCount</name>
+		 <required>false</required>
+		 <rtexprvalue>false</rtexprvalue>
+		 <description>是否获取count</description>
 	</attribute>
 <!--  	<attribute>
  		<name>number</name>

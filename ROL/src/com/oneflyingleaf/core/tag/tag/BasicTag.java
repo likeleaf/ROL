@@ -14,8 +14,8 @@ public class BasicTag extends SimpleTagSupport{
 	protected static Log log = LogFactory.getLog(BasicTag.class);
 	
 	static{
-		log.info("BasicTag ³õÊ¼»¯...");
-	//	System.out.println("BasicTag ³õÊ¼»¯...");
+		log.info("BasicTag åˆå§‹åŒ–...");
+	//	System.out.println("BasicTag åˆå§‹åŒ–...");
 	}
 
 	public TagService getTagService() {

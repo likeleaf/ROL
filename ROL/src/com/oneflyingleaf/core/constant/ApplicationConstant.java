@@ -1,7 +1,7 @@
 package com.oneflyingleaf.core.constant;
 
 /**
- * 容器中存储的数据
+ * 瀹瑰櫒涓瓨鍌ㄧ殑鏁版嵁
  */
 public class ApplicationConstant {
 	public static final String TAG_PACKAGE_NAME = "tag_package_name";

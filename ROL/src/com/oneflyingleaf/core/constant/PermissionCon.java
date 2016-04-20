@@ -5,11 +5,13 @@ import java.util.List;
 
 public class PermissionCon {
 	
-	public static final String DELETE_USER_LOGISTIC = "DELETEUSERLOGISTIC";    //бъ╪╜и╬ЁЩ
+	public static final String DELETE_USER_LOGISTIC = "DELETEUSERLOGISTIC";    //И─╩Х╬▒Е┬═И≥╓
 	
-	public static final String UPDATE_USER_WITH_NO_PERMISSION = "DELETEUSERLOGISTIC"; //╦Э╦дсц╩╖ё╗╡╩╟Э╨╛х╗очё╘
+	public static final String UPDATE_USER_WITH_NO_PERMISSION = "DELETEUSERLOGISTIC"; //Ф⌡╢Ф■╧Г■╗Ф┬╥О╪┬Д╦█Е▄┘Е░╚Ф²┐И≥░О╪┴
 
-	public static final String UPDATE_USER_WITH_PERMISSION = "UPDATEUSERWITHPERMISSION";  //©ирт╦Э╦дх╗оч
+	public static final String UPDATE_USER_WITH_PERMISSION = "UPDATEUSERWITHPERMISSION";  //Е▐╞Д╩╔Ф⌡╢Ф■╧Ф²┐И≥░
+
+	public static final String VIP0_DOWNLOAD = "VIP0_DOWNLOAD";
 	
 		
 }

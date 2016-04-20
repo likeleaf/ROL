@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.oneflyingleaf.core.tag.bean.AjaxBean;
+import com.oneflyingleaf.core.tag.controller.query.impl.ListQuery;
 import com.oneflyingleaf.core.tag.service.TagService;
 import com.oneflyingleaf.core.tag.utils.ClassUtils;
 import com.oneflyingleaf.core.util.SpringUtils;
@@ -17,6 +18,10 @@ public class ListDeal {
 	private AjaxBean jb;
 	
 	private TagService tagService ;
+	
+	private String finalHql ;
+	
+	private ListQuery lq ;
 	
 	
 	public ListDeal(AjaxBean jb){
@@ -30,75 +35,61 @@ public class ListDeal {
 		}
 	}
 	/**
-	 * µÃµ½ÏàÓ¦µÄlist
+	 * å¾—åˆ°ç›¸åº”çš„list
 	 */
 	public <T> List<T> getList(){
-		tagService = SpringUtils.getBean("tagService");
-		List<T> list = null;
-		
-		String str = getQueryString();
-
-		if(jb.isHqlLan()){
-			list = tagService.list(str,jb.getPageNow(),jb.getPageCount());
-		}else{
-			try {
-				if(jb.isCheckClass()){
-					list = (List<T>) tagService.listBySql(str,jb.getClazz().newInstance());
-				}else{
-					list = (List<T>) tagService.listBySql(str,null);
-				}
-					
-			} catch (InstantiationException | IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		log.info("Ç°Ì¨ÇëÇó:" + str);
-		
-		return list;
+		lq = new ListQuery(getQueryString(),jb,SpringUtils.getBean("tagService"));
+		return lq.getList();
+ 	}
+	
+	
+	public int getCount(){
+		return lq.getCount();
 	}
 	
+
+	
 	/**
-	 * ÈıÖÖ·µ»ØÖµ
-	 * @return null ±íÊ¾³ö´í£¬ Èç¹ûisHqlÎªtrue£¬Ôò·µ»ØÒ»¸öhqlÓï¾ä£¬Èç¹ûisHqlÎªfalse£¬Ôò±íÊ¾·µ»ØsqlÓï¾ä£¬isHqlÄ¬ÈÏÎªtrue;
+	 * ä¸‰ç§è¿”å›å€¼
+	 * @return null è¡¨ç¤ºå‡ºé”™ï¼Œ å¦‚æœisHqlä¸ºtrueï¼Œåˆ™è¿”å›ä¸€ä¸ªhqlè¯­å¥ï¼Œå¦‚æœisHqlä¸ºfalseï¼Œåˆ™è¡¨ç¤ºè¿”å›sqlè¯­å¥ï¼ŒisHqlé»˜è®¤ä¸ºtrue;
 	 */
 	
 	private String getQueryString(){
 		if(StringUtils.isNotBlank(jb.getType())){
 			if("hql".equals(jb.getType())){
-				return jb.getHql();
+				return jb.getHql().replaceAll("#", "%");
 			}else if("sql".equals(jb.getType())){
 				jb.setHqlLan(false) ;
 				return jb.getSql();
 			}
 			return null;
-		}else{//Ã»ÓĞhqlºÍsqlÓï¾ä£¬Ö±½ÓÍ¨¹ıÏà¹ØµÄÊôĞÔ´«ÈëµÄÖµ½øĞĞÆ´´ÕµÃµ½hqlÓï¾ä
+		}else{//æ²¡æœ‰hqlå’Œsqlè¯­å¥ï¼Œç›´æ¥é€šè¿‡ç›¸å…³çš„å±æ€§ä¼ å…¥çš„å€¼è¿›è¡Œæ‹¼å‡‘å¾—åˆ°hqlè¯­å¥
 			StringBuffer sb = new StringBuffer();
 			sb.append("from "+ jb.getName() + " ");
 			
-			//Æ´ºÏwhereÓï¾ä
+			//æ‹¼åˆwhereè¯­å¥
 			if(StringUtils.isNotBlank(jb.getLimit()) || StringUtils.isNotBlank(jb.getLikeLimit()) || StringUtils.isNotBlank(jb.getOtherCon())){
 				sb.append("where ");
-				//Æ´ºÏ¾«È·²éÑ¯Óï¾ä
+				//æ‹¼åˆç²¾ç¡®æŸ¥è¯¢è¯­å¥
 				if(jb.isLimitCheck() && StringUtils.isNotBlank(getLimit())){
 					sb.append(" "+getLimit()+" and ");
 				}else if(StringUtils.isNotBlank(jb.getLimit())){
 					sb.append(" "+jb.getLimit()+" and ");
 				}
 				
-				//Ö±½Ó½«ÏàÓ¦µÄÊı¾İ·ÅÈëwhereÖĞ
+				//ç›´æ¥å°†ç›¸åº”çš„æ•°æ®æ”¾å…¥whereä¸­
 				if(StringUtils.isNotBlank(jb.getOtherCon())){
 					sb.append(" "+jb.getOtherCon() +" and ");
 				}
-				//Æ´ºÏÄ£ºı²éÑ¯Óï¾ä
+				//æ‹¼åˆæ¨¡ç³ŠæŸ¥è¯¢è¯­å¥
 				if(StringUtils.isNotBlank(getLikeLimit())){
 					sb.append(" "+getLikeLimit()+" and ");
 				}
-				//½«×îÖÕµÄwhere×Ó¾ä´«ÈësbÖĞ
+				//å°†æœ€ç»ˆçš„whereå­å¥ä¼ å…¥sbä¸­
 				sb = new StringBuffer(sb.substring(0, sb.length()-4));
 			}
 			
-			//Æ´ºÏorder by×Ó¾ä
+			//æ‹¼åˆorder byå­å¥
 			if(StringUtils.isNotBlank(jb.getOrder())){
 				sb.append(" order by " + jb.getOrder());
 			}
@@ -108,8 +99,8 @@ public class ListDeal {
 	}
 	
 	/**
-	 * ¸ù¾İlikelimitµÃµ½Ïà¹ØµÄsql»òÕßhql
-	 * @return null ±íÊ¾Ã»ÓĞlikeLimit£¬·µ»Ø×Ö·û´®±íÊ¾Ïà¹ØµÄÄ£ºı²éÑ¯Óï¾ä
+	 * æ ¹æ®likelimitå¾—åˆ°ç›¸å…³çš„sqlæˆ–è€…hql
+	 * @return null è¡¨ç¤ºæ²¡æœ‰likeLimitï¼Œè¿”å›å­—ç¬¦ä¸²è¡¨ç¤ºç›¸å…³çš„æ¨¡ç³ŠæŸ¥è¯¢è¯­å¥
 	 */
 	public String getLikeLimit() {
 		if(StringUtils.isNotBlank(jb.getLikeLimit())){
@@ -120,7 +111,7 @@ public class ListDeal {
 				for (int i = 0; i < str.length; i++) {
 					
 					
-					//ÆæÊıÎªvalue£¬Å¼ÊıÎªname
+					//å¥‡æ•°ä¸ºvalueï¼Œå¶æ•°ä¸ºname
 					if(i % 2 == 0){
 						sb.append(str[i]);
 					}else{
@@ -136,21 +127,21 @@ public class ListDeal {
 	
 	
 	/**
-	 * µÃµ½¾«È·µØÏŞÖÆÌõ¼ş
+	 * å¾—åˆ°ç²¾ç¡®åœ°é™åˆ¶æ¡ä»¶
 	 * @return
 	 */
 	public String getLimit() {
 		if(StringUtils.isNotBlank(jb.getLimit())){
 			StringBuffer sb = new StringBuffer();
-			//µÃµ½name = value
+			//å¾—åˆ°name = value
 			String[] andSplit = jb.getLimit().split("and");
 
 			for (int i = 0; i < andSplit.length; i++) {
-				//µÃµ½name ºÍ value
+				//å¾—åˆ°name å’Œ value
 				String [] equSplit = andSplit[i].split("=");
 				
 				for (int j = 0; j < equSplit.length; j++) {
-					//ÆæÊéÎªvalue,Ö»ÓĞvalueÓĞÖµÊ±£¬²Å°Ñ¸Ã²éÑ¯Ìí¼Ó½øÈ¥
+					//å¥‡ä¹¦ä¸ºvalue,åªæœ‰valueæœ‰å€¼æ—¶ï¼Œæ‰æŠŠè¯¥æŸ¥è¯¢æ·»åŠ è¿›å»
 					if(j % 2 == 1){
 						if(StringUtils.isNotBlank(equSplit[j].trim())){
 							sb.append(" " + equSplit[j-1] + "=" +equSplit[j] + " and ");
@@ -158,8 +149,10 @@ public class ListDeal {
 					}
 				}
 			}
-			
-			return sb.substring(0, sb.length()-4);
+			if(sb.length()>1){
+				return sb.substring(0, sb.length()-4);
+			}
+			return null;
 		}
 		return null;
 	}

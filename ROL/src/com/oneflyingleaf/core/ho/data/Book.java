@@ -1,6 +1,7 @@
 package com.oneflyingleaf.core.ho.data;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Random;
 
 import com.oneflyingleaf.crawler.constant.CrawlerConstant;
@@ -33,7 +34,9 @@ public class Book  implements java.io.Serializable {
      private String bookImg;
      private String bookType;
      
-     private String bookAtt;//制造数据
+     private BookChaper bookChaper;
+     private List<BookChaper> bookChapers;
+     
 
      
      
@@ -119,6 +122,7 @@ public class Book  implements java.io.Serializable {
 	}
 
 	public String getBookImg() {
+		if(bookImg == null) return bookImg;
 		return CrawlerConstant.BOOK_USE+bookImg.replaceAll(CrawlerConstant.BOOK_IMG2,"" ).replaceAll("\\\\", "/");
 	}
 
@@ -134,13 +138,25 @@ public class Book  implements java.io.Serializable {
 	}
 
 	public String getBookAtt() {
-		bookAtt = new Random().nextInt(90000)+10000+"";
-		return bookAtt;
+		return new Random().nextInt(90000)+10000+"";
 	}
 
-	public void setBookAtt(String bookAtt) {
-		this.bookAtt = bookAtt;
+	public BookChaper getBookChaper() {
+		return bookChaper;
 	}
+
+	public void setBookChaper(BookChaper bookChaper) {
+		this.bookChaper = bookChaper;
+	}
+
+	public List<BookChaper> getBookChapers() {
+		return bookChapers;
+	}
+
+	public void setBookChapers(List<BookChaper> bookChapers) {
+		this.bookChapers = bookChapers;
+	}
+
 
 
 

@@ -16,50 +16,52 @@ import com.oneflyingleaf.core.tag.controller.ListDeal;
 public class Lists extends BasicTag{
 	
 	
-	//javaBean µÄÃû³Æ£¬±ØÑ¡
+	//javaBean çš„åç§°ï¼Œå¿…é€‰
 	private String name;
-	//½«list¸³Öµ
+	//å°†listèµ‹å€¼
 	private String var;
-	//ÏŞÖÆÌõ¼şwhereÌõ¼ş£¬¾«È·²éÑ¯£¬Ö»Ö§³ÖÓÃ=ÏàÁ¬µÄ
+	//é™åˆ¶æ¡ä»¶whereæ¡ä»¶ï¼Œç²¾ç¡®æŸ¥è¯¢ï¼Œåªæ”¯æŒç”¨=ç›¸è¿çš„
 	private String limit;
-	//ÅÅĞò
+	//æ’åº
 	private String order;
-	//µ±typeÎªhqlÊÇÖ´ĞĞ¸Ãhql
+	//å½“typeä¸ºhqlæ˜¯æ‰§è¡Œè¯¥hql
 	private String hql;
-	//µ±typeÎªsqlÊ±Ö´ĞĞ¸Ãsql
+	//å½“typeä¸ºsqlæ—¶æ‰§è¡Œè¯¥sql
 	private String sql;
-	//Éè¶¨¸üĞÂµÄÀàĞÍ
+	//è®¾å®šæ›´æ–°çš„ç±»å‹
 	private String type;
-	//Ä£ºı²éÑ¯
+	//æ¨¡ç³ŠæŸ¥è¯¢
 	private String likeLimit;
 	
-	//ÆäËû²éÑ¯£¬ÈÎÒâ²éÑ¯£¬²»×öÈÎºÎÅĞ¶Ï£¬Ö±½Ó¼ÓÈëwhere×Ó¾ä
+	//å…¶ä»–æŸ¥è¯¢ï¼Œä»»æ„æŸ¥è¯¢ï¼Œä¸åšä»»ä½•åˆ¤æ–­ï¼Œç›´æ¥åŠ å…¥whereå­å¥
 	private String otherCon;
 	
-	//limitÊÇ·ñÑéÖ¤£¬Èç¹ûÑéÖ¤µÄ»°¿ÉÄÜ»áÓ°ÏìĞÔÄÜ£¬Ä¬ÈÏÊÇÎªfalse
+	//limitæ˜¯å¦éªŒè¯ï¼Œå¦‚æœéªŒè¯çš„è¯å¯èƒ½ä¼šå½±å“æ€§èƒ½ï¼Œé»˜è®¤æ˜¯ä¸ºfalse
 	private boolean limitCheck = false;
 	
-	//±íÊ¾ÊÇ·ñÊÇHql
+	//è¡¨ç¤ºæ˜¯å¦æ˜¯Hql
 	private boolean isHql = true;
 	
-	//Ã¿Ò³µÄÊı¾İ
+	//æ¯é¡µçš„æ•°æ®
 	private Integer pageCount;
-	//Ò³Êı
+	//é¡µæ•°
 	private Integer pageNow; 
 	
 	private Class clazz = null;
 	
-	//ÊµÌåÀàµÄ°üÃû£¬Èç¹ûÊµÌåÀàÈ±Ê§½«×Ô¶¯Ñ°ÕÒconfig.propertiesµÄÖĞµÄdata.packageÊôĞÔÀ´³ä×÷packageName
+	//å®ä½“ç±»çš„åŒ…åï¼Œå¦‚æœå®ä½“ç±»ç¼ºå¤±å°†è‡ªåŠ¨å¯»æ‰¾config.propertiesçš„ä¸­çš„data.packageå±æ€§æ¥å……ä½œpackageName
 	private String packageName;
 
-	//ÊÇ·ñÖ»ÓĞÒ»Ìõ¼ÇÂ¼
+	//æ˜¯å¦åªæœ‰ä¸€æ¡è®°å½•
 	private boolean onlyOne = false;
-	//±êÇ©´æ·ÅµÄÓò
+	//æ ‡ç­¾å­˜æ”¾çš„åŸŸ
 	private String scope ;
-	//±êÇ©´æ·ÅµÄÓòÖĞµÄÃû³Æ£¬²»ÉèÖÃÎªvar
+	//æ ‡ç­¾å­˜æ”¾çš„åŸŸä¸­çš„åç§°ï¼Œä¸è®¾ç½®ä¸ºvar
 	private String sname;
-	//ÊÇ·ñÑéÖ¤Àà
+	//æ˜¯å¦éªŒè¯ç±»
 	private boolean checkClass = true;
+	//æ˜¯å¦è·å–count
+	private boolean showCount = false;
 	
 	private JspContext pc;
 	
@@ -94,8 +96,8 @@ public class Lists extends BasicTag{
 		jb.setType(type);
 		jb.setVar(var);
 		jb.setCheckClass(checkClass);
+		jb.setShowCount(showCount);
 		
-		long  l1 = System.currentTimeMillis();
 		ListDeal q = new ListDeal(jb);
 		List l = q.getList();
 	
@@ -105,7 +107,10 @@ public class Lists extends BasicTag{
 			}
 		}
 		
-		System.out.println(System.currentTimeMillis() - l1);
+		if(showCount){
+			pc.setAttribute("count", q.getCount());
+		}
+		
 		String str = StringUtils.isNotBlank(sname)?sname:var;
 		if("session".equals(scope)){
 			((PageContext)this.getJspContext()).getSession().setAttribute(str,l);
@@ -167,6 +172,34 @@ public class Lists extends BasicTag{
 
 	public void setCheckClass(boolean checkName) {
 		this.checkClass = checkName;
+	}
+
+	public JspContext getPc() {
+		return pc;
+	}
+
+	public void setPc(JspContext pc) {
+		this.pc = pc;
+	}
+
+	public void setHql(boolean isHql) {
+		this.isHql = isHql;
+	}
+
+	public void setClazz(Class clazz) {
+		this.clazz = clazz;
+	}
+
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
+
+	public void setShowCount(boolean showCount) {
+		this.showCount = showCount;
+	}
+
+	public static void setLog(Log log) {
+		Lists.log = log;
 	}
 
 

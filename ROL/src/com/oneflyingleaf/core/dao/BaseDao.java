@@ -4,94 +4,94 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface BaseDao {
-	//²é
+	//æŸ¥
 	/**
-	 * Í¨¹ı²ÎÊıÌõ¼ş²éÑ¯
+	 * é€šè¿‡å‚æ•°æ¡ä»¶æŸ¥è¯¢
 	 * @param hql
-	 * @param params hqlµÄ²ÎÊı£¬Èç¹ûÃ»ÓĞ²ÎÊılistµÄÖµÎªnull
+	 * @param params hqlçš„å‚æ•°ï¼Œå¦‚æœæ²¡æœ‰å‚æ•°listçš„å€¼ä¸ºnull
 	 * @return
 	 */
 	<T> List<T> find(String hql,Object[] params);
 	
 	/**
-	 * Í¨¹ı²ÎÊı²éÑ¯£¬Ê¹ÓÃsqlÓï¾ä
+	 * é€šè¿‡å‚æ•°æŸ¥è¯¢ï¼Œä½¿ç”¨sqlè¯­å¥
 	 * @param sql 
-	 * @param params sqlµÄ²ÎÊı
-	 * @param clazz sql²éÕÒµÄ½á¹û×ªĞÍÎªclazz
+	 * @param params sqlçš„å‚æ•°
+	 * @param clazz sqlæŸ¥æ‰¾çš„ç»“æœè½¬å‹ä¸ºclazz
 	 * @return
 	 */
 	<T> List<T> findBySQL(String sql,Object[] params,Class<?> clazz);
 	
 	/**
-	 * ·ÖÒ³²éÑ¯ hql
+	 * åˆ†é¡µæŸ¥è¯¢ hql
 	 * @param hql
 	 * @param params
-	 * @param pageCount Ã¿Ò³µÄÊıÁ¿
-	 * @param pageNow µ±Ç°Ò³
+	 * @param pageCount æ¯é¡µçš„æ•°é‡
+	 * @param pageNow å½“å‰é¡µ
 	 * @return
 	 */
 	
 	<T> List<T> padingFind(String hql , Object[] params,Integer pageCount,Integer pageNow);
 	
 	/**
-	 * ·ÖÒ³²éÑ¯ hql
+	 * åˆ†é¡µæŸ¥è¯¢ hql
 	 * @param sql
 	 * @param params
-	 * @param pageCount Ã¿Ò³µÄÊıÁ¿
-	 * @param pageNow µ±Ç°Ò³
+	 * @param pageCount æ¯é¡µçš„æ•°é‡
+	 * @param pageNow å½“å‰é¡µ
 	 * @param clazz
 	 * @return
 	 */
 	<T> List<T> padingFindBySQL(String sql , Object[] params,Integer pageCount,Integer pageNow ,Class<?> clazz);
 	
 	/**
-	 * Í¨¹ı²ÎÊıÌõ¼ş²éÑ¯
+	 * é€šè¿‡å‚æ•°æ¡ä»¶æŸ¥è¯¢
 	 * @param hql
-	 * @param params hqlµÄ²ÎÊı£¬Èç¹ûÃ»ÓĞ²ÎÊılistµÄÖµÎªnull
+	 * @param params hqlçš„å‚æ•°ï¼Œå¦‚æœæ²¡æœ‰å‚æ•°listçš„å€¼ä¸ºnull
 	 * @return
 	 */
 	<T> T findOne(String hql,Object[] params);
 	
 	/**
-	 * Í¨¹ı²ÎÊıÌõ¼ş²éÑ¯
+	 * é€šè¿‡å‚æ•°æ¡ä»¶æŸ¥è¯¢
 	 * @param sql
-	 * @param params hqlµÄ²ÎÊı£¬Èç¹ûÃ»ÓĞ²ÎÊılistµÄÖµÎªnull
+	 * @param params hqlçš„å‚æ•°ï¼Œå¦‚æœæ²¡æœ‰å‚æ•°listçš„å€¼ä¸ºnull
 	 * @return
 	 */
 	<T> T findOneBySQL(String sql,Object[] params,Class<?> clazz);
 	
 	/**
-	 * Í¨¹ıÖ÷¼ü²éÕÒÏà¹ØÊµÌå
+	 * é€šè¿‡ä¸»é”®æŸ¥æ‰¾ç›¸å…³å®ä½“
 	 * @param clazz
 	 * @param id
 	 * @return
 	 */
 	<T> T get(Class<?> clazz,Serializable id);
-	//Ôö
+	//å¢
 	/**
-	 * Ôö¼Óµ¥ÏîÊµÀı
+	 * å¢åŠ å•é¡¹å®ä¾‹
 	 * @param t
 	 * @return
 	 */
 	<T> boolean save(T t);
 	
 	/**
-	 * Ôö¼Ó¶àÏîÊµÀı
+	 * å¢åŠ å¤šé¡¹å®ä¾‹
 	 * @param lists
 	 * @return
 	 */
 	<T> boolean saveAll(List<T> lists);
 
 	/**
-	 * Èç¹û²»´æÔÚÔòÔö¼Ó£¬´æÔÚÔòĞŞ¸Ä
+	 * å¦‚æœä¸å­˜åœ¨åˆ™å¢åŠ ï¼Œå­˜åœ¨åˆ™ä¿®æ”¹
 	 * @param t
 	 * @return
 	 */
 	<T> boolean saveOrUpdate(T t);
 	
-	//¸Ä
+	//æ”¹
 	/**
-	 * ¸üĞÂÏà¹ØµÄÊµÀı
+	 * æ›´æ–°ç›¸å…³çš„å®ä¾‹
 	 * @param t
 	 * @return
 	 */
@@ -99,25 +99,25 @@ public interface BaseDao {
 	
 
 	
-	//É¾
+	//åˆ 
 	
 	/**
-	 * É¾³ıÏà¹ØÊµÀı
+	 * åˆ é™¤ç›¸å…³å®ä¾‹
 	 * @param t
 	 * @return
 	 */
 	<T> boolean delete(T t);
 	
 	/**
-	 * ÅúÁ¿É¾³ıÏà¹ØÊµÀı
+	 * æ‰¹é‡åˆ é™¤ç›¸å…³å®ä¾‹
 	 * @param lists
 	 * @return
 	 */
 	<T> boolean deleteAll(List<T> lists);
 	
-	//Ö±½ÓsqlÓï¾äÖ´ĞĞ
+	//ç›´æ¥sqlè¯­å¥æ‰§è¡Œ
 	/**
-	 * Ö±½ÓÍ¨¹ısqlÓï¾äÖ´ĞĞÏà¹ØµÄ²Ù×÷
+	 * ç›´æ¥é€šè¿‡sqlè¯­å¥æ‰§è¡Œç›¸å…³çš„æ“ä½œ
 	 * @param sql
 	 * @param params
 	 * @return

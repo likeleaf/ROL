@@ -1,8 +1,8 @@
 package com.oneflyingleaf.core.constant;
 
 public enum LogCod {
-	DeleteUser("10","用户删除"),
-	DeleteUserLogistic("11","用户逻辑删除");
+	DeleteUser("10","鐢ㄦ埛鍒犻櫎"),
+	DeleteUserLogistic("11","鐢ㄦ埛閫昏緫鍒犻櫎");
 	
 	private String key;
 	private String value;

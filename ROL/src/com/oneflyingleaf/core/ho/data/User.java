@@ -141,7 +141,11 @@ public class User  implements java.io.Serializable {
     }
     
     public void setUserPw(String userPw) {
-    	this.userPw = org.apache.commons.codec.digest.DigestUtils.md5Hex(userPw);
+    	if(userPw.length() != 32){
+    		this.userPw = org.apache.commons.codec.digest.DigestUtils.md5Hex(userPw);
+    	}else{
+    		this.userPw = userPw;
+    	}
     }
 
     public String getEmail() {

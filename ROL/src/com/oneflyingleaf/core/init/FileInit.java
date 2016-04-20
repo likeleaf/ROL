@@ -8,7 +8,7 @@ import com.oneflyingleaf.core.util.FileUtils;
 import com.oneflyingleaf.core.util.SpringUtils;
 
 /**
- * Ö÷Òª´¦ÀíÎÄ¼şjsºÍcssÎÄ¼şµÄºÏ²¢
+ * ä¸»è¦å¤„ç†æ–‡ä»¶jså’Œcssæ–‡ä»¶çš„åˆå¹¶
  * @author Administrator
  *
  */
@@ -16,17 +16,17 @@ public class FileInit {
 	Log log = LogFactory.getLog(FileInit.class);
 	
 	public void init(){
-		log.info("ÎÄ¼ş³õÊ¼»¯");
+		log.info("æ–‡ä»¶åˆå§‹åŒ–");
 		
-		//ºÏ²¢Js
+		//åˆå¹¶Js
 		this.margeJs();
-		//ºÏ²¢Css
+		//åˆå¹¶Css
 		this.margeCss();
 	}
 	
 	
 	/**
-	 * ºÏ²¢jsÎÄ¼ş³Éjs£¬´æ·ÅÔÚjsÎÄ¼ş¼ĞÏÂ
+	 * åˆå¹¶jsæ–‡ä»¶æˆjsï¼Œå­˜æ”¾åœ¨jsæ–‡ä»¶å¤¹ä¸‹
 	 */
 	private void margeJs(){
 		String jsGroup[] = ConfigUtils.getGroupName("js");
@@ -35,16 +35,16 @@ public class FileInit {
 			String []js = ConfigUtils.getJsName(s);
 			try {
 				FileUtils.readAndWriteFile(SpringUtils.getRealPath(jsPackage), js,SpringUtils.getRealPath( jsPackage), s+".js","js");
-				log.info(s+".jsÎÄ¼şºÏ²¢Íê³É£¡");
+				log.info(s+".jsæ–‡ä»¶åˆå¹¶å®Œæˆï¼");
 			} catch (Exception e) {
-				log.error(s+".jsÎÄ¼şºÏ²¢Ê§°Ü");
+				log.error(s+".jsæ–‡ä»¶åˆå¹¶å¤±è´¥");
 				e.printStackTrace();
 			}
 		}
 	}
 	
 	/**
-	 * ºÏ²¢cssÎÄ¼ş³Éa.css£¬´æ·ÅÔÚcssÎÄ¼ş¼ĞÏÂ
+	 * åˆå¹¶cssæ–‡ä»¶æˆa.cssï¼Œå­˜æ”¾åœ¨cssæ–‡ä»¶å¤¹ä¸‹
 	 */
 	private void margeCss(){
 		String cssGroup[] = ConfigUtils.getGroupName("css");
@@ -53,9 +53,9 @@ public class FileInit {
 			String []css = ConfigUtils.getCssName(s);
 			try {
 				FileUtils.readAndWriteFile(SpringUtils.getRealPath(cssPackage), css, SpringUtils.getRealPath(cssPackage), s+".css","css");
-				log.info(s+".cssÎÄ¼şºÏ²¢Íê³É£¡");
+				log.info(s+".cssæ–‡ä»¶åˆå¹¶å®Œæˆï¼");
 			} catch (Exception e) {
-				log.error(s+".cssÎÄ¼şºÏ²¢Ê§°Ü£¡");
+				log.error(s+".cssæ–‡ä»¶åˆå¹¶å¤±è´¥ï¼");
 				e.printStackTrace();
 			}
 		}

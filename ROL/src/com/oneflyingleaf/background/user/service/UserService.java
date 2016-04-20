@@ -6,7 +6,7 @@ import com.oneflyingleaf.core.service.BaseService;
 
 public interface UserService extends BaseService{
 	/**
-	 * 对用户进行逻辑删除
+	 * 瀵圭敤鎴疯繘琛岄�昏緫鍒犻櫎
 	 * @param id
 	 */
 	boolean deleteUserLogistic(Serializable id);

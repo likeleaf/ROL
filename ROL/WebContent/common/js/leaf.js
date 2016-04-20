@@ -35,7 +35,7 @@ leaf.msg = function (content){
 	if(hid){
 		hid.removeClass('hid');
 	}
-	var obj = $("<div style='color:red;text-shadow:1px 1px 0 #FF9900;font-weight:bolder;font-size:28px;text-align:center;top:200px;right:620px;position:fixed;'>"+content+"</div>");
+	var obj = $("<div style='color:red;text-shadow:1px 1px 0 #FF9900;font-weight:bolder;border:2px solid red;font-size:28px;text-align:center;top:200px;right:620px;position:fixed;'>"+content+"</div>");
 	$('body').append(obj);
 	setTimeout(function(){
 		obj.remove();
@@ -71,3 +71,25 @@ leaf.dataForSwap = function (cla,key){
 	date['role'] = a;
 	return date[cla][0][key];
 };
+/***********************************url工具*****************************************/
+/**
+ *	 从地址栏的参数得到参数的值，如果该参数不存在，则返回""，不是null，是""
+ */
+
+leaf.getQueryValue = function getQueryValue(queryName){
+	var myurl = window.location.href;
+	if(myurl.indexOf("?") != -1 && myurl.indexOf(queryName+"=") != -1){
+		var queryString = myurl.substring(myurl.indexOf("?")+1);
+		var array = queryString.split("&");
+		
+		for(var i=0;i<array.length;i++){
+			var query = array[i].split("=");
+			if(queryName == query[0]){
+				return query[1];
+			}
+		}
+	}
+	return "";
+}
+
+

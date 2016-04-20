@@ -2,6 +2,7 @@ package com.oneflyingleaf.core.tag.service.impl;
 
 import java.util.List;
 
+
 import com.oneflyingleaf.core.tag.dao.TagDao;
 import com.oneflyingleaf.core.tag.service.TagService;
 
@@ -9,6 +10,7 @@ import com.oneflyingleaf.core.tag.service.TagService;
 public class TagServiceImpl implements TagService{
 
 	private TagDao tagDao;
+	
 	
 	@Override
 	public  List list(String hql, Integer pageNow, Integer pageCount) {
@@ -24,6 +26,11 @@ public class TagServiceImpl implements TagService{
 	public int getCount(String name) {
 		return tagDao.getCount(name);
 	}
+	
+	public <T> List<T> query(String hql ,Object[] obj){
+		return tagDao.query(hql, obj);
+	}
+
 
 	public TagDao getTagDao() {
 		return tagDao;
@@ -32,5 +39,6 @@ public class TagServiceImpl implements TagService{
 	public void setTagDao(TagDao tagDao) {
 		this.tagDao = tagDao;
 	}
-
+	
+	
 }

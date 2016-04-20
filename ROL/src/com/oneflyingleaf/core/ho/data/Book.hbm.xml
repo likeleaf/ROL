@@ -38,7 +38,7 @@
         <property name="authName" type="java.lang.String">
         	<column name="AUTH_NAME"/>
         </property>
-          <property name="bookImg" type="java.lang.String">
+          <property name="bookImg" type="java.lang.String" update="false">
         	<column name="BOOK_IMG"/>
         </property>
         <property name="bookType" type="java.lang.String">

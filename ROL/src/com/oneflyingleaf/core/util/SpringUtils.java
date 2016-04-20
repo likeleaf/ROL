@@ -9,7 +9,7 @@ import com.oneflyingleaf.core.constant.ApplicationConstant;
 import com.oneflyingleaf.core.service.BaseService;
 
 /**
- * Spring¹¤¾ßÀà
+ * Springå·¥å…·ç±»
  * @author Administrator
  */
 public class SpringUtils {
@@ -18,7 +18,7 @@ public class SpringUtils {
 	public static int onLineUser = 0;
 	
 	/**
-	 * µÃµ½µ±Ç°µÄApplicationContext
+	 * å¾—åˆ°å½“å‰çš„ApplicationContext
 	 * @param sc ServletContext
 	 * @return
 	 */
@@ -27,9 +27,9 @@ public class SpringUtils {
 	}
 	
 	/**
-	 * ´ÓÈİÆ÷ÖĞµÃµ½¶ÔÓ¦µÄBean
+	 * ä»å®¹å™¨ä¸­å¾—åˆ°å¯¹åº”çš„Bean
 	 * @param sc ServletContext
-	 * @param obj ÈİÆ÷ÖĞBeanµÄÃû³Æ
+	 * @param obj å®¹å™¨ä¸­Beançš„åç§°
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -44,7 +44,7 @@ public class SpringUtils {
 	
 	
 	/**
-	 * µÃµ½ÈİÆ÷ÖĞµÄbaseService
+	 * å¾—åˆ°å®¹å™¨ä¸­çš„baseService
 	 * @return
 	 */
 	public static BaseService getBaseService(){

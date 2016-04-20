@@ -19,7 +19,7 @@ public class UserServiceImpl extends BasicService implements UserService {
 
 		boolean ret = true ; 
 		if(user != null){
-			//ÉèÖÃ×÷Õß±í
+			//è®¾ç½®ä½œè€…è¡¨
 			if(user.getAuthor() != null){
 				user.getAuthor().setAuthState("20");
 				
@@ -27,7 +27,7 @@ public class UserServiceImpl extends BasicService implements UserService {
 					ret = false;
 				}
 			}
-			//ÉèÖÃvip±í
+			//è®¾ç½®vipè¡¨
 			if(user.getVip() != null){
 				user.getVip().setVipStat("20");
 				
@@ -36,7 +36,7 @@ public class UserServiceImpl extends BasicService implements UserService {
 				}
 			}
 			
-			//ÉèÖÃÓÃ»§±í
+			//è®¾ç½®ç”¨æˆ·è¡¨
 			user.setUserState("20");
 			if(!this.save(user)){
 				ret = false;

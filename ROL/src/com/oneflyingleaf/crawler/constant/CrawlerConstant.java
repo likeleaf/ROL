@@ -1,7 +1,7 @@
 package com.oneflyingleaf.crawler.constant;
 
 public class CrawlerConstant {
-	//爬取网站的基本格式为http://www.ybdu.com/xiazai/13/14301/  14301数字变化使得书籍变化
+	//鐖彇缃戠珯鐨勫熀鏈牸寮忎负http://www.ybdu.com/xiazai/13/14301/  14301鏁板瓧鍙樺寲浣垮緱涔︾睄鍙樺寲
 	public static final String CRAWLER_URL = "http://www.ybdu.com/xiazai/14/";
 	
 	public static final String BOOK_PATH = "F:\\book\\book";

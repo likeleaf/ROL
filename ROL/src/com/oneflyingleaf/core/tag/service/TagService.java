@@ -3,12 +3,14 @@ package com.oneflyingleaf.core.tag.service;
 import java.util.List;
 
 public interface TagService {
-	//根据相关的hql得到list集合
+	//鏍规嵁鐩稿叧鐨刪ql寰楀埌list闆嗗悎
 	List list(String hql,Integer pageNow,Integer pageCount);
 	
-	//根据相关的sql得到list集合
+	//鏍规嵁鐩稿叧鐨剆ql寰楀埌list闆嗗悎
 	<T> List<T> listBySql(String hql,T t);
 	
-	//根据相关的javaBean得到它的记录总数
+	//鏍规嵁鐩稿叧鐨刯avaBean寰楀埌瀹冪殑璁板綍鎬绘暟
 	int getCount(String name);
+	
+	<T> List<T> query(String hql ,Object[] obj);
 }

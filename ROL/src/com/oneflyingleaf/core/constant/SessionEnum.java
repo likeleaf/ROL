@@ -4,5 +4,6 @@ public enum SessionEnum {
     OLDURL,
     USER,
     USERID,
+    DOWNLOADBOOKID,
     USERNAME;
 }

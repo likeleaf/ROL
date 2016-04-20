@@ -10,10 +10,10 @@ public class ContextUtils {
 	public static Map<String,Map<String,String>> getMap(){
 		Map<String,String> map = new HashMap<String,String>();
 		
-		//½«sex·ÅÈëÈÝÆ÷ÖÐ£¬1 ÄÐ  £»0  Å®
-		map.put(" ", "ÇëÑ¡Ôñ");
-		map.put("1", "ÄÐ");
-		map.put("0", "Å®");
+		//å°†sexæ”¾å…¥å®¹å™¨ä¸­ï¼Œ1 ç”·  ï¼›0  å¥³
+		map.put(" ", "è¯·é€‰æ‹©");
+		map.put("1", "ç”·");
+		map.put("0", "å¥³");
 		
 		SELECT_MAP.put("SEX", map);
 		return SELECT_MAP;

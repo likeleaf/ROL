@@ -1,46 +1,49 @@
 package com.oneflyingleaf.core.tag.bean;
 
 public class AjaxBean {
-	//javaBean µÄÃû³Æ£¬±ØÑ¡
-	private String name;
-	//½«list¸³Öµ
-	private String var;
-	//ÏŞÖÆÌõ¼şwhereÌõ¼ş£¬¾«È·²éÑ¯£¬Ö»Ö§³ÖÓÃ=ÏàÁ¬µÄ
-	private String limit;
-	//ÅÅĞò
-	private String order;
-	//µ±typeÎªhqlÊÇÖ´ĞĞ¸Ãhql
-	private String hql;
-	//µ±typeÎªsqlÊ±Ö´ĞĞ¸Ãsql
-	private String sql;
-	//Éè¶¨¸üĞÂµÄÀàĞÍ
-	private String type;
-	//Ä£ºı²éÑ¯
-	private String likeLimit;
+	//javaBean çš„åç§°ï¼Œå¿…é€‰
+	protected String name;
+	//å°†listèµ‹å€¼
+	protected String var;
+	//é™åˆ¶æ¡ä»¶whereæ¡ä»¶ï¼Œç²¾ç¡®æŸ¥è¯¢ï¼Œåªæ”¯æŒç”¨=ç›¸è¿çš„
+	protected String limit;
+	//æ’åº
+	protected String order;
+	//å½“typeä¸ºhqlæ˜¯æ‰§è¡Œè¯¥hql
+	protected String hql;
+	//å½“typeä¸ºsqlæ—¶æ‰§è¡Œè¯¥sql
+	protected String sql;
+	//è®¾å®šæ›´æ–°çš„ç±»å‹
+	protected String type;
+	//æ¨¡ç³ŠæŸ¥è¯¢
+	protected String likeLimit;
 	
-	//ÆäËû²éÑ¯£¬ÈÎÒâ²éÑ¯£¬²»×öÈÎºÎÅĞ¶Ï£¬Ö±½Ó¼ÓÈëwhere×Ó¾ä
-	private String otherCon;
+	//å…¶ä»–æŸ¥è¯¢ï¼Œä»»æ„æŸ¥è¯¢ï¼Œä¸åšä»»ä½•åˆ¤æ–­ï¼Œç›´æ¥åŠ å…¥whereå­å¥
+	protected String otherCon;
 	
-	//limitÊÇ·ñÑéÖ¤£¬Èç¹ûÑéÖ¤µÄ»°¿ÉÄÜ»áÓ°ÏìĞÔÄÜ£¬Ä¬ÈÏÊÇÎªfalse
-	private boolean limitCheck = false;
+	//limitæ˜¯å¦éªŒè¯ï¼Œå¦‚æœéªŒè¯çš„è¯å¯èƒ½ä¼šå½±å“æ€§èƒ½ï¼Œé»˜è®¤æ˜¯ä¸ºfalse
+	protected boolean limitCheck = false;
 	
-	//±íÊ¾ÊÇ·ñÊÇHql·ÀÖ¹javabeanÎÊÌâ
-	private boolean hqlLan = true;
+	//è¡¨ç¤ºæ˜¯å¦æ˜¯Hqlé˜²æ­¢javabeané—®é¢˜
+	protected boolean hqlLan = true;
 	
-	//Ã¿Ò³µÄÊı¾İ
-	private Integer pageCount;
-	//Ò³Êı
-	private Integer pageNow; 
+	//æ¯é¡µçš„æ•°æ®
+	protected Integer pageCount;
+	//é¡µæ•°
+	protected Integer pageNow; 
 	
-	private Class clazz = null;
+	protected Class clazz = null;
 	
-	//ÊµÌåÀàµÄ°üÃû£¬Èç¹ûÊµÌåÀàÈ±Ê§½«×Ô¶¯Ñ°ÕÒconfig.propertiesµÄÖĞµÄdata.packageÊôĞÔÀ´³ä×÷packageName
-	private String packageName;
+	//å®ä½“ç±»çš„åŒ…åï¼Œå¦‚æœå®ä½“ç±»ç¼ºå¤±å°†è‡ªåŠ¨å¯»æ‰¾config.propertiesçš„ä¸­çš„data.packageå±æ€§æ¥å……ä½œpackageName
+	protected String packageName;
 
-	//ÊÇ·ñÖ»ÓĞÒ»Ìõ¼ÇÂ¼
-	private boolean onlyOne = false;
+	//æ˜¯å¦åªæœ‰ä¸€æ¡è®°å½•
+	protected boolean onlyOne = false;
 	
-	private boolean checkClass = true;
+	protected boolean checkClass = true;
+	//æ˜¯å¦è·å–æ€»æ•°ï¼Œå¦‚æœè·å–åˆ™å¾—åˆ°count:123
+	protected boolean showCount = false;
+
 	
 	
 	public String getName() {
@@ -146,4 +149,11 @@ public class AjaxBean {
 	public void setCheckClass(boolean checkClass) {
 		this.checkClass = checkClass;
 	}
+	public boolean isShowCount() {
+		return showCount;
+	}
+	public void setShowCount(boolean showCount) {
+		this.showCount = showCount;
+	}
+
 }

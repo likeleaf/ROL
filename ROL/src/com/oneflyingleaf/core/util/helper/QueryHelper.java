@@ -4,34 +4,34 @@ public interface QueryHelper {
 	public static final String ORDER_BY_DESC = "DESC";
 	public static final String ORDER_BY_ASC = "ASC";
 	/**
-	 * Ìí¼Ó²éÑ¯Ìõ¼ş
-	 * @param condition ²éÑ¯Ìõ¼ş ĞèÒªÌí¼Ó = £¬likeµÈ²éÑ¯Ìõ¼ş
-	 * @param value Öµ ,Ã»ÓĞÖµÊ±ÉèÖÃÎªnull
+	 * æ·»åŠ æŸ¥è¯¢æ¡ä»¶
+	 * @param condition æŸ¥è¯¢æ¡ä»¶ éœ€è¦æ·»åŠ  = ï¼Œlikeç­‰æŸ¥è¯¢æ¡ä»¶
+	 * @param value å€¼ ,æ²¡æœ‰å€¼æ—¶è®¾ç½®ä¸ºnull
 	 */
 	void addCondition(String condition,Object value);
 
 	/**
-	 * Ìí¼Ó²éÑ¯Ìõ¼ş,²¢¶ÔvalueµÄÖµ½øĞĞÑéÖ¤¡£check ÎªtrueÊ±£¬valueÎªnull»òÕßÎª"",Ôò²»Ìí¼Ó²éÑ¯Ìõ¼ş
+	 * æ·»åŠ æŸ¥è¯¢æ¡ä»¶,å¹¶å¯¹valueçš„å€¼è¿›è¡ŒéªŒè¯ã€‚check ä¸ºtrueæ—¶ï¼Œvalueä¸ºnullæˆ–è€…ä¸º"",åˆ™ä¸æ·»åŠ æŸ¥è¯¢æ¡ä»¶
 	 * @param condition
 	 * @param value 
-	 * @param check false ²»ÑéÖ¤£¬true ÑéÖ¤
+	 * @param check false ä¸éªŒè¯ï¼Œtrue éªŒè¯
 	 */
 	void addCondition(String condition, Object value,boolean check);
 	/**
-	 * Ìí¼ÓÅÅĞò
+	 * æ·»åŠ æ’åº
 	 * @param filed
 	 * @param seq
 	 */
 	void addOrderBy(String filed,String seq);
 	
 	/**
-	 * µÃµ½²éÑ¯Óï¾ä
+	 * å¾—åˆ°æŸ¥è¯¢è¯­å¥
 	 * @return
 	 */
 	String getHQL();
 	
 	/**
-	 * µÃµ½²éÑ¯µÄÌõ¼ş¶ÔÓ¦µÄÖµ
+	 * å¾—åˆ°æŸ¥è¯¢çš„æ¡ä»¶å¯¹åº”çš„å€¼
 	 * @return
 	 */
 	Object[] getValue();

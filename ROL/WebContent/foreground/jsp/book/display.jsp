@@ -13,11 +13,11 @@
 <%-- <l:lists name="Book" var="book" order="bookId desc" limit= "bookId = ${param.bookId }" onlyOne="true"/>
 <l:lists name="BookChaper" var="bc" order="bookChaIndex desc" limit= "bookId = ${param.bookId }" pageCount="20"/> --%>
 
-
+	
 	<!--书籍选择展示-->
 	<div class="container">
 		<div class="content">
-			<div class="produce-h3">全本</div>
+			<div class="produce-h3"><a name="top" href="#top">全本</a></div>
 			<hr class="blue-line">
 
 			<div class="book-select">
@@ -25,7 +25,7 @@
 					作品频道:
 				</div>
 				<ul class="book-display-list list-unstyled">
-					<li><a class="cur" href="javascript:;" data-type="bookType">全部</a></li>
+					<li><a id="init" class="cur" href="javascript:;" data-type="bookType">全部</a></li>
 					 <l:lists  var="t" type="sql" sql="SELECT DISTINCT BOOK_TYPE FROM BOOKS" checkClass="false"/>
 					 <c:forEach var="lab" items="${t }">
 						<li><a href="javascript:;" data-type="bookType">${lab }</a></li>
@@ -103,7 +103,7 @@
 					<th width="16%">更新时间</th>
 				</tr>
 
-				<tr>
+			<!-- 	<tr>
 					<td style="color: #ff6600">1</td>
 					<td> 	[异世大陆]   <a href=""> 战梦天道</a> <a href="">完本感言</a> </td>
 					<td><a href="">永世幻生</a></td>
@@ -132,19 +132,11 @@
 					<td>1231231</td>
 					<td>12312</td>
 					<td> 2016-03-31 15:48:55</td>
-				</tr>
+				</tr> -->
 			</table>
 			<hr class="lab-split">
 			<div class="page">
 				<div class="page-list">
-					<a class="btn btn-default btn-sm active">1</a>
-					<a class="btn btn-default btn-sm" href="">2</a>
-					<a class="btn btn-default btn-sm" href="">3</a>
-					<a class="btn btn-default btn-sm" href="">4</a>
-					<a class="btn btn-default btn-sm" href="">5</a>
-					<a class="btn btn-default btn-sm" href="">6</a>
-					<a class="btn btn-default btn-sm" href="">...</a>
-					<a class="btn btn-default btn-sm" href="">78</a>
 				</div>
 			</div>
 
@@ -231,36 +223,80 @@
 	//用来存放选中的标签的内容
 	var arr = {};
 	var myurl = '${ctx}/ajax/ajax_ajax?'
+	var rowCount;
+	var pageCount = 30;
+	var pageNow = 1;
+	var likeLimit;
+
+	var def = ['全部'];
 	$(function(){
 		$('.book-display-list li a').on("click",function(e){
+			dealPage(e);			
+		});
+		var value = leaf.getQueryValue('bookType');
+		value = decodeURI(value);
+		if(value){
+			var aLab = $('.book-display-list.list-unstyled li').children('a[data-type=bookType]');
+			for(var i = 0;i<aLab.length;i++){
+				if(aLab.eq(i).text() == value){
+					aLab.eq(i).click();
+					break;
+					}
+				}
+		}else{
+			$('#init').click();	
+		}
+
+		dealPage();
+	});
+
+	
+
+	//ajax从后台查找数据
+	function dealPage(e){
+		var temp = '';
+		if(e){
+			pageNow = 1;
 			$(e.target).parent().parent().children().children().removeClass('cur');
 			$(e.target).addClass('cur');
 			var key = $(e.target).attr("data-type");
+			if(!key){
+				return;
+				}
 			var value = $(e.target).text();
 			arr[key] = value;
-			var temp = '';
 			for(var key in arr){
-				temp = 'and ' +key+ '='+ arr[key] ;
+				var str = arr[key];
+				for(var k in def){
+					if(def[k] == str){
+						str = '';
+						break;
+						}	
+				}
+				temp = 'and ' +key+ ' = '+str+'' ;
 			}
 			if(temp.length > 1){
 				temp = "'"+temp.substr(3)+"'";
 				}
-			var jsonStr =  "{'name':'Book','likeLimit':"+temp+",'pageCount':10}";
-			jsonStr = "json=" + encodeURI(jsonStr);
-			
-			leaf.ajax({url:myurl+jsonStr,dataType:'json',success:doPage});
-		});
-	});
+			 likeLimit = temp;
+	   }
+		var jsonStr =  "{'name':'Book','likeLimit':"+likeLimit+",'pageCount':"+pageCount+",'showCount':true,'pageNow':"+pageNow+"}";
+		jsonStr = "json=" + encodeURI(jsonStr);
+		
+		leaf.ajax({url:myurl+jsonStr,dataType:'json',success:doPage});
 
+	}
 
 	function doPage(msg){
 		var obj = $('.table.table-hover');
 			obj.children().remove();	
 		var str = "";
 		var i=1;
+		rowCount = msg.count;
+		msg = msg.pojo;
 		for(var key in msg){
 			str  += '<tr> <td style="color: #ff6600">'+i+'</td><td> 	['+msg[key]['bookType']+']   <a href=""> '+msg[key]['bookName']+'</a> <a href="">完本感言</a> </td>'
-			+'<td><a href="">永世幻生</a></td>'
+			+'<td><a href="">'+msg[key]['authName']+'</a></td>'
 			+'<td>1231231</td>'
 			+'<td>12312</td>'
 			+'<td> 2016-03-31 15:48:55</td>'+
@@ -269,7 +305,60 @@
 			str = ""
 			i++;
 		}	
-		console.log(obj);
+
+		doSplitPage();
+	}
+
+	function doSplitPage(){
+		var pageNumber = rowCount%pageCount==0?parseInt(rowCount/pageCount):parseInt(rowCount/pageCount)+1;
+		var page = $('.page .page-list');
+		page.children().remove();
+		
+		//第一页
+		if(pageNow != 1){
+			page.append(getNumberPage("首页"));
+		}
+		if(pageNow -2 >0){
+			page.append(getNumberPage(pageNow-2));
+		}
+		if(pageNow -1>0){
+			page.append(getNumberPage(pageNow-1));
+		}
+		var row = getNumberPage(pageNow);
+		page.append(row.addClass('active'));
+		if(pageNow+1 <= pageNumber ){
+			page.append(getNumberPage(pageNow+1));
+		}
+		if(pageNow+2 <= pageNumber ){
+			page.append(getNumberPage(pageNow+2));
+		}
+		if(pageNow !=  pageNumber){
+			page.append(getNumberPage('末页'));
+		}
+		page.children().on('click',function(e){
+			if('首页' != $(e.target).text() && '末页' != $(e.target).text()){
+				doSplitPage();
+			}
+			pageNow = parseInt($(e.target).text());
+			if('首页' == $(e.target).text()){
+				pageNow = 1;
+				
+			}
+			if('末页' == $(e.target).text()){
+				pageNow = pageNumber;
+			}
+			dealPage();
+			document.location.href = document.location.href.split("#")[0]+"#top";
+
+		});
+				
+			
+	}
+
+	function getNumberPage(page){
+		var row = $('<a class="btn btn-default btn-sm"></a>');
+		row.html(page+"");
+		return row;
 	}
 
 </script>

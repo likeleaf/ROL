@@ -29,7 +29,7 @@ public class BasicAction extends ActionSupport {
 	
 	
 	/**
-	 * ½«Êı¾İs´«µ½Ç°Ì¨
+	 * å°†æ•°æ®sä¼ åˆ°å‰å°
 	 * @param s
 	 */
 	public void outPut(String s){
@@ -54,7 +54,7 @@ public class BasicAction extends ActionSupport {
 	}
 	
 	/**
-	 * ½«json´«µ½Ç°Ì¨
+	 * å°†jsonä¼ åˆ°å‰å°
 	 * 
 	 */
 	public void outPut(JSONObject jo){
@@ -62,7 +62,7 @@ public class BasicAction extends ActionSupport {
 	}
 	
 	/**
-	 * µÃµ½request
+	 * å¾—åˆ°request
 	 * @return
 	 */
 	public HttpServletRequest getRequest(){
@@ -71,21 +71,21 @@ public class BasicAction extends ActionSupport {
 	
 	
 	/**
-	 * µÃµ½response
+	 * å¾—åˆ°response
 	 */
 	public HttpServletResponse getResponse(){
 		return ServletActionContext.getResponse();
 	}
 	
 	/**
-	 * µÃµ½session,Ã»ÓĞ²»´´½¨
+	 * å¾—åˆ°session,æ²¡æœ‰ä¸åˆ›å»º
 	 */
 	public HttpSession getSession(){
 		return getSession(false);
 	}
 	
 	/**
-	 * µÃµ½session
+	 * å¾—åˆ°session
 	 * @param b
 	 * @return
 	 */
@@ -95,7 +95,7 @@ public class BasicAction extends ActionSupport {
 	
 	
 	/**
-	 * ´ÓrequestµÃµ½ÏàÓ¦µÄÖµ
+	 * ä»requestå¾—åˆ°ç›¸åº”çš„å€¼
 	 * @param key
 	 * @return
 	 */
@@ -104,7 +104,7 @@ public class BasicAction extends ActionSupport {
 	}
 	
 	/**
-	 * ÉèÖÃÖµµ½requestÖĞ
+	 * è®¾ç½®å€¼åˆ°requestä¸­
 	 * @param key
 	 * @param value
 	 */
@@ -113,7 +113,7 @@ public class BasicAction extends ActionSupport {
 	}
 	
 	/**
-	 * »ñÈ¡¶à¸öÖµ
+	 * è·å–å¤šä¸ªå€¼
 	 * @param key
 	 * @return
 	 */
@@ -122,7 +122,7 @@ public class BasicAction extends ActionSupport {
 	}
 
 	/**
-	 * ´ÓsessionÖĞÈ¡µÃ¶ÔÓ¦µÄÖµ
+	 * ä»sessionä¸­å–å¾—å¯¹åº”çš„å€¼
 	 * @param key
 	 * @return
 	 */
@@ -131,7 +131,7 @@ public class BasicAction extends ActionSupport {
 	}
 	
 	/**
-	 * ½«Öµ·ÅÈësessionÖĞ
+	 * å°†å€¼æ”¾å…¥sessionä¸­
 	 * @param key
 	 * @param value
 	 */
@@ -140,10 +140,20 @@ public class BasicAction extends ActionSupport {
 	}
 	
 	/**
-	 * É¾³ıµ±Ç°µÄsession
+	 * åˆ é™¤å½“å‰çš„session
 	 */
 	public void deleteSession(){
 		getSession(true).invalidate();
+	}
+	
+	public ServletOutputStream getOutputStream(){
+		try {
+			return this.getResponse().getOutputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	

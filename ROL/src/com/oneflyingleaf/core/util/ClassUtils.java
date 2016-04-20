@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 public class ClassUtils {
 	
 	/**
-	 * 执行对象中的方法
+	 * 鎵ц瀵硅薄涓殑鏂规硶
 	 * @param clazz
 	 * @param methodName
 	 */

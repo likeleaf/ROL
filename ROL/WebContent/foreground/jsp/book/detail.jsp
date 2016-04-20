@@ -10,15 +10,14 @@
 
 <link rel="stylesheet" type="text/css" href="${ctx}/foreground/css/detail.css"/>
 
-<l:lists name="Book" var="book" order="bookId desc" limit= "bookId = ${param.bookId }" onlyOne="true"/>
-<l:lists name="BookChaper" var="bc" order="bookChaIndex desc" limit= "bookId = ${param.bookId }" pageCount="20"/>
-
+	<l:lists name="Book" var="book" order="bookId desc" limit= "bookId = ${param.bookId }" onlyOne="true"/>
+	<l:lists name="BookChaper" var="bc" order="bookChaIndex desc" limit= "bookId = ${param.bookId }" pageCount="20"/>
 
 	<!--书籍位置-->
 	<div class="path">
 		<ol class="breadcrumb">
 			<li>当前位置</li>
-			<li><a href="#">${book[0].bookType }</a></li>
+			<li><a href="${ctx }/foreground/jsp/book/display.jsp?bookType=${book[0].bookType }">${book[0].bookType }</a></li>
 			<li><a class="active" href="">  ${book[0].bookName }  </a></li>
 		</ol>
 	</div>
@@ -36,20 +35,25 @@
 						<a class="btn btn-default" href="">打赏作品</a>
 						<a class="btn btn-default" href="">送张月票</a>
 						<a class="btn btn-default" href="">送朵鲜花</a>
+						<a class="btn btn-default" href="javascript:;" onclick="javascript:downloadBook('${param.bookId }')">下载本书</a>
+						<div class="alert alert-warning hid" id="tishi">
+							<a href="#" class="close" data-dismiss="alert" >
+							</a>
+						</div>
 					</div>
 				</div>
 				<div class="detail flo">
 					<div class="detail-content">
 						<div class="top">
 							<div class="head">
-								<label class="title"> ${book[0].bookName }</label><label class="auth">作者： ${book[0].authName }</label>
+								<label class="title cur" id="bookName"  ondblclick="javascript:setBookProperties('书名','bookName','bookName')"> ${book[0].bookName }</label><label class="auth">作者： ${book[0].authName }</label>
 							</div>
 							<div class="info">
 								 <span>类别：${book[0].bookType }</span> <span>点击：-</span> <span>字数：2448367</span><span> 授权：A级签约</span>
 							</div>
 						</div>
 						<div class="buttom" style="marfin-button:20px">
-							<div class="intro">
+							<div class="intro cur" id="bookDes" ondblclick="javascript:setBookProperties('书籍简介','bookDes','bookDes')">
 									${book[0].bookDes }
 							</div>
 							<div class="check">
@@ -57,9 +61,9 @@
 								<button class="btn btn-default">加入书架</button>
 							</div>
 							<div class="lastest">
-								<h5><label class="back flo" style="padding-left:20px;width:300px">${bc[0].bookChaTitle }</label> <span class="time">2015-10-31 18:20:00</span></h5>
+								<h5><label class="back flo" style="padding-left:20px;width:300px"><a href="${ctx }/foreground/jsp/book/book_read.jsp?bookId=${book[0].bookId }&&bookChaId=${bc[0].bookChaId }">${bc[0].bookChaTitle }</a></label> <span class="time">2015-10-31 18:20:00</span></h5>
 								<span>
-										${fn:substring(bc[0].text,0,200)}
+										${fn:substring(bc[0].text,0,400)}
 								</span>
 							</div>
 
@@ -68,6 +72,34 @@
 				</div>
 				<div class="unflo"></div>
 			</div>
+			<!-- 模态框 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+			   aria-labelledby="myModalLabel" aria-hidden="true">
+			   <div class="modal-dialog">
+			      <div class="modal-content">
+			         <div class="modal-header">
+			            <button type="button" class="close" 
+			               data-dismiss="modal" aria-hidden="true">
+			                  &times;
+			            </button>
+			            <h4 class="modal-title" id="myModalLabel">
+			           <span id="modalTitle"></span>
+			            </h4>
+			         </div>
+			         <div class="modal-body">
+			  			<input id="bookProperties" class="form-control"/>
+			         </div>
+			         <div class="modal-footer">
+			            <button type="button" class="btn btn-default" 
+			               data-dismiss="modal">关闭
+			            </button>
+			            <button type="button" onclick="save()" class="btn btn-primary">
+			               提交更改
+			            </button>
+			         </div>
+			      </div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
 
 			
 			<div class="book-menu">
@@ -386,9 +418,89 @@
 
 </html>
 <script>
+
+var bookId = '${param.bookId }';
+var str ;
+var pro;
+var id;
+
+function save(){
+	var value = $('#bookProperties').val();
+	if(!value){
+		alert(str+'不能为空');
+		return ;
+	}
+	if($('.top .head.title').eq(0).text() == value){
+		alert(str+'和原'+str+'相同');
+		return;
+	}
+   var myurl = '${ctx}/foreground/jsp/book/book_updateBookProperties?bookId='+bookId+'&'+pro+'='+value+'&type='+pro;
+	leaf.ajax({url:myurl,dataType:'json',success:doBookProperties});
+}
+
+function setBookProperties(str1,pro1,id1){
+	str = str1;
+	pro = pro1;
+	id = id1;
+	setModalTitle(str+"修改");
+	$('#myModal').modal("show");
+	
+}
+
+function doBookProperties(msg){
+	$('#myModal').modal("hide");
+	if(msg.stat == 'suc'){
+		$('#'+id).html($('#bookProperties').val());
+		leaf.msg('修改成功');
+		value = $('#bookProperties').val("");
+		
+	}else if(msg.stat == 'fal'){
+		leaf.msg(msg.msg);
+		}
+	
+}
+
+
+
+function setModalTitle(str){
+	$("#modalTitle").html(str);
+}
+
+
 function redirect(val){
 	   window.location.href='${ctx}/foreground/jsp/book/book_menu.jsp?bookId='+val; 
 }
 
+function downloadBook(bookId){
+	var myurl = '${ctx}/foreground/jsp/book/book_checkPermission?bookId='+bookId;
+
+	leaf.ajax({url:myurl,success:doDownloadBook,dataType:'json'});
+}
+
+function doDownloadBook(msg){
+	var myurl = '${ctx}/foreground/jsp/book/book_downloadBook';
+	if('fal' == msg.stat){
+		if('10' == msg.msg){//未登录
+			showTips("请登录");
+			
+		}else{//
+			showTips(msg.msg);
+		}
+	}else if('suc' == msg.stat){
+		window.open(myurl,"_blank");
+	}
+}
+
+function showTips(content,id,strongStr){
+	if(!strongStr){
+		strongStr = '警告:';
+		}
+	$('#tishi').removeClass('alert-success');
+	$('#tishi').addClass('alert-warning');
+	$("#tishi").children('span').remove();
+	$("#tishi").append("<span><strong>"+strongStr+"</strong>"+content+"</span>");
+	$("#tishi").removeClass("hid");
+	$("#"+id).addClass("has-error");
+}
 
 </script>

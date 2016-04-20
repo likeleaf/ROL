@@ -233,5 +233,9 @@ public class BasicDaoImpl implements BaseDao{
 		}
 		return null;
 	}
+	
+	public <T> void evict(T t){
+		getSession().evict(t);
+	}
 
 }

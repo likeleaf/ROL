@@ -22,8 +22,19 @@
 	<package name="foreground" namespace="/foreground/jsp/user" extends="struts-default">
 		<action name="user_*" class="com.oneflyingleaf.foreground.action.user.UserAction" method="{1}">
 			<result name="success" type="redirect">../../../index.jsp</result>
+			<result name="author" type="redirect">../book/book_show.jsp?author=author</result>
+			<result name="manager" type="redirect">../../background/jsp/user/user.jsp</result>
 		</action>
 	</package>
 	
+	
+	<package name="book" namespace="/foreground/jsp/book" extends="struts-default">
+		<action name="book_*" class="com.oneflyingleaf.foreground.action.book.BookAction" method="{1}"> 
+			<result name="success">../../../index.jsp</result>
+		</action>
+		<action name="book_downloadBook" class="com.oneflyingleaf.foreground.action.book.BookAction" method="downloadBook"> 
+			<result name="success">../../../index.jsp</result>
+		</action>
+	</package>
 	
 </struts>

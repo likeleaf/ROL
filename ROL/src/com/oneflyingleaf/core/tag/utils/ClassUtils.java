@@ -14,8 +14,8 @@ public class ClassUtils {
 	
 	
 	/**
-	 * 根据相关的name得到它的class，该name的包名必须在config中注册，key的值为data.package
-	 * @param packageName 实体类的包名，如果实体类缺失将自动寻找config.properties的中的data.package属性来充作packageName
+	 * 鏍规嵁鐩稿叧鐨刵ame寰楀埌瀹冪殑class锛岃name鐨勫寘鍚嶅繀椤诲湪config涓敞鍐岋紝key鐨勫�间负data.package
+	 * @param packageName 瀹炰綋绫荤殑鍖呭悕锛屽鏋滃疄浣撶被缂哄け灏嗚嚜鍔ㄥ鎵綾onfig.properties鐨勪腑鐨刣ata.package灞炴�ф潵鍏呬綔packageName
 	 * @param name
 	 * @return
 	 * @throws ClassNotFoundException

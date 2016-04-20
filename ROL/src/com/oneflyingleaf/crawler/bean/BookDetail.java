@@ -5,26 +5,26 @@ import java.util.List;
 public class BookDetail {
 	
 	private Integer bookDetailId;
-	//Í¼Æ¬µØÖ·
+	//å›¾ç‰‡åœ°å€
 	private String picturePath;
-	//ÊéÃû
+	//ä¹¦å
 	private String bookName;
-	//Êé¼®Ä¿Â¼Â·¾¶»»³ÉmenuPath
+	//ä¹¦ç±ç›®å½•è·¯å¾„æ¢æˆmenuPath
 	@Deprecated
 	private String bookPath;
-	//Êé¼®±êÇ©
+	//ä¹¦ç±æ ‡ç­¾
 	private String bookLab;
-	//×÷Õß
+	//ä½œè€…
 	private String auth;
-	//¼ò½é
+	//ç®€ä»‹
 	private String intro;
-	//×î½üµÄÊ±¼ä
+	//æœ€è¿‘çš„æ—¶é—´
 	private String time;
-	//Ä¿Â¼µÄÂ·¾¶
+	//ç›®å½•çš„è·¯å¾„
 	private String menuPath;
-	//Í¼Æ¬±¾µØÂ·¾¶
+	//å›¾ç‰‡æœ¬åœ°è·¯å¾„
 	private String picLocalPath;
-	//ÕÂ½Ú
+	//ç« èŠ‚
 	private List<Menu> menu;
 	
 	

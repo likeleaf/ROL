@@ -17,7 +17,7 @@ public class FileUtils {
 	
 	
 	/**
-	 * Í¨¹ı×Ö½ÚÁ÷±£´æÏëÓ¦µÄÎÄ¼ş
+	 * é€šè¿‡å­—èŠ‚æµä¿å­˜æƒ³åº”çš„æ–‡ä»¶
 	 * @param is
 	 * @param f
 	 * @return
@@ -75,7 +75,7 @@ public class FileUtils {
 
 	
 	/**
-	 * ½«×Ö·û±£´æµ½Ïà¹ØµÄÎÄ¼ş
+	 * å°†å­—ç¬¦ä¿å­˜åˆ°ç›¸å…³çš„æ–‡ä»¶
 	 * @param str
 	 * @param f
 	 * @return
@@ -83,8 +83,8 @@ public class FileUtils {
 	public static boolean saveFile(String str,File f){
 		FileWriter fw = null;
 		BufferedWriter bw = null;
-	/*	str = str.replaceAll("<br>", "\\r\\n");
-		System.out.println(str);*/
+		str = str.replaceAll("\\?\\?\\?\\?", "\\r\\n");
+		System.out.println(str);
 		try {
 			fw = new FileWriter(f);
 			bw = new BufferedWriter(fw);
