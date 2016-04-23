@@ -169,13 +169,15 @@ public class FileUtils {
 			return sb;
 		}
 		FileReader fr = null;
+		InputStreamReader fis = null;
 		BufferedReader br = null;
 		try{
 			fr = new FileReader(f);
-			br = new BufferedReader(fr);
+			fis = new InputStreamReader(new FileInputStream(f),"GBK");
+			br = new BufferedReader(fis);
 			String temp = null;
 			while((temp = br.readLine())!= null){
-				sb.append(temp).append("<br>");
+				sb.append(new String(temp.getBytes("utf-8"),"utf-8")).append("<br>");
 			}
 			return sb;
 		}catch(Exception e){
@@ -192,10 +194,13 @@ public class FileUtils {
 			return sb;
 		}
 		FileReader fr = null;
+		InputStreamReader fis = null;
+		
 		BufferedReader br = null;
 		try{
 			fr = new FileReader(f);
-			br = new BufferedReader(fr);
+			fis = new InputStreamReader(new FileInputStream(f),"GBK");
+			br = new BufferedReader(fis);
 			String temp = null;
 			while((temp = br.readLine())!= null){
 				sb.append(temp).append("\r\n");

@@ -14,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * 
- * ÉèÖÃÏà¹ØµÄ±àÂë
+ * è®¾ç½®ç›¸å…³çš„ç¼–ç 
  */
 public class SetCharacterEncodingFilter implements Filter {
 	

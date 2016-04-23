@@ -24,18 +24,18 @@ public class User  implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 5074727592887383184L;
 	
-	//¶ÔÓ¦È¨ÏŞ  10£ºÆÕÍ¨ÓÃ»§  20£º×÷Õß   30£ºvip   40£º¹ÜÀíÔ±£º50   ³¬¼¶¹ÜÀíÔ±
+	//å¯¹åº”æƒé™  10ï¼šæ™®é€šç”¨æˆ·  20ï¼šä½œè€…   30ï¼švip   40ï¼šç®¡ç†å‘˜ï¼š50   è¶…çº§ç®¡ç†å‘˜
 	public static final String USER_NOR = "10";
 	public static final String USER_AUTHOR = "20";
 	public static final String USER_VIP = "30";
 	public static final String USER_MANAGER = "40";
 	public static final String USER_SUPER_MANAGER = "50";
 	
-	/*public static final String ÆÕÍ¨ÓÃ»§ = "10";
-	public static final String ×÷Õß = "20";
+	/*public static final String æ™®é€šç”¨æˆ· = "10";
+	public static final String ä½œè€… = "20";
 	public static final String USER_VIP = "30";
-	public static final String ¹ÜÀíÔ± = "40";
-	public static final String ³¬¼¶¹ÜÀíÔ± = "50";*/
+	public static final String ç®¡ç†å‘˜ = "40";
+	public static final String è¶…çº§ç®¡ç†å‘˜ = "50";*/
 	
 	
 	 private String userId;

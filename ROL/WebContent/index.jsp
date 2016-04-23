@@ -9,7 +9,7 @@
 
 
 	<div class="container">
-		<!--tab1 热门推荐，图片的轮转 -->x	
+		<!--tab1 热门推荐，图片的轮转 -->
 		<div class="content-tab1">
 			<div class="container extra">
 				<div class="row main">

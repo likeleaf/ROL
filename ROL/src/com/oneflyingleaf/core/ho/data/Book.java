@@ -29,8 +29,8 @@ public class Book  implements java.io.Serializable {
      private String bookTextCount;
      private String bookStat;
      private String bookPay;
-     private Timestamp bookDate;//最新的更新时间
-     private String authName;//作者名
+     private Timestamp bookDate;//鏈�鏂扮殑鏇存柊鏃堕棿
+     private String authName;//浣滆�呭悕
      private String bookImg;
      private String bookType;
      

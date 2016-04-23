@@ -1,7 +1,7 @@
 package com.oneflyingleaf.core.ho.data;
 
 public class Menu {
-	private Integer id;//Ö÷¼ü
+	private Integer id;//ä¸»é”®
 	private String title;
 	private String Path;
 	private String localPath;

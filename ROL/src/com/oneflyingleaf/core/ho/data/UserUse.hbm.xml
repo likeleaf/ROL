@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-17 17:03:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.core.ho.data.UserUse" table="USER_USE">
+        <id name="userUseId" type="java.lang.Integer">
+            <column name="USER_USE_ID" />
+            <generator class="sequence" >
+            	<param name="sequence">rol.C_USER_USE</param>
+            </generator>
+        </id>
+        <property name="userUseKey" type="java.lang.String">
+            <column name="USER_USE_KEY" />
+        </property>
+        <property name="userUseValue" type="java.lang.String">
+            <column name="USER_USE_VALUE" />
+        </property>
+        <property name="userId" type="java.lang.String">
+            <column name="USER_ID" />
+        </property>
+        <property name="userUseTime" type="java.sql.Timestamp">
+            <column name="USER_USE_TIME" />
+        </property>
+        <property name="userUseStat" type="java.lang.String">
+            <column name="USER_USE_STAT" />
+        </property>
+    </class>
+</hibernate-mapping>

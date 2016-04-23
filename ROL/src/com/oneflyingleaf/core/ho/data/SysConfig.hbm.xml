@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-17 16:43:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.oneflyingleaf.core.ho.data.SysConfig" table="SYS_CONFIG">
+        <id name="sysConfigId" type="java.lang.Integer">
+            <column name="SYS_CONFIG_ID" />
+			<generator class="sequence">
+				<param name="sequence">rol.C_SYS_CONFIG</param>
+		    </generator>
+        </id>
+        <property name="sysConfigKey" type="java.lang.String">
+            <column name="SYS_CONFIG_KEY" />
+        </property>
+        <property name="sysConfigVal" type="java.lang.String">
+            <column name="SYS_CONFIG_VAL" />
+        </property>
+        <property name="sysConfigGrp" type="java.lang.String">
+            <column name="SYS_CONFIG_GRP" />
+        </property>
+        <property name="sysConfigCom" type="java.lang.String">
+            <column name="SYS_CONFIG_COM" />
+        </property>
+        <property name="sysConfigCode" type="java.lang.String">
+            <column name="SYS_CONFIG_CODE" />
+        </property>
+        <property name="sysConfigStat" type="java.lang.String">
+            <column name="SYS_CONFIG_STAT" />
+        </property>
+    </class>
+</hibernate-mapping>

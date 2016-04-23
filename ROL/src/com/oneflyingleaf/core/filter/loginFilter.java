@@ -21,7 +21,7 @@ import com.oneflyingleaf.core.ho.data.User;
 import com.oneflyingleaf.core.util.SpringUtils;
 
 /**
- * µÇÂ¼È¨ÏŞµÄĞ£Ñé
+ * ç™»å½•æƒé™çš„æ ¡éªŒ
  */
 public class loginFilter implements Filter {
 	
@@ -32,17 +32,17 @@ public class loginFilter implements Filter {
     }
 
 	public void destroy() {
-		log.info("µÇÂ¼À¹½ØÆ÷Ïú»Ù...");
+		log.info("ç™»å½•æ‹¦æˆªå™¨é”€æ¯...");
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		req.setCharacterEncoding("utf-8");
-		//È¨ÏŞµÄ¼ì²é
+		//æƒé™çš„æ£€æŸ¥
 		if(checkPermission(req)){
 			String oldUrl = (String) req.getSession().getAttribute(SessionEnum.OLDURL.toString());
-			//·µ»ØµÇÂ¼Ç°µÄÍøÖ·
+			//è¿”å›ç™»å½•å‰çš„ç½‘å€
 			if(StringUtils.isNotBlank(oldUrl)){
 				req.getSession().removeAttribute(SessionEnum.OLDURL.toString());
 				res.sendRedirect(oldUrl);
@@ -50,7 +50,7 @@ public class loginFilter implements Filter {
 			}
 			chain.doFilter(request, response);
 		}else{
-			//½«½øÈëµÄurl±£´æ£¬Ê¹µÃ±£´æ×¢²á»òÕßµÇÂ½ºóÖ±½ÓÌø×ªµ½ĞèÒªµ½´ïµÄ½çÃæ
+			//å°†è¿›å…¥çš„urlä¿å­˜ï¼Œä½¿å¾—ä¿å­˜æ³¨å†Œæˆ–è€…ç™»é™†åç›´æ¥è·³è½¬åˆ°éœ€è¦åˆ°è¾¾çš„ç•Œé¢
 			String oldUrl = req.getRequestURL().toString();
 			if(StringUtils.isNotBlank(login)){
 				if(login.equals(oldUrl.trim()))
@@ -61,9 +61,9 @@ public class loginFilter implements Filter {
 	}
 	
 	/**
-	 * ¼ì²éÊÇ·ñÓµÓĞ½øÈëÏà¹ØÍøÒ³µÄÈ¨ÏŞ
+	 * æ£€æŸ¥æ˜¯å¦æ‹¥æœ‰è¿›å…¥ç›¸å…³ç½‘é¡µçš„æƒé™
 	 * @param req
-	 * @return Èç¹ûÓµÓĞÈ¨ÏŞÔò·µ»Øtrue£¬Ã»ÓĞ·µ»Øfalse
+	 * @return å¦‚æœæ‹¥æœ‰æƒé™åˆ™è¿”å›trueï¼Œæ²¡æœ‰è¿”å›false
 	 */
 	private boolean checkPermission(HttpServletRequest req){
 		HttpSession session =req.getSession();
@@ -71,21 +71,21 @@ public class loginFilter implements Filter {
 		
 		if(StringUtils.isNotBlank(id)){
 			User user = SpringUtils.getBaseService().get(User.class, id);
-			//·ÀÖ¹³öÏÖ²ÎÊı³åÍ»¼´£ºwww.oneflyingleaf.com/author/*.html?/auther/=...µÄÇé¿ö
+			//é˜²æ­¢å‡ºç°å‚æ•°å†²çªå³ï¼šwww.oneflyingleaf.com/author/*.html?/auther/=...çš„æƒ…å†µ
 			String url = req.getRequestURL().toString().split("?")[0];
-			//×÷Õß
+			//ä½œè€…
 			if(User.USER_AUTHOR.equals(user.getPermission()) && url.contains("/author/")){
 				return true;
 			}
-			//¹ÜÀíÔ±
+			//ç®¡ç†å‘˜
 			if(User.USER_MANAGER.equals(user.getPermission()) && !url.contains("/author/")){
 				return true;
 			}
-			//³¬¼¶¹ÜÀíÔ±
+			//è¶…çº§ç®¡ç†å‘˜
 			if(User.USER_SUPER_MANAGER.equals(user.getPermission())){
 				return true;
 			}
-			//ÆÕÍ¨ÓÃ»§
+			//æ™®é€šç”¨æˆ·
 			if(User.USER_NOR.equals(user.getPermission()) && url.contains("/normal/")){
 				return true;
 			}
@@ -94,7 +94,7 @@ public class loginFilter implements Filter {
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		log.info("µÇÂ¼À¹½ØÆ÷ ³õÊ¼»¯...");
+		log.info("ç™»å½•æ‹¦æˆªå™¨ åˆå§‹åŒ–...");
 	}
 
 }
