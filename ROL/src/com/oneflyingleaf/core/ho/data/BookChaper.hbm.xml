@@ -4,7 +4,7 @@
 <!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.oneflyingleaf.core.ho.data.BookChaper" table="BOOK_CHAPERS">
-        <id name="bookChaId"  type="java.lang.String"  column="BOOK_CHA_ID" >
+        <id name="bookChaId"  type="java.lang.Integer"  column="BOOK_CHA_ID" >
 			<generator class="sequence">
 				<param name="sequence">rol.C_BOOK_CHAPER</param>
 		    </generator>

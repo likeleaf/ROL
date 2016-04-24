@@ -22,7 +22,7 @@
 		</ol>
 	</div>
 
-
+	<c:set var="authName" value="${book[0].authName }"></c:set>
 	<!---->
 	<div class="container">
 		<div class="content">
@@ -414,17 +414,22 @@
 
 
 </body>
-
-
+<c:if test="${not empty USER && not empty authName && authName == USER.userName}">
+	<c:set var="permission" value="20"></c:set>
+</c:if>
 </html>
+${USER.userName }===${authName }
 <script>
 
 var bookId = '${param.bookId }';
 var str ;
 var pro;
 var id;
-
+var permission = '${permission}';
 function save(){
+	if(permission != "20"){
+		return false;
+		}
 	var value = $('#bookProperties').val();
 	if(!value){
 		alert(str+'不能为空');
@@ -439,6 +444,10 @@ function save(){
 }
 
 function setBookProperties(str1,pro1,id1){
+	
+	if(permission != "20"){
+		return false;
+		}
 	str = str1;
 	pro = pro1;
 	id = id1;
@@ -463,6 +472,7 @@ function doBookProperties(msg){
 
 
 function setModalTitle(str){
+	
 	$("#modalTitle").html(str);
 }
 

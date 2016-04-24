@@ -13,7 +13,6 @@
 <l:lists name="Book" var="book" order="bookId desc" limit= "bookId = ${param.bookId }"/>
 <l:lists name="BookChaper" var="bc" order="bookChaIndex " limit= "bookId = ${param.bookId }" />
 
-
 	<!--书籍位置-->
 	<div class="path">
 		<ol class="breadcrumb">
@@ -42,8 +41,18 @@
 				<div class="book-menu">
 					<ul class="list-unstyled">
 						<c:forEach var="lab" items="${bc}">
-							<li><a href="${ctx }/foreground/jsp/book/book_read.jsp?bookId=${param.bookId }&bookChaId=${lab.bookChaId }">${lab.bookChaTitle }</a></li>
+							<li><a href="${ctx }/foreground/jsp/book/book_read.jsp?bookId=${param.bookId }&bookChaId=${lab.bookChaId }" >${lab.bookChaTitle }</a>
+								<c:if test="${USER.permission == '20' && book[0].authName == USER.userName }">
+									<span>　　　</span><div style="color:#5400ff; width:15px;" class="glyphicon glyphicon-cog cur" onclick="javascript:editOrAdd('${book[0].bookId }','${lab.bookChaId}')"></div>
+								</c:if>
+								<div class="unflo"></div>
+							</li>
 						</c:forEach>
+						<li class="cur" style="color:#5400ff;text-align:center;" onclick="javascript:add('${book[0].bookId }')">
+							<c:if test="${USER.permission == '20' && book[0].authName == USER.userName }">
+									<span >添加章节　　　</span><div class="glyphicon glyphicon-plus"></div>
+							</c:if>
+						</li>
 					</ul>
 					<div class="unflo"></div>
 				</div>
@@ -126,9 +135,18 @@
 </body>
 
 
+
 </html>
 <script>
+var permission = '${permission}';
+function editOrAdd(bookId,bookChaId){
+	var url = '${ctx}/foreground/jsp/book/book_cha_editor.jsp?bookId='+bookId+'&bookChaId='+bookChaId+'&type=edit';
+	window.open(url,"_blank");
+}
 
-
+function add(bookId){
+	var url = '${ctx}/foreground/jsp/book/book_cha_add.jsp?bookId='+bookId;
+	window.open(url,"_blank");	
+}
 
 </script>

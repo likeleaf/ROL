@@ -4,16 +4,22 @@
 <!-- Generated 2016-1-28 16:59:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.oneflyingleaf.core.ho.data.Vip" table="VIP">
-        <id name="vipId" type="java.lang.String">
+        <id name="vipId" type="java.lang.Integer">
             <column name="VIP_ID" />
-            <generator class="uuid" />
+            <generator class="sequence" >
+            	<param name="sequence">rol.C_VIP</param>
+            </generator>
         </id>
-        <one-to-one name="user" class="com.oneflyingleaf.core.ho.data.User"></one-to-one>
-        <property name="level" type="java.lang.Boolean">
+        
+        
+        <property name="level" type="java.lang.Integer">
             <column name="LEVEL" />
         </property>
         <property name="vipStat" type="java.lang.String">
             <column name="VIP_STAT" />
+        </property>
+        <property name="userId" type="java.lang.String">
+            <column name="USER_ID" />
         </property>
    
     </class>

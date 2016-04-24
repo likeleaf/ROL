@@ -9,6 +9,14 @@
     <constant name="struts.devMode" value="true" />
     <constant name="struts.ui.theme" value="simple"/>
     
+<!--     <package name="default">
+    	<global-exception-mappings>
+    		<exception-mapping result="error" exception="exception">
+    			<param name=""></param>
+    		</exception-mapping>
+    	</global-exception-mappings>
+    </package> -->
+    
 	<!-- <package name="default" namespace="/login" extends="struts-default">
 		<action name="login_*" class="com.oneflyingleaf.action.LoginAction" method="{1}">
 			<result name="{1}">/WEB-INF/doctor/{1}.jsp</result>

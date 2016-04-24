@@ -1,0 +1,51 @@
+.content{
+	
+	width: 1010px;
+	margin-left: 80px;
+
+}
+.content h4{
+	color: #999;
+}
+
+.content .pay-left{
+	width: 200px;
+	color: #666;
+	background: #eee;
+	padding: 20px;
+	float: left;
+}
+.content .pay-right{
+	width: 800px;
+	height: 575px;
+	text-align: center;
+	margin-left: 10px;
+/* 	background: red; */
+	float: right;
+	border: 1px solid #eee;	
+}
+
+.content .pay-right li{
+	width: 150px;
+	height: 75px;
+	background: #eee;
+	text-align: center;
+	padding: 15px;
+	border-radius: 10px;
+	display: block;
+	box-shadow: 5px -2px 5px #ccc; 
+	margin: 30px;
+	float: left;
+}
+
+.content .pay-right li p{
+	margin-top: 5px;
+	color: #00e3e3;
+}
+
+.pay-inf{
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+
+}

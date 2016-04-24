@@ -31,9 +31,12 @@
 	<package name="book" namespace="/foreground/jsp/book" extends="struts-default">
 		<action name="book_*" class="com.oneflyingleaf.foreground.action.book.BookAction" method="{1}"> 
 			<result name="success">../../../index.jsp</result>
+			<result name="save_success" type="redirect">book_menu.jsp?bookId=${bookId}</result>
 		</action>
 		<action name="book_downloadBook" class="com.oneflyingleaf.foreground.action.book.BookAction" method="downloadBook"> 
 			<result name="success">../../../index.jsp</result>
+		</action>
+		<action name="book_save" class="com.oneflyingleaf.foreground.action.book.BookAction">
 		</action>
 	</package>
 	

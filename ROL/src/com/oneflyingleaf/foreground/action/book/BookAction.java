@@ -1,5 +1,6 @@
 package com.oneflyingleaf.foreground.action.book;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -15,7 +16,11 @@ import com.oneflyingleaf.core.constant.SessionEnum;
 import com.oneflyingleaf.core.ho.data.Book;
 import com.oneflyingleaf.core.ho.data.BookChaper;
 import com.oneflyingleaf.core.ho.data.User;
+import com.oneflyingleaf.core.ho.data.Vip;
 import com.oneflyingleaf.core.util.JsonUtils;
+import com.oneflyingleaf.core.util.PinYinUtils;
+import com.oneflyingleaf.crawler.constant.CrawlerConstant;
+import com.oneflyingleaf.crawler.util.FileUtils;
 import com.oneflyingleaf.foreground.service.permission.IPermissionService;
 
 public class BookAction extends BasicAction{
@@ -24,6 +29,8 @@ public class BookAction extends BasicAction{
 	
 	@Resource(name="permissionService")
 	private IPermissionService ps;
+	
+	private String bookId;
 	
 	public void bookShow(){
 		
@@ -167,7 +174,150 @@ public class BookAction extends BasicAction{
 			this.outPut(JsonUtils.toJsonString("stat:fal,msg:更新失败，请联系管理员！"));
 		}
 	}
+	
+	/**
+	 * 书籍插入
+	 * 漏洞：1.未验证用户
+	 * 		 2.短时间内无限访问，造成崩溃
+	 * @return
+	 */
+	public String addBookCha(){
+		String title = this.getParameter("title");
+		String content = this.getParameter("content");
+		BookChaper bc = new BookChaper();
+		String bookId = this.getParameter("bookId");
 
+		
+		if(StringUtils.isBlank(title)){
+			return ERROR;
+		}
+		if(StringUtils.isBlank(content)){
+			return ERROR;
+		}
+		if(StringUtils.isBlank(bookId)){
+			return ERROR;
+		}
+		Object obj = this.basicService.findOne("select max(bookChaIndex) from BookChaper bc where bc.bookId = ?", new Object[]{bookId});
+		Book book  = this.basicService.findOne("from Book where bookId = ?",new Object[]{bookId});
+		
+		int index = obj == null?0:Integer.parseInt(String.valueOf(obj));
+		
+		bc.setBookChaIndex(index+1);
+		bc.setBookChaTitle(title);
+		bc.setBookId(bookId);
+		String path =  CrawlerConstant.BOOK_PATH+"\\"+PinYinUtils.getPinYinHeadChar(book.getBookType())+"\\"+book.getBookName()+"\\"+title+".txt";
+		//保存
+		FileUtils.saveFile(content,new File(path));
+		
+		bc.setBookChaCon(path);
+		this.basicService.save(bc);
+		
+		this.bookId = bookId;
+		
+		return "save_success";
+	
+	}
+	
+	/**
+	 * 编辑章节内容
+	 * @return
+	 */
+	public String editBookCha(){
+		String title = this.getParameter("title");
+		String content = this.getParameter("content");
+		String bookChaId = this.getParameter("bookChaId");
+		String bookId = this.getParameter("bookId");
+
+		
+		if(StringUtils.isBlank(title)){
+			return ERROR;
+		}
+		if(StringUtils.isBlank(content)){
+			return ERROR;
+		}
+		if(StringUtils.isBlank(bookId)){
+			return ERROR;
+		}
+		if(StringUtils.isBlank(bookChaId)){
+			return ERROR;
+		}
+		BookChaper bc = this.basicService.findOne("from BookChaper bc where bc.bookChaId = ?", new Object[]{Integer.parseInt(bookChaId)});
+	//	Book book  = this.basicService.findOne("from Book where bookId = ?",new Object[]{bookId});
+		
+		bc.setBookChaTitle(title);
+		
+		String path = bc.getBookChaCon();
+		
+		File file = new File(path);
+		
+		file.deleteOnExit();
+		
+		//保存
+		FileUtils.saveFile(content,new File(path));
+		
+		this.basicService.update(bc);
+		
+		this.bookId = bookId;
+		
+		return "save_success";
+	}
+	
+	/**
+	 * 打赏作品
+	 */
+	public void rewardBook(){
+		String bookId = this.getParameter("bookId");
+		
+		User user = (User) this.getSessionAttribute(SessionEnum.USER.toString());
+		if(user == null){
+			this.outPut(JsonUtils.toJsonString("stat:fal,msg:打赏失败，请重新登录！"));
+			return;
+		}
+
+		if(StringUtils.isBlank(bookId)){
+			this.outPut(JsonUtils.toJsonString("stat:fal,msg:打赏失败，请刷新新重试！"));
+			return;
+		}
+		
+		Book book = this.basicService.findOne("from Book where bookId = ?", new Object[]{bookId});
+		if(book == null){
+			this.outPut(JsonUtils.toJsonString("stat:fal,msg:打赏失败，该书不存在！"));
+			return;	
+		}
+		
+			
+		
+	}
+	
+	
+	
+	
+	
+	
+	/**************************************************工具******************************************************/
+	
+	
+	private String getVipLevel(User user){
+		if(user == null){
+			throw new NullPointerException();
+		} 
+		
+		String per = user.getPermission();
+		
+		//普通用户
+		if(User.USER_NOR.equals(per)){
+			return "VIP0";
+		}else if(User.USER_VIP.equals(per) || User.USER_AUTHOR.equals(per)){//vip和作者，作者默认为vip
+			Vip v = this.basicService.findOne("from Vip where userId = ? and vipStat = '20'", new Object[]{user.getUserId()});
+			Integer level = v.getLevel();
+			return "VIP"+level;
+			
+		}else if(User.USER_MANAGER.equals(per) || User.USER_SUPER_MANAGER.equals(per)){//管理员和超级管理员的职责不体现在这里
+			return "manager";
+		}
+		return null;
+		
+	}
 
 	public IPermissionService getPs() {
 		return ps;
@@ -176,6 +326,14 @@ public class BookAction extends BasicAction{
 
 	public void setPs(IPermissionService ps) {
 		this.ps = ps;
+	}
+
+	public String getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
 	}
 
 }

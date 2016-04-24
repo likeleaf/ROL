@@ -530,7 +530,7 @@
 									<c:forEach var="lab2" items="${labList2}" varStatus="sta">
 									<tr>
 										<td width="70%"> [${lab2.bookType }]${fn:substring(lab2.bookName,0,6 )}　
-												<l:lists name="BookChaper" var="bbc" order="bookChaIndex desc" limit="bookId = '${lab2.bookId }'"/>
+												<l:lists name="BookChaper" var="bbc" order="bookChaIndex desc" limit="bookId = '${lab2.bookId }'" onlyOne="true"/>
 												${bbc[0].bookChaIndex } 
 										</td>
 										<td width="20%">${fn:substring(lab2.authName,0,6) }</td>

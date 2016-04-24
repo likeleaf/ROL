@@ -17,7 +17,7 @@ public class BookChaper  implements java.io.Serializable {
 
     // Fields    
 
-     private String bookChaId;
+     private Integer bookChaId;
      private String bookPartId;
      private String bookChaCon;
      private Integer bookChaIndex;
@@ -31,13 +31,6 @@ public class BookChaper  implements java.io.Serializable {
    
     // Property accessors
 
-    public String getBookChaId() {
-        return this.bookChaId;
-    }
-    
-    public void setBookChaId(String bookChaId) {
-        this.bookChaId = bookChaId;
-    }
 
     public String getBookPartId() {
         return this.bookPartId;
@@ -79,15 +72,23 @@ public class BookChaper  implements java.io.Serializable {
 		this.bookId = bookId;
 	}
    
-
+	/**
+	 * 用于显示
+	 * @return
+	 */
 	public String getText(){
 		if(bookChaCon == null) return "";
 		if(text == null){
 			text = FileUtils.getFileContent(new File(bookChaCon)).toString();
 		}
+		//System.out.println(text);
 		return text;
 	}
 	
+	/**
+	 * 用于下载
+	 * @return
+	 */
 	public String getText2(){
 		if(bookChaCon == null) return "";
 		if(text == null){
@@ -100,7 +101,17 @@ public class BookChaper  implements java.io.Serializable {
 		return getText().length();
 	}
 
+	public String getRealCon(){
+		return this.bookChaCon;
+	}
 
+	public Integer getBookChaId() {
+		return bookChaId;
+	}
+
+	public void setBookChaId(Integer bookChaId) {
+		this.bookChaId = bookChaId;
+	}
 
 
 

@@ -22,7 +22,8 @@ public class PermissionService extends BasicService implements IPermissionServic
 		}
 
 		String per = user.getPermission();
-		if("10".equals(per)){
+		//所有用户均无需验证
+		if(!"000".equals(per)){ //
 			SysConfig s = this.findOne("from SysConfig where sysConfigKey = ?", new Object[]{permisisonCode});
 			if(s != null){
 				UserUse u = this.findOne("from UserUse u where u.userId = ? and u.userUseKey = ?", new Object[]{userid,permisisonCode});
@@ -44,8 +45,11 @@ public class PermissionService extends BasicService implements IPermissionServic
 				}
 			}
 		}
+		
 		return false;
 	}
+	
+	
 	
 	
 	
